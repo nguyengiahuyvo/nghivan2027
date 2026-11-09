@@ -1,6 +1,7 @@
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { t, getLang, setLang, detectLang } from './i18n.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,60 +13,33 @@ const $ = (s, c = document) => c.querySelector(s);
 const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
 /* ---------------------------------------------------------
-   Data: recommended areas (rendered into the carousel)
+   Data: recommended areas (texts live in src/i18n/*.json → area.N.*)
    --------------------------------------------------------- */
 const AREAS = [
-  {
-    name: 'Kožino', tag: '🏡 Ideal für Familien', km: '5 km', min: '7 Min.',
-    character: 'Das ruhige Nachbardorf von Petrčane, umgeben von viel Grün. Ein sehr exklusiver und entspannter Küstenort (hier hat angeblich auch Luka Modrić sein Haus).',
-    perfect: 'Urlauber, die eine ruhige, private Unterkunft suchen und schnell in Petrčane oder Zadar sein wollen.',
-  },
-  {
-    name: 'Punta Skala', tag: '📅 Ideal für längere Aufenthalte', km: '3,6 km', min: '11 Min.',
-    character: 'Eine grüne, exklusive Halbinsel direkt neben Petrčane. Gehobene Resorts, wunderschöne, gepflegte Strandabschnitte und eine toll beleuchtete Küstenpromenade.',
-    perfect: 'Alle, die es etwas ruhiger, naturnah und chic mögen, aber trotzdem in unmittelbarer Nähe zum Geschehen sein wollen.',
-  },
-  {
-    name: 'Jovići', sub: 'Das Heimatdorf im Hinterland', img: 'jovici', tag: '💑 Ideal für Paare', km: '31,4 km', min: '38 Min.',
-    character: 'Ein winziges, charmantes Bergdorf, in dem Ivans Familie verwurzelt ist und wo seine Eltern leben. Grüne Hügel und das imposante Gebirge statt Meerblick – und trotzdem in wenigen Minuten an den einsameren Stränden der Küste.',
-    perfect: 'Alle, die das authentische, ländliche Kroatien fernab vom Massentourismus erleben möchten (perfekt mit Mietwagen).',
-  },
-  {
-    name: 'Ražanac', tag: '🏡 Ideal für Familien', km: '28,4 km', min: '35 Min.',
-    character: 'Ein authentischer, etwas rauerer Küstenort am Velebit-Kanal mit traumhaft klarem Wasser und wunderschönen Naturstränden. Hier geht es noch sehr ursprünglich und entspannt zu.',
-    perfect: 'Ruhesuchende, Naturliebhaber und alle, die dem Trubel entkommen wollen. Spektakulärer Blick auf das Velebit-Gebirge!',
-  },
-  {
-    name: 'Sukošan', sub: 'Südlich von Zadar', img: 'sukosan', tag: '🏡 Ideal für Familien', km: '24,3 km', min: '33 Min.',
-    character: 'Ein lebendiger, aber entspannter Küstenort mit der riesigen Marina Dalmacija und kinderfreundlichen Kies- und Sandstränden. Hier werden auch viele von Ivans Jungs (nach der Hochzeit) unterkommen!',
-    perfect: 'Alle, die eine gesellige Atmosphäre suchen. Große Partymeilen gibt es nicht, aber nette Strandbars und Restaurants.',
-  },
-  {
-    name: 'Zadar', img: 'zadar', tag: '🏛️ Stadt & Kultur', km: '12,1 km', min: '18 Min.',
-    character: 'Die historische Hafenstadt und das kulturelle Zentrum der Region: römische Ruinen, venezianische Stadtmauern, Meeresorgel und die Lichtinstallation „Gruß an die Sonne“.',
-    perfect: 'Alle, die urbanes Leben, Sightseeing, eine riesige Auswahl an Unterkünften und ein echtes Abendprogramm suchen.',
-  },
-  {
-    name: 'Petrčane', sub: 'Unser Hochzeitsort', img: 'petrcane', tag: '🏡 Ideal für Familien', km: 'Hochzeitsort', min: 'zu Fuß',
-    character: 'Das Herzstück der Hochzeit! Ein charmantes, altes Fischerdorf mit schattigen Pinienwäldern direkt am Kies- und Felsstrand, gemütlichen Tavernen und tollem Meerblick.',
-    perfect: 'Alle Gäste, die nach der Feier einfach ins Bett fallen wollen, ohne noch Auto fahren zu müssen.',
-  },
-  {
-    name: 'Nin', img: 'nin', tag: '🏡 Ideal für Familien', km: '8,1 km', min: '12 Min.',
-    character: 'Kroatiens älteste Königsstadt, idyllisch auf einer kleinen Insel in einer flachen Lagune. Bekannt für den kilometerlangen Königinnenstrand und das heilende Schlammbad.',
-    perfect: 'Familien mit Kindern, Sandstrand-Liebhaber und Geschichts-Fans. Nachtleben gibt es kaum – dafür echtes Urlaubs-Feeling.',
-  },
+  { name: 'Kožino' },
+  { name: 'Punta Skala' },
+  { name: 'Jovići', img: 'jovici' },
+  { name: 'Ražanac' },
+  { name: 'Sukošan', img: 'sukosan' },
+  { name: 'Zadar', img: 'zadar' },
+  { name: 'Petrčane', img: 'petrcane' },
+  { name: 'Nin', img: 'nin' },
 ];
 
 const STAY = { checkin: '2027-09-03', checkout: '2027-09-05' };
+const BOOKING_LANG = { de: 'de', en: 'en-gb', vi: 'vi', fr: 'fr', hr: 'hr' };
 
 function renderAreas() {
   const track = $('[data-carousel-track]');
   if (!track) return;
+  const lang = getLang();
   track.innerHTML = AREAS.map((a, i) => {
+    const n = i + 1;
+    const sub = t(`area.${n}.sub`);
+    const hasSub = sub !== `area.${n}.sub`;
     const q = encodeURIComponent(a.name);
-    const airbnb = `https://www.airbnb.de/s/${q}--Kroatien/homes?checkin=${STAY.checkin}&checkout=${STAY.checkout}`;
-    const booking = `https://www.booking.com/searchresults.de.html?ss=${q}%2C%20Kroatien&checkin=${STAY.checkin}&checkout=${STAY.checkout}`;
+    const airbnb = `https://www.airbnb.com/s/${q}--Croatia/homes?checkin=${STAY.checkin}&checkout=${STAY.checkout}`;
+    const booking = `https://www.booking.com/searchresults.${BOOKING_LANG[lang]}.html?ss=${q}%2C%20Croatia&checkin=${STAY.checkin}&checkout=${STAY.checkout}`;
     const media = a.img
       ? `<img src="/images/${a.img}.webp" alt="${a.name}" loading="lazy" draggable="false" />`
       : `<span class="area__art">${a.name}</span>`;
@@ -73,14 +47,14 @@ function renderAreas() {
       <article class="area">
         <div class="area__media${a.img ? '' : ' area__media--art'}">
           ${media}
-          <span class="area__tag">${a.tag}</span>
+          <span class="area__tag">${t(`area.${n}.tag`)}</span>
         </div>
         <div class="area__body">
-          <span class="area__no">${String(i + 1).padStart(2, '0')}</span>
-          <h3>${a.name}${a.sub ? `<small>${a.sub}</small>` : ''}</h3>
-          <div class="area__dist"><span class="chip">${a.km}</span><span class="chip">${a.min}</span></div>
-          <p>${a.character}</p>
-          <p><b>Perfekt für:</b> ${a.perfect}</p>
+          <span class="area__no">${String(n).padStart(2, '0')}</span>
+          <h3>${a.name}${hasSub ? `<small>${sub}</small>` : ''}</h3>
+          <div class="area__dist"><span class="chip">${t(`area.${n}.km`)}</span><span class="chip">${t(`area.${n}.min`)}</span></div>
+          <p>${t(`area.${n}.character`)}</p>
+          <p><b>${t('js.perfectFor')}</b> ${t(`area.${n}.perfect`)}</p>
           <div class="area__links">
             <a class="link-arrow" href="${airbnb}" target="_blank" rel="noopener">Airbnb <span aria-hidden="true">→</span></a>
             <a class="link-arrow" href="${booking}" target="_blank" rel="noopener">Booking.com <span aria-hidden="true">→</span></a>
@@ -118,23 +92,24 @@ const menu = $('#menu');
 function setMenu(open) {
   document.body.classList.toggle('menu-open', open);
   burger.setAttribute('aria-expanded', String(open));
-  burger.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+  burger.setAttribute('aria-label', open ? t('js.menuClose') : t('nav.9'));
   menu.setAttribute('aria-hidden', String(!open));
   if (lenis) open ? lenis.stop() : lenis.start();
 }
 burger.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
 
-$$('a[href^="#"]').forEach((a) => {
-  a.addEventListener('click', (e) => {
-    const id = a.getAttribute('href');
-    const target = id.length > 1 ? $(id) : null;
-    if (!target) return;
-    e.preventDefault();
-    setMenu(false);
-    scrollToTarget(target);
-    history.replaceState(null, '', id);
-  });
+// Delegated, because translated content re-creates links inside paragraphs
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute('href');
+  const target = id.length > 1 ? $(id) : null;
+  if (!target) return;
+  e.preventDefault();
+  setMenu(false);
+  scrollToTarget(target);
+  history.replaceState(null, '', location.search + id);
 });
 
 let lastY = 0;
@@ -335,6 +310,7 @@ function initTabs() {
 
   const current = () => tabs.find((t) => t.getAttribute('aria-selected') === 'true');
   window.addEventListener('resize', () => moveInk(current()));
+  window.addEventListener('langchange', () => moveInk(current()));
   document.fonts?.ready.then(() => moveInk(current()));
   moveInk(current());
 }
@@ -428,9 +404,37 @@ function initCopy() {
         document.execCommand('copy'); ta.remove();
       }
       const hint = $('[data-copy-hint]', btn);
-      if (hint) { hint.textContent = 'Kopiert ✓'; setTimeout(() => (hint.textContent = 'Kopieren'), 2000); }
-      showToast(`„${value}“ wurde kopiert`);
+      if (hint) { hint.textContent = t('js.copied'); setTimeout(() => (hint.textContent = t('unterkunft.6')), 2000); }
+      showToast(t('js.copyToast', { value }));
     });
+  });
+}
+
+/* ---------------------------------------------------------
+   Language switcher
+   --------------------------------------------------------- */
+function initLangSwitch() {
+  const wrap = $('[data-lang]');
+  const btn = $('.lang__btn', wrap);
+  const open = (on) => { wrap.classList.toggle('is-open', on); btn.setAttribute('aria-expanded', String(on)); };
+
+  btn.addEventListener('click', (e) => { e.stopPropagation(); open(!wrap.classList.contains('is-open')); });
+  document.addEventListener('click', (e) => { if (!wrap.contains(e.target)) open(false); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') open(false); });
+
+  $$('[data-set-lang]').forEach((b) => b.addEventListener('click', async () => {
+    open(false);
+    const lang = b.dataset.setLang;
+    if (lang === getLang()) return;
+    document.body.classList.add('is-switching');
+    await new Promise((r) => setTimeout(r, reduced ? 0 : 280));
+    await setLang(lang);
+    requestAnimationFrame(() => document.body.classList.remove('is-switching'));
+  }));
+
+  window.addEventListener('langchange', () => {
+    renderAreas();
+    ScrollTrigger.refresh();
   });
 }
 
@@ -441,8 +445,13 @@ initTabs();
 initDetails();
 initCarousel();
 initCopy();
+initLangSwitch();
 scrollAnimations();
 intro();
+
+// Initial language (URL ?lang= > saved choice > browser language > German)
+const initialLang = detectLang();
+if (initialLang !== 'de') setLang(initialLang, { persist: false });
 
 window.addEventListener('load', () => ScrollTrigger.refresh());
 
