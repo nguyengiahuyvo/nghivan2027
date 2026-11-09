@@ -1,0 +1,2471 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-i18n-served-lang="en-GB" data-reactroot=""><head><meta name="commit" content="923856cd"><link rel="preconnect" href="/"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><title>Minh Nghi &amp; Ivan | Joy</title><meta data-rh="true" charset="utf-8"><meta data-rh="true" name="viewport" content="width=device-width, initial-scale=1"><meta data-rh="true" http-equiv="Content-Type" content="text/html; charset=utf-8"><meta data-rh="true" property="og:site_name" content="Joy"><link rel="icon" href="/favicon.ico?v=2" sizes="16x16 32x32 48x48"><link rel="icon" href="https://withjoy.com/assets/public/icons/icon.svg" type="image/svg+xml" sizes="any"><link rel="apple-touch-icon" href="https://withjoy.com/assets/public/icons/apple-touch-icon.png?format=png"><link rel="mask-icon" href="https://withjoy.com/assets/public/icons/safari-pinned-tab.svg" color="#4a4aff"><style data-styled="active" data-styled-version="5.3.6"></style><style data-chunk="content/ssr">/* Slider */
+.slick-slider
+{
+    position: relative;
+
+    display: block;
+    box-sizing: border-box;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list
+{
+    position: relative;
+
+    display: block;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.slick-track
+{
+    position: relative;
+    top: 0;
+    left: 0;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.slick-track:before,
+.slick-track:after
+{
+    display: table;
+
+    content: '';
+}
+.slick-track:after
+{
+    clear: both;
+}
+.slick-loading .slick-track
+{
+    visibility: hidden;
+}
+
+.slick-slide
+{
+    display: none;
+    float: left;
+
+    height: 100%;
+    min-height: 1px;
+}
+[dir='rtl'] .slick-slide
+{
+    float: right;
+}
+.slick-slide img
+{
+    display: block;
+}
+.slick-slide.slick-loading img
+{
+    display: none;
+}
+.slick-slide.dragging img
+{
+    pointer-events: none;
+}
+.slick-initialized .slick-slide
+{
+    display: block;
+}
+.slick-loading .slick-slide
+{
+    visibility: hidden;
+}
+.slick-vertical .slick-slide
+{
+    display: block;
+
+    height: auto;
+
+    border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+    display: none;
+}
+
+@charset 'UTF-8';
+/* Slider */
+.slick-loading .slick-list
+{
+    background: #fff url("https://withjoy.com/bliss-apps/joy-web/web/0b80f665935ef7de.gif") center center no-repeat;
+}
+
+/* Icons */
+@font-face
+{
+    font-family: 'slick';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url("https://withjoy.com/bliss-apps/joy-web/web/fonts/slick.eot");
+    src: url("https://withjoy.com/bliss-apps/joy-web/web/fonts/slick.eot?#iefix") format('embedded-opentype'), url("https://withjoy.com/bliss-apps/joy-web/web/fonts/slick.woff") format('woff'), url("https://withjoy.com/bliss-apps/joy-web/web/fonts/slick.ttf") format('truetype'), url("https://withjoy.com/bliss-apps/joy-web/web/f895cfdf693e6229.svg#slick") format('svg');
+}
+/* Arrows */
+.slick-prev,
+.slick-next
+{
+    font-size: 0;
+    line-height: 0;
+
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus
+{
+    color: transparent;
+    outline: none;
+    background: transparent;
+}
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before
+{
+    opacity: 1;
+}
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before
+{
+    opacity: .25;
+}
+
+.slick-prev:before,
+.slick-next:before
+{
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+
+    opacity: .75;
+    color: white;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev
+{
+    left: -25px;
+}
+[dir='rtl'] .slick-prev
+{
+    right: -25px;
+    left: auto;
+}
+.slick-prev:before
+{
+    content: '←';
+}
+[dir='rtl'] .slick-prev:before
+{
+    content: '→';
+}
+
+.slick-next
+{
+    right: -25px;
+}
+[dir='rtl'] .slick-next
+{
+    right: auto;
+    left: -25px;
+}
+.slick-next:before
+{
+    content: '→';
+}
+[dir='rtl'] .slick-next:before
+{
+    content: '←';
+}
+
+/* Dots */
+.slick-dotted.slick-slider
+{
+    margin-bottom: 30px;
+}
+
+.slick-dots
+{
+    position: absolute;
+    bottom: -25px;
+
+    display: block;
+
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+
+    text-align: center;
+}
+.slick-dots li
+{
+    position: relative;
+
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+
+    cursor: pointer;
+}
+.slick-dots li button
+{
+    font-size: 0;
+    line-height: 0;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+
+    cursor: pointer;
+
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+}
+.slick-dots li button:hover,
+.slick-dots li button:focus
+{
+    outline: none;
+}
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before
+{
+    opacity: 1;
+}
+.slick-dots li button:before
+{
+    font-family: 'slick';
+    font-size: 6px;
+    line-height: 20px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 20px;
+    height: 20px;
+
+    content: '•';
+    text-align: center;
+
+    opacity: .25;
+    color: black;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.slick-dots li.slick-active button:before
+{
+    opacity: .75;
+    color: black;
+}
+
+
+/*# sourceMappingURL=ssr.5e37d484.css.map*/</style><style data-chunk="content/guest">/* FONT LOAD
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Inter UI';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://withjoy.com/assets/public/fonts/inter-ui/Inter-UI-Regular.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/fonts/inter-ui/Inter-UI-Regular.woff") format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter UI';
+  font-style: normal;
+  font-weight: 500;
+  src: url("https://withjoy.com/assets/public/fonts/inter-ui/Inter-UI-Medium.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/fonts/inter-ui/Inter-UI-Medium.woff") format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter UI';
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://withjoy.com/assets/public/fonts/inter-ui/Inter-UI-SemiBold.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/fonts/inter-ui/Inter-UI-SemiBold.woff") format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter UI';
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://withjoy.com/assets/public/fonts/inter-ui/Inter-UI-Bold.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/fonts/inter-ui/Inter-UI-Bold.woff") format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham SSm';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://withjoy.com/assets/public/fonts/gotham/GothamSSm-Book_Web.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/fonts/gotham/GothamSSm-Book_Web.woff") format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham SSm';
+  font-style: normal;
+  font-weight: 500;
+  src: url("https://withjoy.com/assets/public/fonts/gotham/GothamSSm-Medium_Web.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/fonts/gotham/GothamSSm-Medium_Web.woff") format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://withjoy.com/assets/public/fonts/open-sans/OpenSans-Regular.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/fonts/open-sans/OpenSans-Regular.woff") format('woff');
+}
+
+@font-face {
+  font-family: 'Austin News Deck Web';
+  src: url("https://withjoy.com/assets/public/marcom-prod/fonts/austin-news/AustinNewsDeck-LightItalic-Web.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/marcom-prod/fonts/austin-news/AustinNewsDeck-LightItalic-Web.woff") format('woff');
+  font-weight: 200;
+  font-style: italic;
+  font-stretch: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Austin News Deck Web';
+  src: url("https://withjoy.com/assets/public/marcom-prod/fonts/austin-news/AustinNewsDeck-Light-Web.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/marcom-prod/fonts/austin-news/AustinNewsDeck-Light-Web.woff") format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Akkurat LL';
+  src: url("https://withjoy.com/assets/public/fonts/akkurat/AkkuratLLSub-RegularSubset.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/fonts/akkurat/AkkuratLLSub-RegularSubset.woff") format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Akkurat LL';
+  src: url("https://withjoy.com/assets/public/fonts/akkurat/AkkuratLLWeb-Bold.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/fonts/akkurat/AkkuratLLWeb-Bold.woff") format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Austin News Headline';
+  src: url("https://withjoy.com/assets/public/fonts/AustinNewsHeadline/AustinNewsHeadline-Light-Web.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/fonts/AustinNewsHeadline/AustinNewsHeadline-Light-Web.woff") format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Austin News Headline';
+  src: url("https://withjoy.com/assets/public/fonts/AustinNewsHeadline/AustinNewsHeadline-LightItalic-Web.woff2") format('woff2'),
+    url("https://withjoy.com/assets/public/fonts/AustinNewsHeadline/AustinNewsHeadline-LightItalic-Web.woff") format('woff');
+  font-weight: 200;
+  font-style: italic;
+  font-stretch: normal;
+  font-display: swap;
+}
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type='checkbox'],
+[type='radio'] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+
+/* CUSTOM RESET
+   ========================================================================== */
+
+/* Apply a natural box layout model to all elements, but allow components to change as necessary */
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  height: -webkit-fill-available;
+}
+
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
+
+/* html {
+  font-size: 16px;
+} */
+
+body {
+  font-size: 1rem;
+  font-family: 'Inter UI', 'Helvetica', 'Arial', sans-serif;
+  color: #333;
+}
+
+body,
+html {
+  min-height: 100%;
+}
+
+hr {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+button {
+  background-color: transparent;
+  color: inherit;
+  border-width: 0;
+  padding: 0;
+  cursor: pointer;
+}
+figure {
+  margin: 0;
+}
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+ul,
+ol,
+dd {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+/* INTERCOM */
+/* this hacks intercom to follow our bottom padding design guidelines for footer button containers of 24px padding */
+/* NOTE: the vertical_padding configuration does not work on mobile screen sizes (https://community.intercom.com/messenger-8/is-there-a-way-to-adjust-the-position-of-the-messenger-on-mobile-devices-3026) */
+.intercom-lightweight-app-launcher,
+.intercom-launcher-frame,
+div:has(iframe.intercom-launcher-frame) {
+  bottom: 24px !important;
+}
+
+
+/*# sourceMappingURL=guest.6b79b5df.css.map*/</style><style data-chunk="content/guest/site/body">@charset "UTF-8";
+.intl-tel-input {
+  position: relative;
+  display: inline-block;
+}
+.intl-tel-input * {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+.intl-tel-input .hide {
+  display: none;
+}
+.intl-tel-input .v-hide {
+  visibility: hidden;
+}
+.intl-tel-input input, .intl-tel-input input[type=text], .intl-tel-input input[type=tel] {
+  position: relative;
+  z-index: 0;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-right: 36px;
+  margin-right: 0;
+}
+.intl-tel-input .flag-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 1px;
+}
+.intl-tel-input .flag-container .arrow {
+  font-size: 6px;
+  margin-left: 5px;
+}
+.intl-tel-input .flag-container .arrow.up:after {
+  content: "▲";
+}
+.intl-tel-input .flag-container .arrow.down:after {
+  content: "▼";
+}
+.intl-tel-input .selected-flag {
+  z-index: 1;
+  position: relative;
+  width: 36px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.intl-tel-input .country-list {
+  position: absolute;
+  z-index: 2;
+  list-style: none;
+  text-align: left;
+  padding: 0;
+  margin: 0 0 0 -1px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  border: 1px solid #CCC;
+  white-space: nowrap;
+  max-height: 200px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.intl-tel-input .country-list .divider {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #CCC;
+}
+.intl-tel-input .country-list.dropup {
+  bottom: 100%;
+  margin-bottom: -1px;
+}
+.intl-tel-input .country-list .flag-box {
+  display: inline-block;
+  width: 20px;
+}
+@media (max-width: 500px) {
+  .intl-tel-input .country-list {
+    white-space: normal;
+  }
+}
+.intl-tel-input .country-list .country {
+  padding: 5px 10px;
+}
+.intl-tel-input .country-list .country .dial-code {
+  color: #999;
+}
+.intl-tel-input .country-list .country.highlight {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.intl-tel-input .country-list .flag-box, .intl-tel-input .country-list .country-name, .intl-tel-input .country-list .dial-code {
+  vertical-align: middle;
+}
+.intl-tel-input .country-list .flag-box, .intl-tel-input .country-list .country-name {
+  margin-right: 6px;
+}
+.intl-tel-input.allow-dropdown input, .intl-tel-input.allow-dropdown input[type=text], .intl-tel-input.allow-dropdown input[type=tel] {
+  padding-right: 6px;
+  padding-left: 52px;
+  margin-left: 0;
+}
+.intl-tel-input.allow-dropdown .flag-container {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+.intl-tel-input.allow-dropdown .selected-flag {
+  width: 46px;
+}
+.intl-tel-input.allow-dropdown .flag-container:hover {
+  cursor: pointer;
+}
+.intl-tel-input.allow-dropdown .flag-container:hover .selected-flag {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.intl-tel-input.allow-dropdown input[disabled] + .flag-container:hover, .intl-tel-input.allow-dropdown input[readonly] + .flag-container:hover {
+  cursor: default;
+}
+.intl-tel-input.allow-dropdown input[disabled] + .flag-container:hover .selected-flag, .intl-tel-input.allow-dropdown input[readonly] + .flag-container:hover .selected-flag {
+  background-color: transparent;
+}
+.intl-tel-input.allow-dropdown.separate-dial-code .selected-flag {
+  background-color: rgba(0, 0, 0, 0.05);
+  display: table;
+}
+.intl-tel-input.allow-dropdown.separate-dial-code .selected-dial-code {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 28px;
+}
+.intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-2 input, .intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-2 input[type=text], .intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-2 input[type=tel] {
+  padding-left: 76px;
+}
+.intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-2 .selected-flag {
+  width: 70px;
+}
+.intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-3 input, .intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-3 input[type=text], .intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-3 input[type=tel] {
+  padding-left: 84px;
+}
+.intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-3 .selected-flag {
+  width: 78px;
+}
+.intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-4 input, .intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-4 input[type=text], .intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-4 input[type=tel] {
+  padding-left: 92px;
+}
+.intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-4 .selected-flag {
+  width: 86px;
+}
+.intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-5 input, .intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-5 input[type=text], .intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-5 input[type=tel] {
+  padding-left: 100px;
+}
+.intl-tel-input.allow-dropdown.separate-dial-code.iti-sdc-5 .selected-flag {
+  width: 94px;
+}
+.intl-tel-input.iti-container {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  z-index: 1060;
+  padding: 1px;
+}
+.intl-tel-input.iti-container:hover {
+  cursor: pointer;
+}
+
+.iti-mobile .intl-tel-input.iti-container {
+  top: 30px;
+  bottom: 30px;
+  left: 30px;
+  right: 30px;
+  position: fixed;
+}
+.iti-mobile .intl-tel-input .country-list {
+  max-height: 100%;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+.iti-mobile .intl-tel-input .country-list .country {
+  padding: 10px 10px;
+  line-height: 1.5em;
+}
+
+.iti-flag {
+  width: 20px;
+}
+.iti-flag.be {
+  width: 18px;
+}
+.iti-flag.ch {
+  width: 15px;
+}
+.iti-flag.mc {
+  width: 19px;
+}
+.iti-flag.ne {
+  width: 18px;
+}
+.iti-flag.np {
+  width: 13px;
+}
+.iti-flag.va {
+  width: 15px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .iti-flag {
+    background-size: 5630px 15px;
+  }
+}
+.iti-flag.ac {
+  height: 10px;
+  background-position: 0px 0px;
+}
+.iti-flag.ad {
+  height: 14px;
+  background-position: -22px 0px;
+}
+.iti-flag.ae {
+  height: 10px;
+  background-position: -44px 0px;
+}
+.iti-flag.af {
+  height: 14px;
+  background-position: -66px 0px;
+}
+.iti-flag.ag {
+  height: 14px;
+  background-position: -88px 0px;
+}
+.iti-flag.ai {
+  height: 10px;
+  background-position: -110px 0px;
+}
+.iti-flag.al {
+  height: 15px;
+  background-position: -132px 0px;
+}
+.iti-flag.am {
+  height: 10px;
+  background-position: -154px 0px;
+}
+.iti-flag.ao {
+  height: 14px;
+  background-position: -176px 0px;
+}
+.iti-flag.aq {
+  height: 14px;
+  background-position: -198px 0px;
+}
+.iti-flag.ar {
+  height: 13px;
+  background-position: -220px 0px;
+}
+.iti-flag.as {
+  height: 10px;
+  background-position: -242px 0px;
+}
+.iti-flag.at {
+  height: 14px;
+  background-position: -264px 0px;
+}
+.iti-flag.au {
+  height: 10px;
+  background-position: -286px 0px;
+}
+.iti-flag.aw {
+  height: 14px;
+  background-position: -308px 0px;
+}
+.iti-flag.ax {
+  height: 13px;
+  background-position: -330px 0px;
+}
+.iti-flag.az {
+  height: 10px;
+  background-position: -352px 0px;
+}
+.iti-flag.ba {
+  height: 10px;
+  background-position: -374px 0px;
+}
+.iti-flag.bb {
+  height: 14px;
+  background-position: -396px 0px;
+}
+.iti-flag.bd {
+  height: 12px;
+  background-position: -418px 0px;
+}
+.iti-flag.be {
+  height: 15px;
+  background-position: -440px 0px;
+}
+.iti-flag.bf {
+  height: 14px;
+  background-position: -460px 0px;
+}
+.iti-flag.bg {
+  height: 12px;
+  background-position: -482px 0px;
+}
+.iti-flag.bh {
+  height: 12px;
+  background-position: -504px 0px;
+}
+.iti-flag.bi {
+  height: 12px;
+  background-position: -526px 0px;
+}
+.iti-flag.bj {
+  height: 14px;
+  background-position: -548px 0px;
+}
+.iti-flag.bl {
+  height: 14px;
+  background-position: -570px 0px;
+}
+.iti-flag.bm {
+  height: 10px;
+  background-position: -592px 0px;
+}
+.iti-flag.bn {
+  height: 10px;
+  background-position: -614px 0px;
+}
+.iti-flag.bo {
+  height: 14px;
+  background-position: -636px 0px;
+}
+.iti-flag.bq {
+  height: 14px;
+  background-position: -658px 0px;
+}
+.iti-flag.br {
+  height: 14px;
+  background-position: -680px 0px;
+}
+.iti-flag.bs {
+  height: 10px;
+  background-position: -702px 0px;
+}
+.iti-flag.bt {
+  height: 14px;
+  background-position: -724px 0px;
+}
+.iti-flag.bv {
+  height: 15px;
+  background-position: -746px 0px;
+}
+.iti-flag.bw {
+  height: 14px;
+  background-position: -768px 0px;
+}
+.iti-flag.by {
+  height: 10px;
+  background-position: -790px 0px;
+}
+.iti-flag.bz {
+  height: 14px;
+  background-position: -812px 0px;
+}
+.iti-flag.ca {
+  height: 10px;
+  background-position: -834px 0px;
+}
+.iti-flag.cc {
+  height: 10px;
+  background-position: -856px 0px;
+}
+.iti-flag.cd {
+  height: 15px;
+  background-position: -878px 0px;
+}
+.iti-flag.cf {
+  height: 14px;
+  background-position: -900px 0px;
+}
+.iti-flag.cg {
+  height: 14px;
+  background-position: -922px 0px;
+}
+.iti-flag.ch {
+  height: 15px;
+  background-position: -944px 0px;
+}
+.iti-flag.ci {
+  height: 14px;
+  background-position: -961px 0px;
+}
+.iti-flag.ck {
+  height: 10px;
+  background-position: -983px 0px;
+}
+.iti-flag.cl {
+  height: 14px;
+  background-position: -1005px 0px;
+}
+.iti-flag.cm {
+  height: 14px;
+  background-position: -1027px 0px;
+}
+.iti-flag.cn {
+  height: 14px;
+  background-position: -1049px 0px;
+}
+.iti-flag.co {
+  height: 14px;
+  background-position: -1071px 0px;
+}
+.iti-flag.cp {
+  height: 14px;
+  background-position: -1093px 0px;
+}
+.iti-flag.cr {
+  height: 12px;
+  background-position: -1115px 0px;
+}
+.iti-flag.cu {
+  height: 10px;
+  background-position: -1137px 0px;
+}
+.iti-flag.cv {
+  height: 12px;
+  background-position: -1159px 0px;
+}
+.iti-flag.cw {
+  height: 14px;
+  background-position: -1181px 0px;
+}
+.iti-flag.cx {
+  height: 10px;
+  background-position: -1203px 0px;
+}
+.iti-flag.cy {
+  height: 14px;
+  background-position: -1225px 0px;
+}
+.iti-flag.cz {
+  height: 14px;
+  background-position: -1247px 0px;
+}
+.iti-flag.de {
+  height: 12px;
+  background-position: -1269px 0px;
+}
+.iti-flag.dg {
+  height: 10px;
+  background-position: -1291px 0px;
+}
+.iti-flag.dj {
+  height: 14px;
+  background-position: -1313px 0px;
+}
+.iti-flag.dk {
+  height: 15px;
+  background-position: -1335px 0px;
+}
+.iti-flag.dm {
+  height: 10px;
+  background-position: -1357px 0px;
+}
+.iti-flag.do {
+  height: 13px;
+  background-position: -1379px 0px;
+}
+.iti-flag.dz {
+  height: 14px;
+  background-position: -1401px 0px;
+}
+.iti-flag.ea {
+  height: 14px;
+  background-position: -1423px 0px;
+}
+.iti-flag.ec {
+  height: 14px;
+  background-position: -1445px 0px;
+}
+.iti-flag.ee {
+  height: 13px;
+  background-position: -1467px 0px;
+}
+.iti-flag.eg {
+  height: 14px;
+  background-position: -1489px 0px;
+}
+.iti-flag.eh {
+  height: 10px;
+  background-position: -1511px 0px;
+}
+.iti-flag.er {
+  height: 10px;
+  background-position: -1533px 0px;
+}
+.iti-flag.es {
+  height: 14px;
+  background-position: -1555px 0px;
+}
+.iti-flag.et {
+  height: 10px;
+  background-position: -1577px 0px;
+}
+.iti-flag.eu {
+  height: 14px;
+  background-position: -1599px 0px;
+}
+.iti-flag.fi {
+  height: 12px;
+  background-position: -1621px 0px;
+}
+.iti-flag.fj {
+  height: 10px;
+  background-position: -1643px 0px;
+}
+.iti-flag.fk {
+  height: 10px;
+  background-position: -1665px 0px;
+}
+.iti-flag.fm {
+  height: 11px;
+  background-position: -1687px 0px;
+}
+.iti-flag.fo {
+  height: 15px;
+  background-position: -1709px 0px;
+}
+.iti-flag.fr {
+  height: 14px;
+  background-position: -1731px 0px;
+}
+.iti-flag.ga {
+  height: 15px;
+  background-position: -1753px 0px;
+}
+.iti-flag.gb {
+  height: 10px;
+  background-position: -1775px 0px;
+}
+.iti-flag.gd {
+  height: 12px;
+  background-position: -1797px 0px;
+}
+.iti-flag.ge {
+  height: 14px;
+  background-position: -1819px 0px;
+}
+.iti-flag.gf {
+  height: 14px;
+  background-position: -1841px 0px;
+}
+.iti-flag.gg {
+  height: 14px;
+  background-position: -1863px 0px;
+}
+.iti-flag.gh {
+  height: 14px;
+  background-position: -1885px 0px;
+}
+.iti-flag.gi {
+  height: 10px;
+  background-position: -1907px 0px;
+}
+.iti-flag.gl {
+  height: 14px;
+  background-position: -1929px 0px;
+}
+.iti-flag.gm {
+  height: 14px;
+  background-position: -1951px 0px;
+}
+.iti-flag.gn {
+  height: 14px;
+  background-position: -1973px 0px;
+}
+.iti-flag.gp {
+  height: 14px;
+  background-position: -1995px 0px;
+}
+.iti-flag.gq {
+  height: 14px;
+  background-position: -2017px 0px;
+}
+.iti-flag.gr {
+  height: 14px;
+  background-position: -2039px 0px;
+}
+.iti-flag.gs {
+  height: 10px;
+  background-position: -2061px 0px;
+}
+.iti-flag.gt {
+  height: 13px;
+  background-position: -2083px 0px;
+}
+.iti-flag.gu {
+  height: 11px;
+  background-position: -2105px 0px;
+}
+.iti-flag.gw {
+  height: 10px;
+  background-position: -2127px 0px;
+}
+.iti-flag.gy {
+  height: 12px;
+  background-position: -2149px 0px;
+}
+.iti-flag.hk {
+  height: 14px;
+  background-position: -2171px 0px;
+}
+.iti-flag.hm {
+  height: 10px;
+  background-position: -2193px 0px;
+}
+.iti-flag.hn {
+  height: 10px;
+  background-position: -2215px 0px;
+}
+.iti-flag.hr {
+  height: 10px;
+  background-position: -2237px 0px;
+}
+.iti-flag.ht {
+  height: 12px;
+  background-position: -2259px 0px;
+}
+.iti-flag.hu {
+  height: 10px;
+  background-position: -2281px 0px;
+}
+.iti-flag.ic {
+  height: 14px;
+  background-position: -2303px 0px;
+}
+.iti-flag.id {
+  height: 14px;
+  background-position: -2325px 0px;
+}
+.iti-flag.ie {
+  height: 10px;
+  background-position: -2347px 0px;
+}
+.iti-flag.il {
+  height: 15px;
+  background-position: -2369px 0px;
+}
+.iti-flag.im {
+  height: 10px;
+  background-position: -2391px 0px;
+}
+.iti-flag.in {
+  height: 14px;
+  background-position: -2413px 0px;
+}
+.iti-flag.io {
+  height: 10px;
+  background-position: -2435px 0px;
+}
+.iti-flag.iq {
+  height: 14px;
+  background-position: -2457px 0px;
+}
+.iti-flag.ir {
+  height: 12px;
+  background-position: -2479px 0px;
+}
+.iti-flag.is {
+  height: 15px;
+  background-position: -2501px 0px;
+}
+.iti-flag.it {
+  height: 14px;
+  background-position: -2523px 0px;
+}
+.iti-flag.je {
+  height: 12px;
+  background-position: -2545px 0px;
+}
+.iti-flag.jm {
+  height: 10px;
+  background-position: -2567px 0px;
+}
+.iti-flag.jo {
+  height: 10px;
+  background-position: -2589px 0px;
+}
+.iti-flag.jp {
+  height: 14px;
+  background-position: -2611px 0px;
+}
+.iti-flag.ke {
+  height: 14px;
+  background-position: -2633px 0px;
+}
+.iti-flag.kg {
+  height: 12px;
+  background-position: -2655px 0px;
+}
+.iti-flag.kh {
+  height: 13px;
+  background-position: -2677px 0px;
+}
+.iti-flag.ki {
+  height: 10px;
+  background-position: -2699px 0px;
+}
+.iti-flag.km {
+  height: 12px;
+  background-position: -2721px 0px;
+}
+.iti-flag.kn {
+  height: 14px;
+  background-position: -2743px 0px;
+}
+.iti-flag.kp {
+  height: 10px;
+  background-position: -2765px 0px;
+}
+.iti-flag.kr {
+  height: 14px;
+  background-position: -2787px 0px;
+}
+.iti-flag.kw {
+  height: 10px;
+  background-position: -2809px 0px;
+}
+.iti-flag.ky {
+  height: 10px;
+  background-position: -2831px 0px;
+}
+.iti-flag.kz {
+  height: 10px;
+  background-position: -2853px 0px;
+}
+.iti-flag.la {
+  height: 14px;
+  background-position: -2875px 0px;
+}
+.iti-flag.lb {
+  height: 14px;
+  background-position: -2897px 0px;
+}
+.iti-flag.lc {
+  height: 10px;
+  background-position: -2919px 0px;
+}
+.iti-flag.li {
+  height: 12px;
+  background-position: -2941px 0px;
+}
+.iti-flag.lk {
+  height: 10px;
+  background-position: -2963px 0px;
+}
+.iti-flag.lr {
+  height: 11px;
+  background-position: -2985px 0px;
+}
+.iti-flag.ls {
+  height: 14px;
+  background-position: -3007px 0px;
+}
+.iti-flag.lt {
+  height: 12px;
+  background-position: -3029px 0px;
+}
+.iti-flag.lu {
+  height: 12px;
+  background-position: -3051px 0px;
+}
+.iti-flag.lv {
+  height: 10px;
+  background-position: -3073px 0px;
+}
+.iti-flag.ly {
+  height: 10px;
+  background-position: -3095px 0px;
+}
+.iti-flag.ma {
+  height: 14px;
+  background-position: -3117px 0px;
+}
+.iti-flag.mc {
+  height: 15px;
+  background-position: -3139px 0px;
+}
+.iti-flag.md {
+  height: 10px;
+  background-position: -3160px 0px;
+}
+.iti-flag.me {
+  height: 10px;
+  background-position: -3182px 0px;
+}
+.iti-flag.mf {
+  height: 14px;
+  background-position: -3204px 0px;
+}
+.iti-flag.mg {
+  height: 14px;
+  background-position: -3226px 0px;
+}
+.iti-flag.mh {
+  height: 11px;
+  background-position: -3248px 0px;
+}
+.iti-flag.mk {
+  height: 10px;
+  background-position: -3270px 0px;
+}
+.iti-flag.ml {
+  height: 14px;
+  background-position: -3292px 0px;
+}
+.iti-flag.mm {
+  height: 14px;
+  background-position: -3314px 0px;
+}
+.iti-flag.mn {
+  height: 10px;
+  background-position: -3336px 0px;
+}
+.iti-flag.mo {
+  height: 14px;
+  background-position: -3358px 0px;
+}
+.iti-flag.mp {
+  height: 10px;
+  background-position: -3380px 0px;
+}
+.iti-flag.mq {
+  height: 14px;
+  background-position: -3402px 0px;
+}
+.iti-flag.mr {
+  height: 14px;
+  background-position: -3424px 0px;
+}
+.iti-flag.ms {
+  height: 10px;
+  background-position: -3446px 0px;
+}
+.iti-flag.mt {
+  height: 14px;
+  background-position: -3468px 0px;
+}
+.iti-flag.mu {
+  height: 14px;
+  background-position: -3490px 0px;
+}
+.iti-flag.mv {
+  height: 14px;
+  background-position: -3512px 0px;
+}
+.iti-flag.mw {
+  height: 14px;
+  background-position: -3534px 0px;
+}
+.iti-flag.mx {
+  height: 12px;
+  background-position: -3556px 0px;
+}
+.iti-flag.my {
+  height: 10px;
+  background-position: -3578px 0px;
+}
+.iti-flag.mz {
+  height: 14px;
+  background-position: -3600px 0px;
+}
+.iti-flag.na {
+  height: 14px;
+  background-position: -3622px 0px;
+}
+.iti-flag.nc {
+  height: 10px;
+  background-position: -3644px 0px;
+}
+.iti-flag.ne {
+  height: 15px;
+  background-position: -3666px 0px;
+}
+.iti-flag.nf {
+  height: 10px;
+  background-position: -3686px 0px;
+}
+.iti-flag.ng {
+  height: 10px;
+  background-position: -3708px 0px;
+}
+.iti-flag.ni {
+  height: 12px;
+  background-position: -3730px 0px;
+}
+.iti-flag.nl {
+  height: 14px;
+  background-position: -3752px 0px;
+}
+.iti-flag.no {
+  height: 15px;
+  background-position: -3774px 0px;
+}
+.iti-flag.np {
+  height: 15px;
+  background-position: -3796px 0px;
+}
+.iti-flag.nr {
+  height: 10px;
+  background-position: -3811px 0px;
+}
+.iti-flag.nu {
+  height: 10px;
+  background-position: -3833px 0px;
+}
+.iti-flag.nz {
+  height: 10px;
+  background-position: -3855px 0px;
+}
+.iti-flag.om {
+  height: 10px;
+  background-position: -3877px 0px;
+}
+.iti-flag.pa {
+  height: 14px;
+  background-position: -3899px 0px;
+}
+.iti-flag.pe {
+  height: 14px;
+  background-position: -3921px 0px;
+}
+.iti-flag.pf {
+  height: 14px;
+  background-position: -3943px 0px;
+}
+.iti-flag.pg {
+  height: 15px;
+  background-position: -3965px 0px;
+}
+.iti-flag.ph {
+  height: 10px;
+  background-position: -3987px 0px;
+}
+.iti-flag.pk {
+  height: 14px;
+  background-position: -4009px 0px;
+}
+.iti-flag.pl {
+  height: 13px;
+  background-position: -4031px 0px;
+}
+.iti-flag.pm {
+  height: 14px;
+  background-position: -4053px 0px;
+}
+.iti-flag.pn {
+  height: 10px;
+  background-position: -4075px 0px;
+}
+.iti-flag.pr {
+  height: 14px;
+  background-position: -4097px 0px;
+}
+.iti-flag.ps {
+  height: 10px;
+  background-position: -4119px 0px;
+}
+.iti-flag.pt {
+  height: 14px;
+  background-position: -4141px 0px;
+}
+.iti-flag.pw {
+  height: 13px;
+  background-position: -4163px 0px;
+}
+.iti-flag.py {
+  height: 11px;
+  background-position: -4185px 0px;
+}
+.iti-flag.qa {
+  height: 8px;
+  background-position: -4207px 0px;
+}
+.iti-flag.re {
+  height: 14px;
+  background-position: -4229px 0px;
+}
+.iti-flag.ro {
+  height: 14px;
+  background-position: -4251px 0px;
+}
+.iti-flag.rs {
+  height: 14px;
+  background-position: -4273px 0px;
+}
+.iti-flag.ru {
+  height: 14px;
+  background-position: -4295px 0px;
+}
+.iti-flag.rw {
+  height: 14px;
+  background-position: -4317px 0px;
+}
+.iti-flag.sa {
+  height: 14px;
+  background-position: -4339px 0px;
+}
+.iti-flag.sb {
+  height: 10px;
+  background-position: -4361px 0px;
+}
+.iti-flag.sc {
+  height: 10px;
+  background-position: -4383px 0px;
+}
+.iti-flag.sd {
+  height: 10px;
+  background-position: -4405px 0px;
+}
+.iti-flag.se {
+  height: 13px;
+  background-position: -4427px 0px;
+}
+.iti-flag.sg {
+  height: 14px;
+  background-position: -4449px 0px;
+}
+.iti-flag.sh {
+  height: 10px;
+  background-position: -4471px 0px;
+}
+.iti-flag.si {
+  height: 10px;
+  background-position: -4493px 0px;
+}
+.iti-flag.sj {
+  height: 15px;
+  background-position: -4515px 0px;
+}
+.iti-flag.sk {
+  height: 14px;
+  background-position: -4537px 0px;
+}
+.iti-flag.sl {
+  height: 14px;
+  background-position: -4559px 0px;
+}
+.iti-flag.sm {
+  height: 15px;
+  background-position: -4581px 0px;
+}
+.iti-flag.sn {
+  height: 14px;
+  background-position: -4603px 0px;
+}
+.iti-flag.so {
+  height: 14px;
+  background-position: -4625px 0px;
+}
+.iti-flag.sr {
+  height: 14px;
+  background-position: -4647px 0px;
+}
+.iti-flag.ss {
+  height: 10px;
+  background-position: -4669px 0px;
+}
+.iti-flag.st {
+  height: 10px;
+  background-position: -4691px 0px;
+}
+.iti-flag.sv {
+  height: 12px;
+  background-position: -4713px 0px;
+}
+.iti-flag.sx {
+  height: 14px;
+  background-position: -4735px 0px;
+}
+.iti-flag.sy {
+  height: 14px;
+  background-position: -4757px 0px;
+}
+.iti-flag.sz {
+  height: 14px;
+  background-position: -4779px 0px;
+}
+.iti-flag.ta {
+  height: 10px;
+  background-position: -4801px 0px;
+}
+.iti-flag.tc {
+  height: 10px;
+  background-position: -4823px 0px;
+}
+.iti-flag.td {
+  height: 14px;
+  background-position: -4845px 0px;
+}
+.iti-flag.tf {
+  height: 14px;
+  background-position: -4867px 0px;
+}
+.iti-flag.tg {
+  height: 13px;
+  background-position: -4889px 0px;
+}
+.iti-flag.th {
+  height: 14px;
+  background-position: -4911px 0px;
+}
+.iti-flag.tj {
+  height: 10px;
+  background-position: -4933px 0px;
+}
+.iti-flag.tk {
+  height: 10px;
+  background-position: -4955px 0px;
+}
+.iti-flag.tl {
+  height: 10px;
+  background-position: -4977px 0px;
+}
+.iti-flag.tm {
+  height: 14px;
+  background-position: -4999px 0px;
+}
+.iti-flag.tn {
+  height: 14px;
+  background-position: -5021px 0px;
+}
+.iti-flag.to {
+  height: 10px;
+  background-position: -5043px 0px;
+}
+.iti-flag.tr {
+  height: 14px;
+  background-position: -5065px 0px;
+}
+.iti-flag.tt {
+  height: 12px;
+  background-position: -5087px 0px;
+}
+.iti-flag.tv {
+  height: 10px;
+  background-position: -5109px 0px;
+}
+.iti-flag.tw {
+  height: 14px;
+  background-position: -5131px 0px;
+}
+.iti-flag.tz {
+  height: 14px;
+  background-position: -5153px 0px;
+}
+.iti-flag.ua {
+  height: 14px;
+  background-position: -5175px 0px;
+}
+.iti-flag.ug {
+  height: 14px;
+  background-position: -5197px 0px;
+}
+.iti-flag.um {
+  height: 11px;
+  background-position: -5219px 0px;
+}
+.iti-flag.us {
+  height: 11px;
+  background-position: -5241px 0px;
+}
+.iti-flag.uy {
+  height: 14px;
+  background-position: -5263px 0px;
+}
+.iti-flag.uz {
+  height: 10px;
+  background-position: -5285px 0px;
+}
+.iti-flag.va {
+  height: 15px;
+  background-position: -5307px 0px;
+}
+.iti-flag.vc {
+  height: 14px;
+  background-position: -5324px 0px;
+}
+.iti-flag.ve {
+  height: 14px;
+  background-position: -5346px 0px;
+}
+.iti-flag.vg {
+  height: 10px;
+  background-position: -5368px 0px;
+}
+.iti-flag.vi {
+  height: 14px;
+  background-position: -5390px 0px;
+}
+.iti-flag.vn {
+  height: 14px;
+  background-position: -5412px 0px;
+}
+.iti-flag.vu {
+  height: 12px;
+  background-position: -5434px 0px;
+}
+.iti-flag.wf {
+  height: 14px;
+  background-position: -5456px 0px;
+}
+.iti-flag.ws {
+  height: 10px;
+  background-position: -5478px 0px;
+}
+.iti-flag.xk {
+  height: 15px;
+  background-position: -5500px 0px;
+}
+.iti-flag.ye {
+  height: 14px;
+  background-position: -5522px 0px;
+}
+.iti-flag.yt {
+  height: 14px;
+  background-position: -5544px 0px;
+}
+.iti-flag.za {
+  height: 14px;
+  background-position: -5566px 0px;
+}
+.iti-flag.zm {
+  height: 14px;
+  background-position: -5588px 0px;
+}
+.iti-flag.zw {
+  height: 10px;
+  background-position: -5610px 0px;
+}
+
+.iti-flag {
+  width: 20px;
+  height: 15px;
+  box-shadow: 0px 0px 1px 0px #888;
+  background-image: url("https://withjoy.com/bliss-apps/joy-web/web/02985cd6c7d10771.png");
+  background-repeat: no-repeat;
+  background-color: #DBDBDB;
+  background-position: 20px 0;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .iti-flag {
+    background-image: url("https://withjoy.com/bliss-apps/joy-web/web/6ddf0bf8b6c2b7b9.png");
+  }
+}
+
+.iti-flag.np {
+  background-color: transparent;
+}
+
+/*# sourceMappingURL=main.css.map */
+
+
+/*# sourceMappingURL=41078.0b926075.css.map*/</style><style data-polaris-inline-stylesheet="true">#polaris-css-lockdown-container{all:unset !important}#polaris-consent-widgets{--padding: 12px;--shadow: rgba(0, 0, 0, 0.25);--fab-zindex: 999999;--banner-zindex: 999999;--container-width-desktop: 1140px;--container-width-tablet: 720px;--container-width-mobile: 396px;--button-border-radius: 12px;--button-fixed-width-size: 95px;--button-font-weight: 600;--link-color: #007bbd;--link-color-high-contrast: #34B7FE;--success: #5bda4d;--green-darkest: #00331F;--green-lightest: #E2FDF3;--purple-truevault: #5331c6;--purple-truevault-high-contrast: #c2adff;--white: #fff;--gray-lightest: #f6f6f6;--gray-lighter: #ececec;--gray-light: #b4b4b4;--gray: #7c7c7c;--gray-dark: #444444;--gray-darker: #212121;--black: #000;--border: var(--gray-light);--border-dark: var(--gray-dark);--surface: var(--white);--text: var(--gray-darker);--primary: var(--gray-dark);--primary-contrast: var(--white);--font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;--heading-font-family: var(--font-family);--button-font-family: var(--font-family);--size-base: 12px;--size-h1: calc(var(--size-base) * 1.5);--size-h2: calc(var(--size-base) * 1.25);--size-h3: calc(var(--size-base) * 1.125);--size-h4: calc(var(--size-base) * 1);--size-h5: calc(var(--size-base) * 0.95);--size-h6: calc(var(--size-base) * 0.85);--size-sm: calc(var(--size-base) * 0.85);--size-xs: calc(var(--size-base) * 0.5);--modal-max-width: 844px;color:var(--text);font-size:var(--size-base);font-family:var(--font-family);font-weight:normal;font-style:normal;padding:0;border:none;position:fixed}@media(min-width: 360px){#polaris-consent-widgets{--size-base: 12px}}#polaris-consent-widgets>[data-block-interaction=true]{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(255,255,255,.5)}#polaris-consent-widgets>[data-block-interaction=true][data-theme=dark_mode]{background:rgba(15,15,15,.5)}#polaris-consent-widgets p,#polaris-consent-widgets button,#polaris-consent-widgets a{font-size:var(--size-base);font-weight:normal}#polaris-consent-widgets button{font-weight:var(--button-font-weight)}#polaris-consent-widgets a{color:var(--link-color)}#polaris-consent-widgets h1,#polaris-consent-widgets h2,#polaris-consent-widgets h3,#polaris-consent-widgets h4,#polaris-consent-widgets h5,#polaris-consent-widgets h6{color:var(--text);font-family:var(--heading-font-family);line-height:1.1245;font-style:normal;font-weight:bold;display:block;letter-spacing:0px;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}#polaris-consent-widgets h1{font-size:var(--size-h1)}#polaris-consent-widgets h2{font-size:var(--size-h2)}#polaris-consent-widgets h3{font-size:var(--size-h3)}#polaris-consent-widgets h4{font-size:var(--size-h4)}#polaris-consent-widgets h5{font-size:var(--size-h5)}#polaris-consent-widgets h6{font-size:var(--size-h6)}#polaris-consent-widgets>[data-theme=dark_mode]{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] h1,#polaris-consent-widgets>[data-theme=dark_mode] h2,#polaris-consent-widgets>[data-theme=dark_mode] h3,#polaris-consent-widgets>[data-theme=dark_mode] h4,#polaris-consent-widgets>[data-theme=dark_mode] h5,#polaris-consent-widgets>[data-theme=dark_mode] h6{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] a{color:var(--link-color-high-contrast)}.truevault-polaris-optout:not(.polaris-consent-widget__links)>img,#truevault-polaris-optout:not(.polaris-consent-widget__links)>img{margin-right:2px}._banner-banner-uWTk6{z-index:var(--banner-zindex);position:fixed;bottom:0;left:0;right:0;border-top-left-radius:20px;border-top-right-radius:20px;background:rgba(255,255,255,.85);backdrop-filter:blur(2px) saturate(150%);-webkit-backdrop-filter:blur(2px) saturate(150%);box-shadow:0 0 20px 2px rgba(0,0,0,.25);box-sizing:content-box !important}[data-banner-position=MIDDLE_CENTER]>._banner-banner-uWTk6{top:50%;bottom:unset;transform:translateY(-50%);border-radius:20px;margin:0;height:fit-content}[data-theme=dark_mode]>._banner-banner-uWTk6{background:rgba(0,0,0,.75)}._banner-banner-uWTk6._banner-informational-XSIaM{padding:var(--padding)}@media(min-width: 448.8px){._banner-banner-uWTk6._banner-informational-XSIaM{bottom:var(--padding);width:408px;border-radius:20px}[data-banner-position=BOTTOM_LEFT]>._banner-banner-uWTk6._banner-informational-XSIaM{left:var(--padding);right:initial}[data-banner-position=BOTTOM_RIGHT]>._banner-banner-uWTk6._banner-informational-XSIaM{left:initial;right:var(--padding)}[data-banner-position=BOTTOM_CENTER]>._banner-banner-uWTk6._banner-informational-XSIaM{margin-left:auto;margin-right:auto}[data-banner-position=MIDDLE_CENTER]>._banner-banner-uWTk6._banner-informational-XSIaM{left:50%;transform:translate(-50%, -50%)}}._banner-banner-uWTk6._banner-interactive-CsCfX{padding:calc(1*var(--padding));padding-left:calc(1.5*var(--padding));padding-right:calc(1.5*var(--padding))}@media(min-width: 528px){._banner-banner-uWTk6._banner-interactive-CsCfX{bottom:var(--padding);width:480px;border-radius:20px}[data-banner-position=BOTTOM_LEFT]>._banner-banner-uWTk6._banner-interactive-CsCfX{left:var(--padding);right:initial}[data-banner-position=BOTTOM_RIGHT]>._banner-banner-uWTk6._banner-interactive-CsCfX{left:initial;right:var(--padding)}[data-banner-position=BOTTOM_CENTER]>._banner-banner-uWTk6._banner-interactive-CsCfX{margin-left:auto;margin-right:auto}[data-banner-position=MIDDLE_CENTER]>._banner-banner-uWTk6._banner-interactive-CsCfX{left:50%;transform:translate(-50%, -50%)}}._banner-banner__title_offset_for_close_button-uLxXM{padding-left:calc(18px + 1.5*var(--padding))}@media(min-width: 528px){._banner-banner__title_offset_for_close_button-uLxXM{padding-left:calc(4*var(--padding))}}._banner-banner__sr_only-siaaW{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0}#polaris-css-lockdown-container{all:unset !important}#polaris-consent-widgets{--padding: 12px;--shadow: rgba(0, 0, 0, 0.25);--fab-zindex: 999999;--banner-zindex: 999999;--container-width-desktop: 1140px;--container-width-tablet: 720px;--container-width-mobile: 396px;--button-border-radius: 12px;--button-fixed-width-size: 95px;--button-font-weight: 600;--link-color: #007bbd;--link-color-high-contrast: #34B7FE;--success: #5bda4d;--green-darkest: #00331F;--green-lightest: #E2FDF3;--purple-truevault: #5331c6;--purple-truevault-high-contrast: #c2adff;--white: #fff;--gray-lightest: #f6f6f6;--gray-lighter: #ececec;--gray-light: #b4b4b4;--gray: #7c7c7c;--gray-dark: #444444;--gray-darker: #212121;--black: #000;--border: var(--gray-light);--border-dark: var(--gray-dark);--surface: var(--white);--text: var(--gray-darker);--primary: var(--gray-dark);--primary-contrast: var(--white);--font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;--heading-font-family: var(--font-family);--button-font-family: var(--font-family);--size-base: 12px;--size-h1: calc(var(--size-base) * 1.5);--size-h2: calc(var(--size-base) * 1.25);--size-h3: calc(var(--size-base) * 1.125);--size-h4: calc(var(--size-base) * 1);--size-h5: calc(var(--size-base) * 0.95);--size-h6: calc(var(--size-base) * 0.85);--size-sm: calc(var(--size-base) * 0.85);--size-xs: calc(var(--size-base) * 0.5);--modal-max-width: 844px;color:var(--text);font-size:var(--size-base);font-family:var(--font-family);font-weight:normal;font-style:normal;padding:0;border:none;position:fixed}@media(min-width: 360px){#polaris-consent-widgets{--size-base: 12px}}#polaris-consent-widgets>[data-block-interaction=true]{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(255,255,255,.5)}#polaris-consent-widgets>[data-block-interaction=true][data-theme=dark_mode]{background:rgba(15,15,15,.5)}#polaris-consent-widgets p,#polaris-consent-widgets button,#polaris-consent-widgets a{font-size:var(--size-base);font-weight:normal}#polaris-consent-widgets button{font-weight:var(--button-font-weight)}#polaris-consent-widgets a{color:var(--link-color)}#polaris-consent-widgets h1,#polaris-consent-widgets h2,#polaris-consent-widgets h3,#polaris-consent-widgets h4,#polaris-consent-widgets h5,#polaris-consent-widgets h6{color:var(--text);font-family:var(--heading-font-family);line-height:1.1245;font-style:normal;font-weight:bold;display:block;letter-spacing:0px;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}#polaris-consent-widgets h1{font-size:var(--size-h1)}#polaris-consent-widgets h2{font-size:var(--size-h2)}#polaris-consent-widgets h3{font-size:var(--size-h3)}#polaris-consent-widgets h4{font-size:var(--size-h4)}#polaris-consent-widgets h5{font-size:var(--size-h5)}#polaris-consent-widgets h6{font-size:var(--size-h6)}#polaris-consent-widgets>[data-theme=dark_mode]{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] h1,#polaris-consent-widgets>[data-theme=dark_mode] h2,#polaris-consent-widgets>[data-theme=dark_mode] h3,#polaris-consent-widgets>[data-theme=dark_mode] h4,#polaris-consent-widgets>[data-theme=dark_mode] h5,#polaris-consent-widgets>[data-theme=dark_mode] h6{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] a{color:var(--link-color-high-contrast)}.truevault-polaris-optout:not(.polaris-consent-widget__links)>img,#truevault-polaris-optout:not(.polaris-consent-widget__links)>img{margin-right:2px}._button-button-sXeE8{color:var(--primary);box-sizing:content-box;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;outline:none;cursor:pointer;padding:calc(var(--padding)/2) var(--button-horizontal-padding, calc(var(--padding) * 2));outline-offset:2px;background-color:var(--white);border:1px solid var(--gray-light);border-radius:calc(var(--button-border-radius)*1.25);box-shadow:0 1px 3px rgba(0,0,0,.1);transition:background-color ease-in-out .1s;text-decoration:none}._button-button-sXeE8:only-child:not(._button-button__icon_only-wQ5mm){width:100%}._button-button-sXeE8:focus-visible{outline:3px solid var(--link-color)}[data-theme=dark_mode] ._button-button-sXeE8:focus-visible{outline:3px solid var(--link-color-high-contrast)}._button-button__icon_only-wQ5mm{padding-left:calc(var(--padding)*.75) !important;padding-right:calc(var(--padding)*.75) !important}._button-button__icon_only_no_border-xe5TJ{border:none;box-shadow:none;background-color:rgba(0,0,0,0)}:not(#_button-fake-pzlqg) [data-theme=dark_mode] ._button-button__icon_only_no_border-xe5TJ:hover{background-color:var(--gray-dark)}:not(#_button-fake-pzlqg) [data-theme=dark_mode] ._button-button__icon_only_no_border-xe5TJ:active{background-color:var(--gray-darker)}._button-button__primary-CrETB{background-color:var(--primary);color:var(--primary-contrast)}._button-button__link-pQVZM{border:none;box-shadow:none;background-color:rgba(0,0,0,0);color:var(--link-color);padding-left:initial;padding-right:initial}[data-theme=dark_mode] ._button-button__link-pQVZM{color:var(--link-color-high-contrast)}@media(min-width: 528px){._button-button__fixed_consent_width-PiyKh{width:var(--button-fixed-width-size) !important}}._button-button-sXeE8:not(._button-button__link-pQVZM):hover{background-color:var(--gray-lightest)}._button-button-sXeE8:not(._button-button__link-pQVZM):active{background-color:var(--gray-lighter);box-shadow:0 1px 3px rgba(0,0,0,.1) inset}._button-button-sXeE8:disabled{opacity:.5;cursor:not-allowed}#polaris-css-lockdown-container{all:unset !important}#polaris-consent-widgets{--padding: 12px;--shadow: rgba(0, 0, 0, 0.25);--fab-zindex: 999999;--banner-zindex: 999999;--container-width-desktop: 1140px;--container-width-tablet: 720px;--container-width-mobile: 396px;--button-border-radius: 12px;--button-fixed-width-size: 95px;--button-font-weight: 600;--link-color: #007bbd;--link-color-high-contrast: #34B7FE;--success: #5bda4d;--green-darkest: #00331F;--green-lightest: #E2FDF3;--purple-truevault: #5331c6;--purple-truevault-high-contrast: #c2adff;--white: #fff;--gray-lightest: #f6f6f6;--gray-lighter: #ececec;--gray-light: #b4b4b4;--gray: #7c7c7c;--gray-dark: #444444;--gray-darker: #212121;--black: #000;--border: var(--gray-light);--border-dark: var(--gray-dark);--surface: var(--white);--text: var(--gray-darker);--primary: var(--gray-dark);--primary-contrast: var(--white);--font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;--heading-font-family: var(--font-family);--button-font-family: var(--font-family);--size-base: 12px;--size-h1: calc(var(--size-base) * 1.5);--size-h2: calc(var(--size-base) * 1.25);--size-h3: calc(var(--size-base) * 1.125);--size-h4: calc(var(--size-base) * 1);--size-h5: calc(var(--size-base) * 0.95);--size-h6: calc(var(--size-base) * 0.85);--size-sm: calc(var(--size-base) * 0.85);--size-xs: calc(var(--size-base) * 0.5);--modal-max-width: 844px;color:var(--text);font-size:var(--size-base);font-family:var(--font-family);font-weight:normal;font-style:normal;padding:0;border:none;position:fixed}@media(min-width: 360px){#polaris-consent-widgets{--size-base: 12px}}#polaris-consent-widgets>[data-block-interaction=true]{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(255,255,255,.5)}#polaris-consent-widgets>[data-block-interaction=true][data-theme=dark_mode]{background:rgba(15,15,15,.5)}#polaris-consent-widgets p,#polaris-consent-widgets button,#polaris-consent-widgets a{font-size:var(--size-base);font-weight:normal}#polaris-consent-widgets button{font-weight:var(--button-font-weight)}#polaris-consent-widgets a{color:var(--link-color)}#polaris-consent-widgets h1,#polaris-consent-widgets h2,#polaris-consent-widgets h3,#polaris-consent-widgets h4,#polaris-consent-widgets h5,#polaris-consent-widgets h6{color:var(--text);font-family:var(--heading-font-family);line-height:1.1245;font-style:normal;font-weight:bold;display:block;letter-spacing:0px;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}#polaris-consent-widgets h1{font-size:var(--size-h1)}#polaris-consent-widgets h2{font-size:var(--size-h2)}#polaris-consent-widgets h3{font-size:var(--size-h3)}#polaris-consent-widgets h4{font-size:var(--size-h4)}#polaris-consent-widgets h5{font-size:var(--size-h5)}#polaris-consent-widgets h6{font-size:var(--size-h6)}#polaris-consent-widgets>[data-theme=dark_mode]{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] h1,#polaris-consent-widgets>[data-theme=dark_mode] h2,#polaris-consent-widgets>[data-theme=dark_mode] h3,#polaris-consent-widgets>[data-theme=dark_mode] h4,#polaris-consent-widgets>[data-theme=dark_mode] h5,#polaris-consent-widgets>[data-theme=dark_mode] h6{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] a{color:var(--link-color-high-contrast)}.truevault-polaris-optout:not(.polaris-consent-widget__links)>img,#truevault-polaris-optout:not(.polaris-consent-widget__links)>img{margin-right:2px}._consent_app-consent-VfXBA{letter-spacing:normal}._consent_app-consent-VfXBA ._consent_app-header-DDzh0{display:flex;flex-direction:row;justify-content:center;align-items:center;margin-bottom:calc(.5*var(--padding))}._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h1,._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h2,._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h3,._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h4,._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h5,._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h6{margin:0;text-align:center;flex-grow:1}@media(min-width: 528px){._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h1:first-child:not(:only-child),._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h2:first-child:not(:only-child),._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h3:first-child:not(:only-child),._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h4:first-child:not(:only-child),._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h5:first-child:not(:only-child),._consent_app-consent-VfXBA ._consent_app-header-DDzh0 h6:first-child:not(:only-child){padding-left:calc(4*var(--padding))}}._consent_app-consent-VfXBA section{margin:0 0 var(--padding);line-height:20px}._consent_app-consent-VfXBA section a{text-decoration:underline}._consent_app-consent__links-IcaLk{text-decoration:none;border-bottom-style:none}._consent_app-consent__footer-q1D_T{display:flex;flex-direction:column;align-items:center}._consent_app-consent__actions-R655P{display:flex;justify-content:center;align-items:center;gap:var(--padding);width:100%;flex-direction:row}@media(max-width: 528px){._consent_app-consent__actions-R655P:not(:has(>button:only-child)){display:grid;grid-template-columns:1fr 2fr 2fr;grid-template-rows:1fr;gap:calc(.75*var(--padding))}}@media(max-width: 528px){._consent_app-consent__actions-R655P:has(>button:nth-child(2)):not(:has(>button:nth-child(3))),._consent_app-consent__actions-R655P:has(>button:nth-child(4)){display:grid;grid-template-columns:1fr 1fr;gap:calc(.75*var(--padding))}}._consent_app-consent__fab-RYrP4{opacity:.85;box-sizing:border-box;height:40px !important;width:40px !important;border-radius:100%;position:fixed;bottom:var(--padding);z-index:var(--fab-zindex)}[data-banner-position=BOTTOM_LEFT] ._consent_app-consent__fab-RYrP4,[data-banner-position=BOTTOM_CENTER] ._consent_app-consent__fab-RYrP4,[data-banner-position=MIDDLE_CENTER] ._consent_app-consent__fab-RYrP4{left:var(--padding);right:auto}[data-banner-position=BOTTOM_RIGHT] ._consent_app-consent__fab-RYrP4{left:auto;right:var(--padding)}._consent_app-consent__fab-RYrP4 svg{position:relative;left:-30%;bottom:4px}._consent_app-consent__one_click_opt_out-DGO6o{min-height:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:var(--padding);text-align:center}._consent_app-consent__loading_spinner-loJCj{width:28px;height:28px;border-radius:50%;border:3px solid var(--gray-light);border-top-color:var(--primary);animation:_consent_app-polaris-rotation-gkSNB .8s linear infinite}._consent_app-consent__one_click_email_row-S6962{display:flex;align-items:center;gap:var(--padding);margin-bottom:var(--padding)}@media(max-width: 528px){._consent_app-consent__one_click_email_row-S6962{flex-direction:column;align-items:stretch}}._consent_app-consent__one_click_email_input-pY4Om{flex-grow:1;border:1px solid var(--gray-light);border-radius:calc(var(--button-border-radius)*1.25);padding:calc(var(--padding)/2) var(--padding);font-size:14px}@keyframes _consent_app-polaris-rotation-gkSNB{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}#polaris-css-lockdown-container{all:unset !important}#polaris-consent-widgets{--padding: 12px;--shadow: rgba(0, 0, 0, 0.25);--fab-zindex: 999999;--banner-zindex: 999999;--container-width-desktop: 1140px;--container-width-tablet: 720px;--container-width-mobile: 396px;--button-border-radius: 12px;--button-fixed-width-size: 95px;--button-font-weight: 600;--link-color: #007bbd;--link-color-high-contrast: #34B7FE;--success: #5bda4d;--green-darkest: #00331F;--green-lightest: #E2FDF3;--purple-truevault: #5331c6;--purple-truevault-high-contrast: #c2adff;--white: #fff;--gray-lightest: #f6f6f6;--gray-lighter: #ececec;--gray-light: #b4b4b4;--gray: #7c7c7c;--gray-dark: #444444;--gray-darker: #212121;--black: #000;--border: var(--gray-light);--border-dark: var(--gray-dark);--surface: var(--white);--text: var(--gray-darker);--primary: var(--gray-dark);--primary-contrast: var(--white);--font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;--heading-font-family: var(--font-family);--button-font-family: var(--font-family);--size-base: 12px;--size-h1: calc(var(--size-base) * 1.5);--size-h2: calc(var(--size-base) * 1.25);--size-h3: calc(var(--size-base) * 1.125);--size-h4: calc(var(--size-base) * 1);--size-h5: calc(var(--size-base) * 0.95);--size-h6: calc(var(--size-base) * 0.85);--size-sm: calc(var(--size-base) * 0.85);--size-xs: calc(var(--size-base) * 0.5);--modal-max-width: 844px;color:var(--text);font-size:var(--size-base);font-family:var(--font-family);font-weight:normal;font-style:normal;padding:0;border:none;position:fixed}@media(min-width: 360px){#polaris-consent-widgets{--size-base: 12px}}#polaris-consent-widgets>[data-block-interaction=true]{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(255,255,255,.5)}#polaris-consent-widgets>[data-block-interaction=true][data-theme=dark_mode]{background:rgba(15,15,15,.5)}#polaris-consent-widgets p,#polaris-consent-widgets button,#polaris-consent-widgets a{font-size:var(--size-base);font-weight:normal}#polaris-consent-widgets button{font-weight:var(--button-font-weight)}#polaris-consent-widgets a{color:var(--link-color)}#polaris-consent-widgets h1,#polaris-consent-widgets h2,#polaris-consent-widgets h3,#polaris-consent-widgets h4,#polaris-consent-widgets h5,#polaris-consent-widgets h6{color:var(--text);font-family:var(--heading-font-family);line-height:1.1245;font-style:normal;font-weight:bold;display:block;letter-spacing:0px;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}#polaris-consent-widgets h1{font-size:var(--size-h1)}#polaris-consent-widgets h2{font-size:var(--size-h2)}#polaris-consent-widgets h3{font-size:var(--size-h3)}#polaris-consent-widgets h4{font-size:var(--size-h4)}#polaris-consent-widgets h5{font-size:var(--size-h5)}#polaris-consent-widgets h6{font-size:var(--size-h6)}#polaris-consent-widgets>[data-theme=dark_mode]{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] h1,#polaris-consent-widgets>[data-theme=dark_mode] h2,#polaris-consent-widgets>[data-theme=dark_mode] h3,#polaris-consent-widgets>[data-theme=dark_mode] h4,#polaris-consent-widgets>[data-theme=dark_mode] h5,#polaris-consent-widgets>[data-theme=dark_mode] h6{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] a{color:var(--link-color-high-contrast)}.truevault-polaris-optout:not(.polaris-consent-widget__links)>img,#truevault-polaris-optout:not(.polaris-consent-widget__links)>img{margin-right:2px}._consent_modal-consent_modal__title-kOWmC{flex-grow:1}@media(min-width: 528px){._consent_modal-consent_modal__title-kOWmC:first-child:not(:only-child){padding-left:calc(4*var(--padding))}}._consent_modal-consent_modal__disclaimer-rF3Sl a{text-decoration:underline}._consent_modal-consent_modal__body-Koi8M{margin-left:calc(var(--padding)/-2);margin-right:calc(var(--padding)/-2);margin-top:calc(var(--padding)*.5);margin-bottom:calc(var(--padding)*.5)}@media(min-width: 528px){._consent_modal-consent_modal__body-Koi8M{display:grid;grid-template-columns:1fr 1fr}}._consent_modal-consent_modal__body-Koi8M._consent_modal-no_top_margin-TmA77{margin-top:0}._consent_modal-consent_modal__privacy_policy_link-Cu9sj:not(:first-child){text-align:right}._toggle-toggle-ukiWP{z-index:0;position:relative;display:inline-block;line-height:1.5}._toggle-toggle-ukiWP>input{appearance:none;z-index:-1;position:absolute;display:block;outline:none;opacity:0;transform:scale(1)}._toggle-toggle-ukiWP>span{display:inline-block;width:100%;cursor:pointer;pointer-events:none}._toggle-toggle-ukiWP>span::before{content:"";display:inline-block;margin:5px 0 5px 10px;border-radius:7px;width:36px;height:14px;background-color:var(--gray-light);vertical-align:top;transition:background-color .2s,opacity .2s}._toggle-toggle-ukiWP>span::after{content:"";position:absolute;top:2px;right:16px;border-radius:50%;width:20px;height:20px;background-color:var(--gray-lighter);box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);transition:background-color .2s,transform .2s}._toggle-toggle-ukiWP>input:checked+span::before{background-color:var(--success)}._toggle-toggle-ukiWP>input:checked+span::after{transform:translateX(16px)}._toggle-toggle-ukiWP:hover>input{opacity:.04}._toggle-toggle-ukiWP>input:focus{opacity:.12}._toggle-toggle-ukiWP:hover>input:focus{opacity:.16}._toggle-toggle-ukiWP>input:focus-visible+span::before{box-shadow:0 0 0 3px var(--link-color)}[data-theme=dark_mode] ._toggle-toggle-ukiWP>input:focus-visible+span::before{box-shadow:0 0 0 3px var(--link-color-high-contrast)}._toggle-toggle-ukiWP>input:disabled{opacity:0}._toggle-toggle-ukiWP>input:disabled+span{color:rgb(var(--pure-material-onsurface-rgb, 0, 0, 0));opacity:.35;cursor:default}._toggle_row-toggle_row_container-yBpTP{position:relative}._toggle_row-toggle_row_container__double_wide-LukwV{grid-column:span 2}._toggle_row-toggle_row_container__line_below-BonqA{border-bottom:1px solid var(--gray-lighter)}[data-theme=dark_mode] ._toggle_row-toggle_row_container__line_below-BonqA{border-bottom:1px solid var(--gray-darker)}._toggle_row-toggle_row__click_target-leLA0{position:absolute;inset:0;z-index:1;background:rgba(0,0,0,0);border:none;cursor:pointer;padding:0;margin:0}._toggle_row-toggle_row__click_target-leLA0:disabled{cursor:default}._toggle_row-toggle_row-yNo8B{display:flex;align-content:center;justify-content:space-between;padding:calc(var(--padding)/2);border-radius:var(--padding);user-select:none;-webkit-user-select:none;cursor:pointer}._toggle_row-toggle_row-yNo8B ._toggle_row-toggle_row_title-DTmBl{position:relative;top:5px}._toggle_row-toggle_row-yNo8B._toggle_row-__disabled-QXGEg{cursor:initial;opacity:.7}._toggle_row-toggle_row_container-yBpTP:hover ._toggle_row-toggle_row-yNo8B:not(._toggle_row-__disabled-QXGEg){background-color:rgba(255,255,255,.75)}[data-theme=dark_mode] ._toggle_row-toggle_row_container-yBpTP:hover ._toggle_row-toggle_row-yNo8B:not(._toggle_row-__disabled-QXGEg){background-color:rgba(127,127,127,.5)}@keyframes _toggle_row-slide-up-dI2ya{0%{height:0}100%{height:var(--size-base)}}._toggle_row-toggle_row_title-DTmBl{margin:0;font-size:var(--size-h5);font-weight:bold}#polaris-css-lockdown-container{all:unset !important}#polaris-consent-widgets{--padding: 12px;--shadow: rgba(0, 0, 0, 0.25);--fab-zindex: 999999;--banner-zindex: 999999;--container-width-desktop: 1140px;--container-width-tablet: 720px;--container-width-mobile: 396px;--button-border-radius: 12px;--button-fixed-width-size: 95px;--button-font-weight: 600;--link-color: #007bbd;--link-color-high-contrast: #34B7FE;--success: #5bda4d;--green-darkest: #00331F;--green-lightest: #E2FDF3;--purple-truevault: #5331c6;--purple-truevault-high-contrast: #c2adff;--white: #fff;--gray-lightest: #f6f6f6;--gray-lighter: #ececec;--gray-light: #b4b4b4;--gray: #7c7c7c;--gray-dark: #444444;--gray-darker: #212121;--black: #000;--border: var(--gray-light);--border-dark: var(--gray-dark);--surface: var(--white);--text: var(--gray-darker);--primary: var(--gray-dark);--primary-contrast: var(--white);--font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;--heading-font-family: var(--font-family);--button-font-family: var(--font-family);--size-base: 12px;--size-h1: calc(var(--size-base) * 1.5);--size-h2: calc(var(--size-base) * 1.25);--size-h3: calc(var(--size-base) * 1.125);--size-h4: calc(var(--size-base) * 1);--size-h5: calc(var(--size-base) * 0.95);--size-h6: calc(var(--size-base) * 0.85);--size-sm: calc(var(--size-base) * 0.85);--size-xs: calc(var(--size-base) * 0.5);--modal-max-width: 844px;color:var(--text);font-size:var(--size-base);font-family:var(--font-family);font-weight:normal;font-style:normal;padding:0;border:none;position:fixed}@media(min-width: 360px){#polaris-consent-widgets{--size-base: 12px}}#polaris-consent-widgets>[data-block-interaction=true]{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(255,255,255,.5)}#polaris-consent-widgets>[data-block-interaction=true][data-theme=dark_mode]{background:rgba(15,15,15,.5)}#polaris-consent-widgets p,#polaris-consent-widgets button,#polaris-consent-widgets a{font-size:var(--size-base);font-weight:normal}#polaris-consent-widgets button{font-weight:var(--button-font-weight)}#polaris-consent-widgets a{color:var(--link-color)}#polaris-consent-widgets h1,#polaris-consent-widgets h2,#polaris-consent-widgets h3,#polaris-consent-widgets h4,#polaris-consent-widgets h5,#polaris-consent-widgets h6{color:var(--text);font-family:var(--heading-font-family);line-height:1.1245;font-style:normal;font-weight:bold;display:block;letter-spacing:0px;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}#polaris-consent-widgets h1{font-size:var(--size-h1)}#polaris-consent-widgets h2{font-size:var(--size-h2)}#polaris-consent-widgets h3{font-size:var(--size-h3)}#polaris-consent-widgets h4{font-size:var(--size-h4)}#polaris-consent-widgets h5{font-size:var(--size-h5)}#polaris-consent-widgets h6{font-size:var(--size-h6)}#polaris-consent-widgets>[data-theme=dark_mode]{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] h1,#polaris-consent-widgets>[data-theme=dark_mode] h2,#polaris-consent-widgets>[data-theme=dark_mode] h3,#polaris-consent-widgets>[data-theme=dark_mode] h4,#polaris-consent-widgets>[data-theme=dark_mode] h5,#polaris-consent-widgets>[data-theme=dark_mode] h6{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] a{color:var(--link-color-high-contrast)}.truevault-polaris-optout:not(.polaris-consent-widget__links)>img,#truevault-polaris-optout:not(.polaris-consent-widget__links)>img{margin-right:2px}._language_select-language_select__select_label-uqDTX{color:#918ca1;font-size:16px;font-weight:300}._language_select-language_select__title-RrJwR{line-height:0 !important;display:flex;align-items:center;justify-content:center}._language_select-language_select__title-RrJwR svg{max-width:20px;max-height:16px}._language_select-language_select__container-igYP7{position:relative;display:inline-flex}._language_select-language_select__container-igYP7._language_select-is-active-sSzkZ ul{visibility:visible;display:block}._language_select-language_select__select-dropdown-GY8nD{box-sizing:border-box;overflow:visible;display:flex;justify-content:center;align-items:center;color:var(--text);width:100%}._language_select-language_select__select-dropdown-GY8nD span._language_select-__current_language-RLVGg{margin-left:calc(var(--padding)/3);font-weight:var(--button-font-weight);line-height:initial}@media(min-width: 528px){._language_select-language_select__select-dropdown-GY8nD span._language_select-__current_language-RLVGg{display:none}}._language_select-language_select__select-dropdown-GY8nD *{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}._language_select-language_select__selector-mcUjn{display:none;visibility:hidden;position:absolute;bottom:calc(var(--padding)*2.5);left:calc(var(--padding)*-1.25);min-width:160px;color:var(--text);background:var(--surface);border:1px solid var(--border);z-index:999;list-style-type:none;margin:0;padding:0;padding-top:var(--padding);padding-bottom:var(--padding);border-radius:var(--padding);max-height:200px;overflow-y:auto}[data-theme=dark_mode] ._language_select-language_select__selector-mcUjn{background:var(--gray-darker);border-color:var(--gray-dark);color:var(--white)}@media(max-width: 528px){._language_select-language_select__selector-mcUjn:not(._language_select-hide_selected_language_label-Y26lx){width:100%}._language_select-language_select__selector-mcUjn:not(._language_select-language_select_on_right-Rz6hL){left:0}}._language_select-language_select__selector-mcUjn._language_select-language_select_on_right-Rz6hL{left:initial;right:0}@media(max-width: 528px){._language_select-language_select__selector-mcUjn._language_select-language_select_on_right-Rz6hL{width:calc(100vw - 4*var(--padding))}}._language_select-language_select__option-vSZZ_{display:flex;align-items:center;padding:calc(var(--padding)*.8) calc(2*var(--padding));cursor:pointer;font-size:14px;line-height:1.2;min-height:20px;white-space:nowrap;outline:none;border:none;background:rgba(0,0,0,0);color:inherit}._language_select-language_select__option-vSZZ_:hover{background-color:#effbff}[data-theme=dark_mode] ._language_select-language_select__option-vSZZ_:hover{background-color:rgba(255,255,255,.1)}._language_select-language_select__option-vSZZ_._language_select-language_select__option_active-H5mBX{background-color:#effbff}[data-theme=dark_mode] ._language_select-language_select__option-vSZZ_._language_select-language_select__option_active-H5mBX{background-color:rgba(255,255,255,.1)}._language_select-language_select__option-vSZZ_:focus-visible{outline:3px solid var(--link-color);outline-offset:-2px}[data-theme=dark_mode] ._language_select-language_select__option-vSZZ_:focus-visible{outline:3px solid var(--link-color-high-contrast)}._language_select-language_select__option-vSZZ_ *{pointer-events:none}._language_select-language_select__option-vSZZ_ svg{margin-right:calc(var(--padding)/2);max-width:24px;vertical-align:middle;flex-shrink:0}#polaris-css-lockdown-container{all:unset !important}#polaris-consent-widgets{--padding: 12px;--shadow: rgba(0, 0, 0, 0.25);--fab-zindex: 999999;--banner-zindex: 999999;--container-width-desktop: 1140px;--container-width-tablet: 720px;--container-width-mobile: 396px;--button-border-radius: 12px;--button-fixed-width-size: 95px;--button-font-weight: 600;--link-color: #007bbd;--link-color-high-contrast: #34B7FE;--success: #5bda4d;--green-darkest: #00331F;--green-lightest: #E2FDF3;--purple-truevault: #5331c6;--purple-truevault-high-contrast: #c2adff;--white: #fff;--gray-lightest: #f6f6f6;--gray-lighter: #ececec;--gray-light: #b4b4b4;--gray: #7c7c7c;--gray-dark: #444444;--gray-darker: #212121;--black: #000;--border: var(--gray-light);--border-dark: var(--gray-dark);--surface: var(--white);--text: var(--gray-darker);--primary: var(--gray-dark);--primary-contrast: var(--white);--font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;--heading-font-family: var(--font-family);--button-font-family: var(--font-family);--size-base: 12px;--size-h1: calc(var(--size-base) * 1.5);--size-h2: calc(var(--size-base) * 1.25);--size-h3: calc(var(--size-base) * 1.125);--size-h4: calc(var(--size-base) * 1);--size-h5: calc(var(--size-base) * 0.95);--size-h6: calc(var(--size-base) * 0.85);--size-sm: calc(var(--size-base) * 0.85);--size-xs: calc(var(--size-base) * 0.5);--modal-max-width: 844px;color:var(--text);font-size:var(--size-base);font-family:var(--font-family);font-weight:normal;font-style:normal;padding:0;border:none;position:fixed}@media(min-width: 360px){#polaris-consent-widgets{--size-base: 12px}}#polaris-consent-widgets>[data-block-interaction=true]{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(255,255,255,.5)}#polaris-consent-widgets>[data-block-interaction=true][data-theme=dark_mode]{background:rgba(15,15,15,.5)}#polaris-consent-widgets p,#polaris-consent-widgets button,#polaris-consent-widgets a{font-size:var(--size-base);font-weight:normal}#polaris-consent-widgets button{font-weight:var(--button-font-weight)}#polaris-consent-widgets a{color:var(--link-color)}#polaris-consent-widgets h1,#polaris-consent-widgets h2,#polaris-consent-widgets h3,#polaris-consent-widgets h4,#polaris-consent-widgets h5,#polaris-consent-widgets h6{color:var(--text);font-family:var(--heading-font-family);line-height:1.1245;font-style:normal;font-weight:bold;display:block;letter-spacing:0px;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}#polaris-consent-widgets h1{font-size:var(--size-h1)}#polaris-consent-widgets h2{font-size:var(--size-h2)}#polaris-consent-widgets h3{font-size:var(--size-h3)}#polaris-consent-widgets h4{font-size:var(--size-h4)}#polaris-consent-widgets h5{font-size:var(--size-h5)}#polaris-consent-widgets h6{font-size:var(--size-h6)}#polaris-consent-widgets>[data-theme=dark_mode]{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] h1,#polaris-consent-widgets>[data-theme=dark_mode] h2,#polaris-consent-widgets>[data-theme=dark_mode] h3,#polaris-consent-widgets>[data-theme=dark_mode] h4,#polaris-consent-widgets>[data-theme=dark_mode] h5,#polaris-consent-widgets>[data-theme=dark_mode] h6{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] a{color:var(--link-color-high-contrast)}.truevault-polaris-optout:not(.polaris-consent-widget__links)>img,#truevault-polaris-optout:not(.polaris-consent-widget__links)>img{margin-right:2px}._your_privacy_choices_opt_out_link-your_privacy_choices_opt_out_link-OZoRW{margin-bottom:var(--padding)}._your_privacy_choices_opt_out_link-your_privacy_choices_opt_out_link-OZoRW img{margin-right:.25rem;position:relative;top:3px}._your_privacy_choices_opt_out_link-your_privacy_choices_opt_out_link__mobile_centered-gTIx5{margin-bottom:0;flex-grow:1;min-width:154px}@media(max-width: 528px){._your_privacy_choices_opt_out_link-your_privacy_choices_opt_out_link__mobile_centered-gTIx5{margin-bottom:calc(var(--padding)*.25)}}._close_button-close_button-svwRP{position:relative;left:calc(var(--padding)/1.5)}._close_button-close_button-svwRP>svg{stroke:#000}[data-theme=dark_mode] ._close_button-close_button-svwRP>svg{stroke:#fff}#polaris-css-lockdown-container{all:unset !important}#polaris-consent-widgets{--padding: 12px;--shadow: rgba(0, 0, 0, 0.25);--fab-zindex: 999999;--banner-zindex: 999999;--container-width-desktop: 1140px;--container-width-tablet: 720px;--container-width-mobile: 396px;--button-border-radius: 12px;--button-fixed-width-size: 95px;--button-font-weight: 600;--link-color: #007bbd;--link-color-high-contrast: #34B7FE;--success: #5bda4d;--green-darkest: #00331F;--green-lightest: #E2FDF3;--purple-truevault: #5331c6;--purple-truevault-high-contrast: #c2adff;--white: #fff;--gray-lightest: #f6f6f6;--gray-lighter: #ececec;--gray-light: #b4b4b4;--gray: #7c7c7c;--gray-dark: #444444;--gray-darker: #212121;--black: #000;--border: var(--gray-light);--border-dark: var(--gray-dark);--surface: var(--white);--text: var(--gray-darker);--primary: var(--gray-dark);--primary-contrast: var(--white);--font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;--heading-font-family: var(--font-family);--button-font-family: var(--font-family);--size-base: 12px;--size-h1: calc(var(--size-base) * 1.5);--size-h2: calc(var(--size-base) * 1.25);--size-h3: calc(var(--size-base) * 1.125);--size-h4: calc(var(--size-base) * 1);--size-h5: calc(var(--size-base) * 0.95);--size-h6: calc(var(--size-base) * 0.85);--size-sm: calc(var(--size-base) * 0.85);--size-xs: calc(var(--size-base) * 0.5);--modal-max-width: 844px;color:var(--text);font-size:var(--size-base);font-family:var(--font-family);font-weight:normal;font-style:normal;padding:0;border:none;position:fixed}@media(min-width: 360px){#polaris-consent-widgets{--size-base: 12px}}#polaris-consent-widgets>[data-block-interaction=true]{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(255,255,255,.5)}#polaris-consent-widgets>[data-block-interaction=true][data-theme=dark_mode]{background:rgba(15,15,15,.5)}#polaris-consent-widgets p,#polaris-consent-widgets button,#polaris-consent-widgets a{font-size:var(--size-base);font-weight:normal}#polaris-consent-widgets button{font-weight:var(--button-font-weight)}#polaris-consent-widgets a{color:var(--link-color)}#polaris-consent-widgets h1,#polaris-consent-widgets h2,#polaris-consent-widgets h3,#polaris-consent-widgets h4,#polaris-consent-widgets h5,#polaris-consent-widgets h6{color:var(--text);font-family:var(--heading-font-family);line-height:1.1245;font-style:normal;font-weight:bold;display:block;letter-spacing:0px;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}#polaris-consent-widgets h1{font-size:var(--size-h1)}#polaris-consent-widgets h2{font-size:var(--size-h2)}#polaris-consent-widgets h3{font-size:var(--size-h3)}#polaris-consent-widgets h4{font-size:var(--size-h4)}#polaris-consent-widgets h5{font-size:var(--size-h5)}#polaris-consent-widgets h6{font-size:var(--size-h6)}#polaris-consent-widgets>[data-theme=dark_mode]{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] h1,#polaris-consent-widgets>[data-theme=dark_mode] h2,#polaris-consent-widgets>[data-theme=dark_mode] h3,#polaris-consent-widgets>[data-theme=dark_mode] h4,#polaris-consent-widgets>[data-theme=dark_mode] h5,#polaris-consent-widgets>[data-theme=dark_mode] h6{color:var(--white)}#polaris-consent-widgets>[data-theme=dark_mode] a{color:var(--link-color-high-contrast)}.truevault-polaris-optout:not(.polaris-consent-widget__links)>img,#truevault-polaris-optout:not(.polaris-consent-widget__links)>img{margin-right:2px}._opt_out_honored_badge-opt_out_honored_badge-UkFks{display:flex;justify-content:center;align-items:center;margin-bottom:.5rem;color:var(--green-darkest)}[data-theme=dark_mode] ._opt_out_honored_badge-opt_out_honored_badge-UkFks{color:var(--green-lightest)}._opt_out_honored_badge-opt_out_honored_badge-UkFks svg{height:16px;padding-right:.25rem}._opt_out_honored_badge-opt_out_honored_badge-UkFks ._opt_out_honored_badge-learn_more-O_R28{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;width:16px;height:16px;margin-left:.375rem;border:1.5px solid currentColor;border-radius:50%;line-height:1;text-decoration:none}._opt_out_honored_badge-opt_out_honored_badge-UkFks ._opt_out_honored_badge-learn_more-O_R28:hover{opacity:.75}._opt_out_honored_badge-opt_out_honored_badge-UkFks ._opt_out_honored_badge-learn_more-O_R28:focus-visible{outline:2px solid currentColor;outline-offset:2px}</style><style id="_goober"> @keyframes go2264125279{from{transform:scale(0) rotate(45deg);opacity:0;}to{transform:scale(1) rotate(45deg);opacity:1;}}@keyframes go3020080000{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}@keyframes go463499852{from{transform:scale(0) rotate(90deg);opacity:0;}to{transform:scale(1) rotate(90deg);opacity:1;}}@keyframes go1268368563{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}@keyframes go1310225428{from{transform:scale(0) rotate(45deg);opacity:0;}to{transform:scale(1) rotate(45deg);opacity:1;}}@keyframes go651618207{0%{height:0;width:0;opacity:0;}40%{height:0;width:6px;opacity:1;}100%{opacity:1;height:10px;}}@keyframes go901347462{from{transform:scale(0.6);opacity:0.4;}to{transform:scale(1);opacity:1;}}.go4109123758{z-index:9999;}.go4109123758 > *{pointer-events:auto;}</style><link rel="stylesheet" href="css/style1.css" data-rh="true"><link rel="stylesheet" href="css/style2.css" data-rh="true"><link rel="stylesheet" href="css/style3.css" data-rh="true"><link rel="stylesheet" href="css/style4.css" data-rh="true"><link rel="stylesheet" href="css/style5.css" data-rh="true"><link rel="canonical" href="https://withjoy.com/nghivan2027/" data-rh="true"><link href="css/style6.css" rel="stylesheet" data-rh="true"><meta name="description" content="Willkommen auf der Website von Minh Nghi &amp; Ivan! Entdecke Fotos, Unterkünfte und vieles mehr auf Joy." data-rh="true"><meta name="author" content="@JoytheApp" data-rh="true"><meta property="og:url" content="https://withjoy.com/nghivan2027/" data-rh="true"><meta property="og:title" content="Minh Nghi &amp; Ivan | Joy" data-rh="true"><meta property="og:description" content="Willkommen auf der Website von Minh Nghi &amp; Ivan! Entdecke Fotos, Unterkünfte und vieles mehr auf Joy." data-rh="true"><meta property="og:image" content="https://withjoy.com/media/272ebb47-0114-5c98-b5e0-3e00d2ca04d4/39f1f7b0-ed79-11f0-b680-0f2729ce5d65-Facetune_28-06-2025-08-48-56.jpeg?rendition=small&amp;source=websitepreview" data-rh="true"><meta property="og:type" content="website" data-rh="true"><meta name="twitter:card" content="summary" data-rh="true"><meta name="twitter:creator" content="@JoytheApp" data-rh="true"><meta name="twitter:title" content="Minh Nghi &amp; Ivan | Joy" data-rh="true"><meta name="twitter:description" content="Willkommen auf der Website von Minh Nghi &amp; Ivan! Entdecke Fotos, Unterkünfte und vieles mehr auf Joy." data-rh="true"><meta name="twitter:url" content="https://withjoy.com/nghivan2027/" data-rh="true"><meta name="twitter:site" content="@JoytheApp" data-rh="true"><meta name="robots" content="noindex" data-rh="true"><style>.bqWLCW { overflow-x: clip; }
+@media screen and (min-width: 30em) {
+}
+@media screen and (min-width: 48em) {
+  .bqWLCW { overflow-x: initial; }
+}
+.kuHCcd { padding-top: 0rem; }
+.cvXnwb { transition: background 150ms cubic-bezier(0.23, 1, 0.32, 1), background-color 150ms cubic-bezier(0.23, 1, 0.32, 1); position: relative; }
+.bXDsNW { overflow: clip; }
+.iTDPgP { margin-left: auto; margin-right: auto; }
+@media screen and (min-width: 23.4375em) {
+}
+@media screen and (min-width: 60em) {
+  .iTDPgP { max-width: 1024px; }
+}
+.dZvPcd { margin-left: -0.5rem; margin-right: -0.5rem; }
+@media screen and (min-width: 23.4375em) {
+}
+@media screen and (min-width: 60em) {
+  .dZvPcd { margin-left: -0.75rem; margin-right: -0.75rem; }
+}
+.cWpvsX { padding-right: 0.5rem; padding-left: 0.5rem; }
+@media screen and (min-width: 23.4375em) {
+}
+@media screen and (min-width: 60em) {
+  .cWpvsX { padding-right: 0.75rem; padding-left: 0.75rem; }
+}
+.dUANSc { color: rgb(120, 151, 177); min-height: 100vh; padding-bottom: 3.375rem; position: relative; transition: background-color 150ms cubic-bezier(0.23, 1, 0.32, 1); background-color: rgba(255, 255, 255, 0.7) !important; }
+@media screen and (min-width: 23.4375em) {
+  .dUANSc { padding-top: 0rem; }
+}
+@media screen and (min-width: 48em) {
+  .dUANSc { padding-bottom: 6rem; }
+}
+@media screen and (min-width: 60em) {
+  .dUANSc { padding-top: 6rem; box-shadow: rgba(68, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px; }
+}
+.iiitzD { min-height: 100vh; }
+.ekbiwa { margin-top: 0rem; margin-left: -0.5rem; margin-right: -0.5rem; }
+@media screen and (min-width: 23.4375em) {
+}
+@media screen and (min-width: 60em) {
+  .ekbiwa { margin-top: 3rem; margin-left: -0.75rem; margin-right: -0.75rem; }
+}
+.YzyTa { width: 100%; }
+.bHkgRt { aspect-ratio: 1.77778 / 1; display: flex; -webkit-box-align: center; align-items: center; max-height: 600px; position: relative; width: 100%; overflow: hidden; left: 0px; }
+.jDoWVc { width: 100%; height: 100%; }
+.bFVyuf { width: 100%; height: 100%; overflow: hidden; position: relative; }
+.fzILpL { position: absolute; z-index: 1; }
+.gQyGqc { position: absolute; z-index: 2; }
+.fdheaC { -webkit-box-align: center; align-items: center; display: flex; flex-direction: column; margin: 3rem auto 0rem; max-width: 53.75rem; padding-left: 2rem; padding-right: 2rem; }
+@media screen and (min-width: 60em) {
+  .fdheaC { padding-right: 4rem; padding-left: 4rem; }
+}
+.heZchD { padding-left: 2rem; padding-right: 2rem; padding-top: 0rem; width: 100%; }
+@media screen and (min-width: 60em) {
+  .heZchD { padding-right: 4rem; padding-left: 4rem; }
+}
+.gDSnBx { -webkit-box-align: center; align-items: center; display: flex; flex-direction: column; margin-bottom: 2rem; margin-left: auto; margin-right: auto; max-width: 53.75rem; width: 100%; }
+@media screen and (min-width: 48em) {
+  .gDSnBx { margin-bottom: 3rem; }
+}
+.cIdCsJ { font-family: "Vollkorn SC"; font-weight: 400; font-size: 2.25rem; line-height: 1.25; text-transform: none; letter-spacing: 0em; max-width: calc(-24px + 100vw); text-align: center; word-break: break-word; white-space: nowrap; }
+.bpChaP { display: flex; -webkit-box-pack: center; justify-content: center; padding-left: 2rem; padding-right: 2rem; width: 100%; }
+@media screen and (min-width: 60em) {
+  .bpChaP { padding-right: 4rem; padding-left: 4rem; }
+}
+.fjRnEj { width: 100%; max-width: 53.75rem; margin-left: auto; margin-right: auto; }
+.jvmPRa { display: flex; flex-direction: column; -webkit-box-pack: center; justify-content: center; -webkit-box-align: center; align-items: center; width: 100%; }
+.hUztmu { -webkit-box-align: center; align-items: center; display: flex; flex-direction: column; -webkit-box-pack: center; justify-content: center; margin-bottom: 2.5rem; margin-top: 1.5rem; }
+@media screen and (min-width: 48em) {
+  .hUztmu { margin-top: 4rem; }
+}
+.eLRDWM { padding-top: 1.5rem; }
+@media screen and (min-width: 48em) {
+  .eLRDWM { padding-top: 0rem; }
+}
+.dFdNxm { flex-direction: row; gap: 1.5rem; display: flex; }
+.hQMfgl { font-family: "Gotham SSm", Helvetica, Arial, sans-serif; font-weight: normal; font-size: 0.875rem; line-height: 1.83; letter-spacing: -0.03em; text-decoration: none; color: rgb(120, 151, 177); transition: color 150ms cubic-bezier(0.23, 1, 0.32, 1); }
+.hQMfgl:visited { color: rgb(120, 151, 177); }
+.hQMfgl:active, .hQMfgl[data-active] { color: rgb(120, 151, 177); }
+.hQMfgl:hover, .hQMfgl[data-hover] { color: rgb(105, 130, 151); }
+.fMABLh { position: relative; }
+.cVSKWA { width: 100%; flex-direction: column; -webkit-box-align: center; align-items: center; -webkit-box-pack: center; justify-content: center; min-height: 291px; display: flex; }
+@media screen and (min-width: 23.4375em) {
+  .cVSKWA { min-height: 200px; }
+}
+@media screen and (min-width: 60em) {
+}
+@media screen and (min-width: 64em) {
+  .cVSKWA { min-height: initial; }
+}
+.kEQbJR { color: rgb(120, 151, 177); height: auto; transition: height 150ms cubic-bezier(0.23, 1, 0.32, 1); width: 100%; }
+@media screen and (min-width: 48em) {
+  .kEQbJR { height: auto; }
+}
+.hCPikL { color: rgb(70, 109, 153); margin: 70px auto; max-width: 90%; position: relative; text-align: center; }
+@media screen and (min-width: 23.4375em) {
+  .hCPikL { margin-top: 70px; margin-bottom: 70px; }
+}
+@media screen and (min-width: 60em) {
+  .hCPikL { margin-top: unset; margin-bottom: unset; color: inherit; }
+}
+@media screen and (min-width: 64em) {
+  .hCPikL { max-width: 720px; }
+}
+.fINLEF { color: rgb(114, 164, 202); font-family: "Vollkorn SC"; font-size: 4.2rem; font-weight: 400; letter-spacing: 0em; line-height: 1.25; text-align: center; text-transform: none; }
+@media screen and (min-width: 60em) {
+  .fINLEF { color: rgb(114, 164, 202); }
+}
+.fINLEF p, .fINLEF div { margin: 0rem; }
+.cMevBa { position: absolute; top: 19px; right: 16px; flex-direction: column; align-items: flex-end; gap: 0.5rem; display: flex; }
+.itDqOo { display: inline-flex; appearance: none; -webkit-box-align: center; align-items: center; -webkit-box-pack: center; justify-content: center; border-radius: 9999px; vertical-align: middle; border: 0px; text-decoration: none; position: relative; white-space: nowrap; transition: background-color 150ms cubic-bezier(0.23, 1, 0.32, 1), color 150ms cubic-bezier(0.23, 1, 0.32, 1), border-color 150ms cubic-bezier(0.23, 1, 0.32, 1); letter-spacing: 0em; font-family: "Vollkorn SC"; font-weight: 400; font-size: 1rem; line-height: 1.2; font-feature-settings: "tnum", "lnum"; height: 3rem; min-width: 3rem; padding-right: 1.5rem; padding-left: 1.5rem; background-color: rgb(255, 255, 255); color: rgb(120, 151, 177); }
+.itDqOo[disabled], .itDqOo[aria-disabled="true"], .itDqOo[data-disabled] { cursor: not-allowed; box-shadow: none; color: rgb(115, 115, 115); background-color: rgb(229, 229, 229); }
+.itDqOo:hover, .itDqOo[data-hover] { background-color: rgb(250, 250, 250); }
+.itDqOo:hover[disabled], .itDqOo[data-hover][disabled], .itDqOo:hover[aria-disabled="true"], .itDqOo[data-hover][aria-disabled="true"], .itDqOo:hover[data-disabled], .itDqOo[data-hover][data-disabled] { color: rgb(115, 115, 115); background-color: rgb(229, 229, 229); }
+.itDqOo:focus-visible, .itDqOo[data-focus-visible] { outline: rgb(74, 74, 255) solid 0.125rem; outline-offset: 0.125rem; }
+.itDqOo:active, .itDqOo[data-active] { background-color: rgb(250, 250, 250); }
+.fHMySD { fill: currentcolor; }
+.bxNakl { display: inline-flex; -webkit-box-align: center; align-items: center; }
+.eVTLJ { -webkit-box-pack: center; justify-content: center; padding-top: 2.5rem; pointer-events: all; display: flex; }
+.cwwtjZ { flex-wrap: wrap; max-width: max(860px, 90%); -webkit-box-pack: center; justify-content: center; border-radius: 0rem; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; backdrop-filter: none; padding-right: 0.75rem; padding-left: 0.75rem; display: flex; }
+.gtXcJw { padding-right: 1rem; padding-left: 1rem; }
+.gtXcJw:empty { display: none; }
+.bdAGTM { font-family: "Vollkorn SC"; font-weight: 400; font-size: 0.9375rem; line-height: 1.5; letter-spacing: 0em; padding-top: 1rem; padding-bottom: 1rem; }
+.gAATap { font-family: "Gotham SSm", Helvetica, Arial, sans-serif; font-weight: 400; font-size: 1rem; line-height: 1.5; letter-spacing: 0em; cursor: default; color: rgb(120, 151, 177); }
+.cdmiRB { border-radius: 0.125rem; background-color: transparent; width: 100%; }
+.klUBrW { flex-direction: column; width: 100%; row-gap: 2.8125rem; -webkit-box-align: center; align-items: center; display: flex; }
+.lcDiOA { flex-direction: column; display: flex; }
+@media screen and (min-width: 23.4375em) {
+  .lcDiOA { flex-direction: row; }
+}
+.bIvFPH { text-align: left; width: 100%; max-width: 100%; margin: 0px auto; display: flex; }
+.ivHJZu { width: 100%; flex-direction: column; display: flex; }
+.dFFvoI { width: 100%; max-width: 100%; margin: 0px auto; flex-direction: column; display: flex; }
+.evMJLR { flex-direction: column; }
+.hJATYB { flex-direction: column; display: flex; }
+.iRKwly { font-family: "Vollkorn SC"; font-weight: 700; font-size: 1.0625rem; line-height: 1.36; letter-spacing: 0em; word-break: break-word; }
+.kOkOnx { font-family: Vollkorn; font-weight: 400; font-size: 1.0625rem; line-height: 1.5; letter-spacing: 0em; word-break: break-word; margin-top: 0.625rem; }
+.bgVFgz { width: 100%; flex-direction: column; word-break: break-word; display: flex; }
+:root { --full-screen-height: calc(100vh - (100vh - 100%)); }
+#root { min-height: -webkit-fill-available; display: flex; flex-direction: column; }
+#root > :first-child { flex: 1 1 0%; }
+body.overlay-open { overflow: hidden; padding-right: 15px; }
+*, ::after, ::before { -webkit-font-smoothing: antialiased; }
+body { font-family: "Gotham SSm"; }
+:root { --full-screen-height: calc(100vh - (100vh - 100%)); }
+#root { min-height: -webkit-fill-available; display: flex; flex-direction: column; }
+#root > :first-child { flex: 1 1 0%; }
+body.overlay-open { overflow: hidden; padding-right: 15px; }
+*, ::after, ::before { -webkit-font-smoothing: antialiased; }
+body { font-family: "Gotham SSm"; }
+.hPicyf { flex-shrink: 0; backface-visibility: hidden; display: inline-block; vertical-align: middle; height: 16px; width: 16px; }
+.chLGiP { appearance: none !important; }
+.QLyHt { display: inline-flex; margin-right: 0.5rem; }
+.dIbTsh { display: inline-flex; margin-left: 0.5rem; }
+.jzrQXm { flex-direction: column; display: flex; }
+.jzrQXm > :not(:first-child) { margin-top: 3rem; }
+.jodit-popup-container h1, .jodit-popup-container h2, .jodit-popup-container h3, .jodit-popup-container h4, .jodit-popup-container h5, .jodit-popup-container h6 { all: revert; }
+.jodit-editor h1, .jodit-editor h2, .jodit-editor h3, .jodit-editor h4, .jodit-editor h5, .jodit-editor h6 { color-scheme: revert; forced-color-adjust: revert; math-depth: revert; position: revert; position-anchor: revert; text-size-adjust: revert; appearance: revert; color: revert; font-feature-settings: revert; font-kerning: revert; font-language-override: revert; font-optical-sizing: revert; font-palette: revert; font-size: revert; font-size-adjust: revert; font-stretch: revert; font-style: revert; font-synthesis: revert; font-variant: revert; font-variation-settings: revert; position-area: revert; text-orientation: revert; text-rendering: revert; text-spacing-trim: revert; -webkit-font-smoothing: revert; -webkit-locale: revert; -webkit-text-orientation: revert; -webkit-writing-mode: revert; writing-mode: revert; zoom: revert; accent-color: revert; place-content: revert; place-items: revert; place-self: revert; alignment-baseline: revert; anchor-name: revert; anchor-scope: revert; animation-composition: revert; animation: revert; animation-trigger: revert; app-region: revert; aspect-ratio: revert; backdrop-filter: revert; backface-visibility: revert; background: revert; background-blend-mode: revert; baseline-shift: revert; baseline-source: revert; block-size: revert; border-block: revert; border: revert; border-radius: revert; border-collapse: revert; border-end-end-radius: revert; border-end-start-radius: revert; border-inline: revert; border-shape: revert; border-start-end-radius: revert; border-start-start-radius: revert; inset: revert; box-decoration-break: revert; box-shadow: revert; box-sizing: revert; break-after: revert; break-before: revert; break-inside: revert; buffered-rendering: revert; caption-side: revert; caret-animation: revert; caret-color: revert; caret-shape: revert; clear: revert; clip: revert; clip-path: revert; clip-rule: revert; color-interpolation: revert; color-interpolation-filters: revert; color-rendering: revert; columns: revert; column-fill: revert; gap: revert; rule-break: revert; rule: revert; rule-inset: revert; rule-visibility-items: revert; column-span: revert; contain: revert; contain-intrinsic-block-size: revert; contain-intrinsic-size: revert; contain-intrinsic-inline-size: revert; container: revert; content: revert; content-visibility: revert; corner-shape: revert; corner-block-end-shape: revert; corner-block-start-shape: revert; counter-increment: revert; counter-reset: revert; counter-set: revert; cursor: revert; cx: revert; cy: revert; d: revert; display: revert; dominant-baseline: revert; dynamic-range-limit: revert; empty-cells: revert; field-sizing: revert; fill: revert; fill-opacity: revert; fill-rule: revert; filter: revert; flex: revert; flex-flow: revert; flex-line-count: revert; float: revert; flood-color: revert; flood-opacity: revert; frame-sizing: revert; grid: revert; grid-area: revert; height: revert; hyphenate-character: revert; hyphenate-limit-chars: revert; hyphens: revert; image-orientation: revert; image-rendering: revert; initial-letter: revert; inline-size: revert; inset-block: revert; inset-inline: revert; interactivity: revert; interest-delay: revert; interpolate-size: revert; isolation: revert; letter-spacing: revert; lighting-color: revert; line-break: revert; list-style: revert; margin-block: revert; margin: revert; margin-inline: revert; margin-trim: revert; marker: revert; mask: revert; mask-type: revert; math-shift: revert; math-style: revert; max-block-size: revert; max-height: revert; max-inline-size: revert; max-width: revert; min-block-size: revert; min-height: revert; min-inline-size: revert; min-width: revert; mix-blend-mode: revert; object-fit: revert; object-position: revert; object-view-box: revert; offset: revert; opacity: revert; order: revert; orphans: revert; outline: revert; outline-offset: revert; overflow-anchor: revert; overflow-block: revert; overflow-clip-margin: revert; overflow-inline: revert; overflow-wrap: revert; overflow: revert; overlay: revert; overscroll-behavior-block: revert; overscroll-behavior-inline: revert; overscroll-behavior: revert; padding-block: revert; padding: revert; padding-inline: revert; page: revert; page-margin-safety: revert; page-orientation: revert; paint-order: revert; perspective: revert; perspective-origin: revert; pointer-events: revert; position-try: revert; position-visibility: revert; print-color-adjust: revert; quotes: revert; r: revert; reading-flow: revert; reading-order: revert; resize: revert; rotate: revert; ruby-align: revert; ruby-overhang: revert; ruby-position: revert; rule-overlap: revert; rx: revert; ry: revert; scale: revert; scroll-axis-lock: revert; scroll-behavior: revert; scroll-initial-target: revert; scroll-margin-block: revert; scroll-margin: revert; scroll-margin-inline: revert; scroll-marker-group: revert; scroll-padding-block: revert; scroll-padding: revert; scroll-padding-inline: revert; scroll-snap-align: revert; scroll-snap-stop: revert; scroll-snap-type: revert; scroll-target-group: revert; scroll-timeline: revert; scrollbar-color: revert; scrollbar-gutter: revert; scrollbar-width: revert; shape-image-threshold: revert; shape-margin: revert; shape-outside: revert; shape-rendering: revert; size: revert; speak: revert; stop-color: revert; stop-opacity: revert; stroke: revert; stroke-dasharray: revert; stroke-dashoffset: revert; stroke-linecap: revert; stroke-linejoin: revert; stroke-miterlimit: revert; stroke-opacity: revert; stroke-width: revert; tab-size: revert; table-layout: revert; text-align: revert; text-align-last: revert; text-anchor: revert; text-autospace: revert; text-box: revert; text-combine-upright: revert; text-decoration: revert; text-decoration-skip-ink: revert; text-emphasis: revert; text-emphasis-position: revert; text-fit: revert; text-indent: revert; text-justify: revert; text-overflow: revert; text-shadow: revert; text-transform: revert; text-underline-offset: revert; text-underline-position: revert; text-wrap: revert; timeline-scope: revert; timeline-trigger: revert; touch-action: revert; transform: revert; transform-box: revert; transform-origin: revert; transform-style: revert; transition: revert; translate: revert; trigger-scope: revert; user-select: revert; vector-effect: revert; vertical-align: revert; view-timeline: revert; view-transition-class: revert; view-transition-group: revert; view-transition-name: revert; view-transition-scope: revert; visibility: revert; border-spacing: revert; -webkit-box-align: revert; -webkit-box-decoration-break: revert; -webkit-box-direction: revert; -webkit-box-flex: revert; -webkit-box-ordinal-group: revert; -webkit-box-orient: revert; -webkit-box-pack: revert; -webkit-box-reflect: revert; -webkit-line-break: revert; -webkit-line-clamp: revert; -webkit-mask-box-image: revert; -webkit-rtl-ordering: revert; -webkit-ruby-position: revert; -webkit-tap-highlight-color: revert; -webkit-text-combine: revert; -webkit-text-decorations-in-effect: revert; -webkit-text-fill-color: revert; -webkit-text-security: revert; -webkit-text-stroke: revert; -webkit-user-drag: revert; white-space-collapse: revert; widows: revert; width: revert; will-change: revert; window-drag: revert; word-break: revert; word-spacing: revert; x: revert; y: revert; z-index: revert; font-weight: inherit; line-height: inherit; font-family: "Vollkorn SC"; }
+.jodit-editor h1 { font-size: 2rem; }
+.jodit-editor h2 { font-size: 1.5rem; }
+.jodit-editor h3 { font-size: 1.17rem; }
+.jodit-editor h4 { font-size: 1rem; }
+.jodit-editor h5 { font-size: 0.83rem; }
+.jodit-editor h6 { font-size: 0.67rem; }
+.jodit-popup-container p, .jodit-editor p { color-scheme: revert; forced-color-adjust: revert; math-depth: revert; position: revert; position-anchor: revert; text-size-adjust: revert; appearance: revert; color: revert; font-feature-settings: revert; font-kerning: revert; font-language-override: revert; font-optical-sizing: revert; font-palette: revert; font-size-adjust: revert; font-stretch: revert; font-style: revert; font-synthesis: revert; font-variant: revert; font-variation-settings: revert; position-area: revert; text-orientation: revert; text-rendering: revert; text-spacing-trim: revert; -webkit-font-smoothing: revert; -webkit-locale: revert; -webkit-text-orientation: revert; -webkit-writing-mode: revert; writing-mode: revert; zoom: revert; accent-color: revert; place-content: revert; place-items: revert; place-self: revert; alignment-baseline: revert; anchor-name: revert; anchor-scope: revert; animation-composition: revert; animation: revert; animation-trigger: revert; app-region: revert; aspect-ratio: revert; backdrop-filter: revert; backface-visibility: revert; background: revert; background-blend-mode: revert; baseline-shift: revert; baseline-source: revert; block-size: revert; border-block: revert; border: revert; border-radius: revert; border-collapse: revert; border-end-end-radius: revert; border-end-start-radius: revert; border-inline: revert; border-shape: revert; border-start-end-radius: revert; border-start-start-radius: revert; inset: revert; box-decoration-break: revert; box-shadow: revert; box-sizing: revert; break-after: revert; break-before: revert; break-inside: revert; buffered-rendering: revert; caption-side: revert; caret-animation: revert; caret-color: revert; caret-shape: revert; clear: revert; clip: revert; clip-path: revert; clip-rule: revert; color-interpolation: revert; color-interpolation-filters: revert; color-rendering: revert; columns: revert; column-fill: revert; gap: revert; rule-break: revert; rule: revert; rule-inset: revert; rule-visibility-items: revert; column-span: revert; contain: revert; contain-intrinsic-block-size: revert; contain-intrinsic-size: revert; contain-intrinsic-inline-size: revert; container: revert; content: revert; content-visibility: revert; corner-shape: revert; corner-block-end-shape: revert; corner-block-start-shape: revert; counter-increment: revert; counter-reset: revert; counter-set: revert; cursor: revert; cx: revert; cy: revert; d: revert; display: revert; dominant-baseline: revert; dynamic-range-limit: revert; empty-cells: revert; field-sizing: revert; fill: revert; fill-opacity: revert; fill-rule: revert; filter: revert; flex: revert; flex-flow: revert; flex-line-count: revert; float: revert; flood-color: revert; flood-opacity: revert; frame-sizing: revert; grid: revert; grid-area: revert; height: revert; hyphenate-character: revert; hyphenate-limit-chars: revert; hyphens: revert; image-orientation: revert; image-rendering: revert; initial-letter: revert; inline-size: revert; inset-block: revert; inset-inline: revert; interactivity: revert; interest-delay: revert; interpolate-size: revert; isolation: revert; lighting-color: revert; line-break: revert; list-style: revert; margin-block: revert; margin: revert; margin-inline: revert; margin-trim: revert; marker: revert; mask: revert; mask-type: revert; math-shift: revert; math-style: revert; max-block-size: revert; max-height: revert; max-inline-size: revert; max-width: revert; min-block-size: revert; min-height: revert; min-inline-size: revert; min-width: revert; mix-blend-mode: revert; object-fit: revert; object-position: revert; object-view-box: revert; offset: revert; opacity: revert; order: revert; orphans: revert; outline: revert; outline-offset: revert; overflow-anchor: revert; overflow-block: revert; overflow-clip-margin: revert; overflow-inline: revert; overflow-wrap: revert; overflow: revert; overlay: revert; overscroll-behavior-block: revert; overscroll-behavior-inline: revert; overscroll-behavior: revert; padding-block: revert; padding: revert; padding-inline: revert; page: revert; page-margin-safety: revert; page-orientation: revert; paint-order: revert; perspective: revert; perspective-origin: revert; pointer-events: revert; position-try: revert; position-visibility: revert; print-color-adjust: revert; quotes: revert; r: revert; reading-flow: revert; reading-order: revert; resize: revert; rotate: revert; ruby-align: revert; ruby-overhang: revert; ruby-position: revert; rule-overlap: revert; rx: revert; ry: revert; scale: revert; scroll-axis-lock: revert; scroll-behavior: revert; scroll-initial-target: revert; scroll-margin-block: revert; scroll-margin: revert; scroll-margin-inline: revert; scroll-marker-group: revert; scroll-padding-block: revert; scroll-padding: revert; scroll-padding-inline: revert; scroll-snap-align: revert; scroll-snap-stop: revert; scroll-snap-type: revert; scroll-target-group: revert; scroll-timeline: revert; scrollbar-color: revert; scrollbar-gutter: revert; scrollbar-width: revert; shape-image-threshold: revert; shape-margin: revert; shape-outside: revert; shape-rendering: revert; size: revert; speak: revert; stop-color: revert; stop-opacity: revert; stroke: revert; stroke-dasharray: revert; stroke-dashoffset: revert; stroke-linecap: revert; stroke-linejoin: revert; stroke-miterlimit: revert; stroke-opacity: revert; stroke-width: revert; tab-size: revert; table-layout: revert; text-align: revert; text-align-last: revert; text-anchor: revert; text-autospace: revert; text-box: revert; text-combine-upright: revert; text-decoration: revert; text-decoration-skip-ink: revert; text-emphasis: revert; text-emphasis-position: revert; text-fit: revert; text-indent: revert; text-justify: revert; text-overflow: revert; text-shadow: revert; text-transform: revert; text-underline-offset: revert; text-underline-position: revert; text-wrap: revert; timeline-scope: revert; timeline-trigger: revert; touch-action: revert; transform: revert; transform-box: revert; transform-origin: revert; transform-style: revert; transition: revert; translate: revert; trigger-scope: revert; user-select: revert; vector-effect: revert; vertical-align: revert; view-timeline: revert; view-transition-class: revert; view-transition-group: revert; view-transition-name: revert; view-transition-scope: revert; visibility: revert; border-spacing: revert; -webkit-box-align: revert; -webkit-box-decoration-break: revert; -webkit-box-direction: revert; -webkit-box-flex: revert; -webkit-box-ordinal-group: revert; -webkit-box-orient: revert; -webkit-box-pack: revert; -webkit-box-reflect: revert; -webkit-line-break: revert; -webkit-line-clamp: revert; -webkit-mask-box-image: revert; -webkit-rtl-ordering: revert; -webkit-ruby-position: revert; -webkit-tap-highlight-color: revert; -webkit-text-combine: revert; -webkit-text-decorations-in-effect: revert; -webkit-text-fill-color: revert; -webkit-text-security: revert; -webkit-text-stroke: revert; -webkit-user-drag: revert; white-space-collapse: revert; widows: revert; width: revert; will-change: revert; window-drag: revert; word-break: revert; word-spacing: revert; x: revert; y: revert; z-index: revert; font-family: Vollkorn; font-weight: 400; font-size: 1.0625rem; line-height: 1.5; letter-spacing: 0em; }
+span.jodit-placeholder { font-family: Vollkorn; font-weight: 400; font-size: 1.0625rem; line-height: 1.5; letter-spacing: 0em; }
+.jodit-popup-container a, .jodit-editor a { color-scheme: revert; forced-color-adjust: revert; math-depth: revert; position: revert; position-anchor: revert; text-size-adjust: revert; appearance: revert; font: revert; font-palette: revert; font-synthesis: revert; position-area: revert; text-orientation: revert; text-rendering: revert; text-spacing-trim: revert; -webkit-font-smoothing: revert; -webkit-locale: revert; -webkit-text-orientation: revert; -webkit-writing-mode: revert; writing-mode: revert; zoom: revert; accent-color: revert; place-content: revert; place-items: revert; place-self: revert; alignment-baseline: revert; anchor-name: revert; anchor-scope: revert; animation-composition: revert; animation: revert; animation-trigger: revert; app-region: revert; aspect-ratio: revert; backdrop-filter: revert; backface-visibility: revert; background: revert; background-blend-mode: revert; baseline-shift: revert; baseline-source: revert; block-size: revert; border-block: revert; border: revert; border-radius: revert; border-collapse: revert; border-end-end-radius: revert; border-end-start-radius: revert; border-inline: revert; border-shape: revert; border-start-end-radius: revert; border-start-start-radius: revert; inset: revert; box-decoration-break: revert; box-shadow: revert; box-sizing: revert; break-after: revert; break-before: revert; break-inside: revert; buffered-rendering: revert; caption-side: revert; caret-animation: revert; caret-color: revert; caret-shape: revert; clear: revert; clip: revert; clip-path: revert; clip-rule: revert; color-interpolation: revert; color-interpolation-filters: revert; color-rendering: revert; columns: revert; column-fill: revert; gap: revert; rule-break: revert; rule: revert; rule-inset: revert; rule-visibility-items: revert; column-span: revert; contain: revert; contain-intrinsic-block-size: revert; contain-intrinsic-size: revert; contain-intrinsic-inline-size: revert; container: revert; content: revert; content-visibility: revert; corner-shape: revert; corner-block-end-shape: revert; corner-block-start-shape: revert; counter-increment: revert; counter-reset: revert; counter-set: revert; cursor: revert; cx: revert; cy: revert; d: revert; display: revert; dominant-baseline: revert; dynamic-range-limit: revert; empty-cells: revert; field-sizing: revert; fill: revert; fill-opacity: revert; fill-rule: revert; filter: revert; flex: revert; flex-flow: revert; flex-line-count: revert; float: revert; flood-color: revert; flood-opacity: revert; frame-sizing: revert; grid: revert; grid-area: revert; height: revert; hyphenate-character: revert; hyphenate-limit-chars: revert; hyphens: revert; image-orientation: revert; image-rendering: revert; initial-letter: revert; inline-size: revert; inset-block: revert; inset-inline: revert; interactivity: revert; interest-delay: revert; interpolate-size: revert; isolation: revert; letter-spacing: revert; lighting-color: revert; line-break: revert; list-style: revert; margin-block: revert; margin: revert; margin-inline: revert; margin-trim: revert; marker: revert; mask: revert; mask-type: revert; math-shift: revert; math-style: revert; max-block-size: revert; max-height: revert; max-inline-size: revert; max-width: revert; min-block-size: revert; min-height: revert; min-inline-size: revert; min-width: revert; mix-blend-mode: revert; object-fit: revert; object-position: revert; object-view-box: revert; offset: revert; opacity: revert; order: revert; orphans: revert; outline: revert; outline-offset: revert; overflow-anchor: revert; overflow-block: revert; overflow-clip-margin: revert; overflow-inline: revert; overflow-wrap: revert; overflow: revert; overlay: revert; overscroll-behavior-block: revert; overscroll-behavior-inline: revert; overscroll-behavior: revert; padding-block: revert; padding: revert; padding-inline: revert; page: revert; page-margin-safety: revert; page-orientation: revert; paint-order: revert; perspective: revert; perspective-origin: revert; pointer-events: revert; position-try: revert; position-visibility: revert; print-color-adjust: revert; quotes: revert; r: revert; reading-flow: revert; reading-order: revert; resize: revert; rotate: revert; ruby-align: revert; ruby-overhang: revert; ruby-position: revert; rule-overlap: revert; rx: revert; ry: revert; scale: revert; scroll-axis-lock: revert; scroll-behavior: revert; scroll-initial-target: revert; scroll-margin-block: revert; scroll-margin: revert; scroll-margin-inline: revert; scroll-marker-group: revert; scroll-padding-block: revert; scroll-padding: revert; scroll-padding-inline: revert; scroll-snap-align: revert; scroll-snap-stop: revert; scroll-snap-type: revert; scroll-target-group: revert; scroll-timeline: revert; scrollbar-color: revert; scrollbar-gutter: revert; scrollbar-width: revert; shape-image-threshold: revert; shape-margin: revert; shape-outside: revert; shape-rendering: revert; size: revert; speak: revert; stop-color: revert; stop-opacity: revert; stroke: revert; stroke-dasharray: revert; stroke-dashoffset: revert; stroke-linecap: revert; stroke-linejoin: revert; stroke-miterlimit: revert; stroke-opacity: revert; stroke-width: revert; tab-size: revert; table-layout: revert; text-align: revert; text-align-last: revert; text-anchor: revert; text-autospace: revert; text-box: revert; text-combine-upright: revert; text-decoration: revert; text-decoration-skip-ink: revert; text-emphasis: revert; text-emphasis-position: revert; text-fit: revert; text-indent: revert; text-justify: revert; text-overflow: revert; text-shadow: revert; text-transform: revert; text-underline-offset: revert; text-underline-position: revert; text-wrap: revert; timeline-scope: revert; timeline-trigger: revert; touch-action: revert; transform: revert; transform-box: revert; transform-origin: revert; transform-style: revert; transition: revert; translate: revert; trigger-scope: revert; user-select: revert; vector-effect: revert; vertical-align: revert; view-timeline: revert; view-transition-class: revert; view-transition-group: revert; view-transition-name: revert; view-transition-scope: revert; visibility: revert; border-spacing: revert; -webkit-box-align: revert; -webkit-box-decoration-break: revert; -webkit-box-direction: revert; -webkit-box-flex: revert; -webkit-box-ordinal-group: revert; -webkit-box-orient: revert; -webkit-box-pack: revert; -webkit-box-reflect: revert; -webkit-line-break: revert; -webkit-line-clamp: revert; -webkit-mask-box-image: revert; -webkit-rtl-ordering: revert; -webkit-ruby-position: revert; -webkit-tap-highlight-color: revert; -webkit-text-combine: revert; -webkit-text-decorations-in-effect: revert; -webkit-text-fill-color: revert; -webkit-text-security: revert; -webkit-text-stroke: revert; -webkit-user-drag: revert; white-space-collapse: revert; widows: revert; width: revert; will-change: revert; window-drag: revert; word-break: revert; word-spacing: revert; x: revert; y: revert; z-index: revert; color: rgb(70, 109, 153); }
+.jodit-popup-container a:hover, .jodit-editor a:hover { color: rgb(65, 96, 131); }
+.jodit-popup-container a:active, .jodit-editor a:active { color: rgb(47, 79, 113); }
+.jodit-popup-container a, .jodit-editor .jodit-wysiwyg a { color: rgb(74, 74, 255); }
+.jodit-popup-container a:hover, .jodit-editor .jodit-wysiwyg a:hover { color: rgb(65, 96, 131); }
+.jodit-popup-container a:active, .jodit-editor .jodit-wysiwyg a:active { color: rgb(47, 79, 113); }
+.jodit-editor:not(.jodit-popup-container) blockquote { color-scheme: revert; forced-color-adjust: revert; math-depth: revert; position: revert; position-anchor: revert; text-size-adjust: revert; appearance: revert; color: revert; font-feature-settings: revert; font-kerning: revert; font-language-override: revert; font-optical-sizing: revert; font-palette: revert; font-size-adjust: revert; font-stretch: revert; font-style: revert; font-synthesis: revert; font-variant: revert; font-variation-settings: revert; position-area: revert; text-orientation: revert; text-rendering: revert; text-spacing-trim: revert; -webkit-font-smoothing: revert; -webkit-locale: revert; -webkit-text-orientation: revert; -webkit-writing-mode: revert; writing-mode: revert; zoom: revert; accent-color: revert; place-content: revert; place-items: revert; place-self: revert; alignment-baseline: revert; anchor-name: revert; anchor-scope: revert; animation-composition: revert; animation: revert; animation-trigger: revert; app-region: revert; aspect-ratio: revert; backdrop-filter: revert; backface-visibility: revert; background: revert; background-blend-mode: revert; baseline-shift: revert; baseline-source: revert; block-size: revert; border-block: revert; border-bottom: revert; border-radius: revert; border-collapse: revert; border-end-end-radius: revert; border-end-start-radius: revert; border-image: revert; border-inline: revert; border-right: revert; border-shape: revert; border-start-end-radius: revert; border-start-start-radius: revert; border-top: revert; inset: revert; box-decoration-break: revert; box-shadow: revert; box-sizing: revert; break-after: revert; break-before: revert; break-inside: revert; buffered-rendering: revert; caption-side: revert; caret-animation: revert; caret-color: revert; caret-shape: revert; clear: revert; clip: revert; clip-path: revert; clip-rule: revert; color-interpolation: revert; color-interpolation-filters: revert; color-rendering: revert; columns: revert; column-fill: revert; gap: revert; rule-break: revert; rule: revert; rule-inset: revert; rule-visibility-items: revert; column-span: revert; contain: revert; contain-intrinsic-block-size: revert; contain-intrinsic-size: revert; contain-intrinsic-inline-size: revert; container: revert; content: revert; content-visibility: revert; corner-shape: revert; corner-block-end-shape: revert; corner-block-start-shape: revert; counter-increment: revert; counter-reset: revert; counter-set: revert; cursor: revert; cx: revert; cy: revert; d: revert; display: revert; dominant-baseline: revert; dynamic-range-limit: revert; empty-cells: revert; field-sizing: revert; fill: revert; fill-opacity: revert; fill-rule: revert; filter: revert; flex: revert; flex-flow: revert; flex-line-count: revert; float: revert; flood-color: revert; flood-opacity: revert; frame-sizing: revert; grid: revert; grid-area: revert; height: revert; hyphenate-character: revert; hyphenate-limit-chars: revert; hyphens: revert; image-orientation: revert; image-rendering: revert; initial-letter: revert; inline-size: revert; inset-block: revert; inset-inline: revert; interactivity: revert; interest-delay: revert; interpolate-size: revert; isolation: revert; lighting-color: revert; line-break: revert; list-style: revert; margin-block: revert; margin-bottom: revert; margin-inline: revert; margin-right: revert; margin-top: revert; margin-trim: revert; marker: revert; mask: revert; mask-type: revert; math-shift: revert; math-style: revert; max-block-size: revert; max-height: revert; max-inline-size: revert; max-width: revert; min-block-size: revert; min-height: revert; min-inline-size: revert; min-width: revert; mix-blend-mode: revert; object-fit: revert; object-position: revert; object-view-box: revert; offset: revert; opacity: revert; order: revert; orphans: revert; outline: revert; outline-offset: revert; overflow-anchor: revert; overflow-block: revert; overflow-clip-margin: revert; overflow-inline: revert; overflow-wrap: revert; overflow: revert; overlay: revert; overscroll-behavior-block: revert; overscroll-behavior-inline: revert; overscroll-behavior: revert; padding-block: revert; padding-bottom: revert; padding-inline: revert; padding-right: revert; padding-top: revert; page: revert; page-margin-safety: revert; page-orientation: revert; paint-order: revert; perspective: revert; perspective-origin: revert; pointer-events: revert; position-try: revert; position-visibility: revert; print-color-adjust: revert; quotes: revert; r: revert; reading-flow: revert; reading-order: revert; resize: revert; rotate: revert; ruby-align: revert; ruby-overhang: revert; ruby-position: revert; rule-overlap: revert; rx: revert; ry: revert; scale: revert; scroll-axis-lock: revert; scroll-behavior: revert; scroll-initial-target: revert; scroll-margin-block: revert; scroll-margin: revert; scroll-margin-inline: revert; scroll-marker-group: revert; scroll-padding-block: revert; scroll-padding: revert; scroll-padding-inline: revert; scroll-snap-align: revert; scroll-snap-stop: revert; scroll-snap-type: revert; scroll-target-group: revert; scroll-timeline: revert; scrollbar-color: revert; scrollbar-gutter: revert; scrollbar-width: revert; shape-image-threshold: revert; shape-margin: revert; shape-outside: revert; shape-rendering: revert; size: revert; speak: revert; stop-color: revert; stop-opacity: revert; stroke: revert; stroke-dasharray: revert; stroke-dashoffset: revert; stroke-linecap: revert; stroke-linejoin: revert; stroke-miterlimit: revert; stroke-opacity: revert; stroke-width: revert; tab-size: revert; table-layout: revert; text-align-last: revert; text-anchor: revert; text-autospace: revert; text-box: revert; text-combine-upright: revert; text-decoration: revert; text-decoration-skip-ink: revert; text-emphasis: revert; text-emphasis-position: revert; text-fit: revert; text-indent: revert; text-justify: revert; text-overflow: revert; text-shadow: revert; text-transform: revert; text-underline-offset: revert; text-underline-position: revert; text-wrap: revert; timeline-scope: revert; timeline-trigger: revert; touch-action: revert; transform: revert; transform-box: revert; transform-origin: revert; transform-style: revert; transition: revert; translate: revert; trigger-scope: revert; user-select: revert; vector-effect: revert; vertical-align: revert; view-timeline: revert; view-transition-class: revert; view-transition-group: revert; view-transition-name: revert; view-transition-scope: revert; visibility: revert; border-spacing: revert; -webkit-box-align: revert; -webkit-box-decoration-break: revert; -webkit-box-direction: revert; -webkit-box-flex: revert; -webkit-box-ordinal-group: revert; -webkit-box-orient: revert; -webkit-box-pack: revert; -webkit-box-reflect: revert; -webkit-line-break: revert; -webkit-line-clamp: revert; -webkit-mask-box-image: revert; -webkit-rtl-ordering: revert; -webkit-ruby-position: revert; -webkit-tap-highlight-color: revert; -webkit-text-combine: revert; -webkit-text-decorations-in-effect: revert; -webkit-text-fill-color: revert; -webkit-text-security: revert; -webkit-text-stroke: revert; -webkit-user-drag: revert; white-space-collapse: revert; widows: revert; width: revert; will-change: revert; window-drag: revert; word-break: revert; word-spacing: revert; x: revert; y: revert; z-index: revert; text-align: left; border-left: 3px solid rgb(229, 229, 229); margin-left: 1.5rem; padding-left: 1rem; font-family: Vollkorn; font-weight: 400; font-size: 1.0625rem; line-height: 1.5; letter-spacing: 0em; }
+.joy-rich-text-lists ul, .joy-rich-text-lists ol { color-scheme: revert; forced-color-adjust: revert; math-depth: revert; position: revert; position-anchor: revert; text-size-adjust: revert; appearance: revert; color: revert; font: revert; font-palette: revert; font-synthesis: revert; position-area: revert; text-orientation: revert; text-rendering: revert; text-spacing-trim: revert; -webkit-font-smoothing: revert; -webkit-locale: revert; -webkit-text-orientation: revert; -webkit-writing-mode: revert; writing-mode: revert; zoom: revert; accent-color: revert; place-content: revert; place-items: revert; place-self: revert; alignment-baseline: revert; anchor-name: revert; anchor-scope: revert; animation-composition: revert; animation: revert; animation-trigger: revert; app-region: revert; aspect-ratio: revert; backdrop-filter: revert; backface-visibility: revert; background: revert; background-blend-mode: revert; baseline-shift: revert; baseline-source: revert; block-size: revert; border-block: revert; border: revert; border-radius: revert; border-collapse: revert; border-end-end-radius: revert; border-end-start-radius: revert; border-inline: revert; border-shape: revert; border-start-end-radius: revert; border-start-start-radius: revert; inset: revert; box-decoration-break: revert; box-shadow: revert; box-sizing: revert; break-after: revert; break-before: revert; break-inside: revert; buffered-rendering: revert; caption-side: revert; caret-animation: revert; caret-color: revert; caret-shape: revert; clear: revert; clip: revert; clip-path: revert; clip-rule: revert; color-interpolation: revert; color-interpolation-filters: revert; color-rendering: revert; columns: revert; column-fill: revert; gap: revert; rule-break: revert; rule: revert; rule-inset: revert; rule-visibility-items: revert; column-span: revert; contain: revert; contain-intrinsic-block-size: revert; contain-intrinsic-size: revert; contain-intrinsic-inline-size: revert; container: revert; content: revert; content-visibility: revert; corner-shape: revert; corner-block-end-shape: revert; corner-block-start-shape: revert; counter-increment: revert; counter-reset: revert; counter-set: revert; cursor: revert; cx: revert; cy: revert; d: revert; display: revert; dominant-baseline: revert; dynamic-range-limit: revert; empty-cells: revert; field-sizing: revert; fill: revert; fill-opacity: revert; fill-rule: revert; filter: revert; flex: revert; flex-flow: revert; flex-line-count: revert; float: revert; flood-color: revert; flood-opacity: revert; frame-sizing: revert; grid: revert; grid-area: revert; height: revert; hyphenate-character: revert; hyphenate-limit-chars: revert; hyphens: revert; image-orientation: revert; image-rendering: revert; initial-letter: revert; inline-size: revert; inset-block: revert; inset-inline: revert; interactivity: revert; interest-delay: revert; interpolate-size: revert; isolation: revert; letter-spacing: revert; lighting-color: revert; line-break: revert; list-style: revert; margin-block: revert; margin-inline: revert; margin-trim: revert; marker: revert; mask: revert; mask-type: revert; math-shift: revert; math-style: revert; max-block-size: revert; max-height: revert; max-inline-size: revert; max-width: revert; min-block-size: revert; min-height: revert; min-inline-size: revert; min-width: revert; mix-blend-mode: revert; object-fit: revert; object-position: revert; object-view-box: revert; offset: revert; opacity: revert; order: revert; orphans: revert; outline: revert; outline-offset: revert; overflow-anchor: revert; overflow-block: revert; overflow-clip-margin: revert; overflow-inline: revert; overflow-wrap: revert; overflow: revert; overlay: revert; overscroll-behavior-block: revert; overscroll-behavior-inline: revert; overscroll-behavior: revert; padding-block: revert; padding-bottom: revert; padding-inline: revert; padding-right: revert; padding-top: revert; page: revert; page-margin-safety: revert; page-orientation: revert; paint-order: revert; perspective: revert; perspective-origin: revert; pointer-events: revert; position-try: revert; position-visibility: revert; print-color-adjust: revert; quotes: revert; r: revert; reading-flow: revert; reading-order: revert; resize: revert; rotate: revert; ruby-align: revert; ruby-overhang: revert; ruby-position: revert; rule-overlap: revert; rx: revert; ry: revert; scale: revert; scroll-axis-lock: revert; scroll-behavior: revert; scroll-initial-target: revert; scroll-margin-block: revert; scroll-margin: revert; scroll-margin-inline: revert; scroll-marker-group: revert; scroll-padding-block: revert; scroll-padding: revert; scroll-padding-inline: revert; scroll-snap-align: revert; scroll-snap-stop: revert; scroll-snap-type: revert; scroll-target-group: revert; scroll-timeline: revert; scrollbar-color: revert; scrollbar-gutter: revert; scrollbar-width: revert; shape-image-threshold: revert; shape-margin: revert; shape-outside: revert; shape-rendering: revert; size: revert; speak: revert; stop-color: revert; stop-opacity: revert; stroke: revert; stroke-dasharray: revert; stroke-dashoffset: revert; stroke-linecap: revert; stroke-linejoin: revert; stroke-miterlimit: revert; stroke-opacity: revert; stroke-width: revert; tab-size: revert; table-layout: revert; text-align: revert; text-align-last: revert; text-anchor: revert; text-autospace: revert; text-box: revert; text-combine-upright: revert; text-decoration: revert; text-decoration-skip-ink: revert; text-emphasis: revert; text-emphasis-position: revert; text-fit: revert; text-indent: revert; text-justify: revert; text-overflow: revert; text-shadow: revert; text-transform: revert; text-underline-offset: revert; text-underline-position: revert; text-wrap: revert; timeline-scope: revert; timeline-trigger: revert; touch-action: revert; transform: revert; transform-box: revert; transform-origin: revert; transform-style: revert; transition: revert; translate: revert; trigger-scope: revert; user-select: revert; vector-effect: revert; vertical-align: revert; view-timeline: revert; view-transition-class: revert; view-transition-group: revert; view-transition-name: revert; view-transition-scope: revert; visibility: revert; border-spacing: revert; -webkit-box-align: revert; -webkit-box-decoration-break: revert; -webkit-box-direction: revert; -webkit-box-flex: revert; -webkit-box-ordinal-group: revert; -webkit-box-orient: revert; -webkit-box-pack: revert; -webkit-box-reflect: revert; -webkit-line-break: revert; -webkit-line-clamp: revert; -webkit-mask-box-image: revert; -webkit-rtl-ordering: revert; -webkit-ruby-position: revert; -webkit-tap-highlight-color: revert; -webkit-text-combine: revert; -webkit-text-decorations-in-effect: revert; -webkit-text-fill-color: revert; -webkit-text-security: revert; -webkit-text-stroke: revert; -webkit-user-drag: revert; white-space-collapse: revert; widows: revert; width: revert; will-change: revert; window-drag: revert; word-break: revert; word-spacing: revert; x: revert; y: revert; z-index: revert; margin: 0.5em 0px; padding-left: 1.5em; }
+.joy-rich-text-lists ul { list-style-type: disc; }
+.joy-rich-text-lists ul ul { list-style-type: circle; }
+.joy-rich-text-lists ul ul ul { list-style-type: square; }
+.joy-rich-text-lists ul ul ul ul { list-style-type: disc; }
+.joy-rich-text-lists ul ul ul ul ul { list-style-type: circle; }
+.joy-rich-text-lists ul ul ul ul ul ul { list-style-type: square; }
+.joy-rich-text-lists ol { list-style-type: decimal; }
+.joy-rich-text-lists ol ol { list-style-type: lower-alpha; }
+.joy-rich-text-lists ol ol ol { list-style-type: lower-roman; }
+.joy-rich-text-lists ol ol ol ol { list-style-type: decimal; }
+.joy-rich-text-lists ol ol ol ol ol { list-style-type: lower-alpha; }
+.joy-rich-text-lists ol ol ol ol ol ol { list-style-type: lower-roman; }
+.joy-rich-text-lists li > ul, .joy-rich-text-lists li > ol { margin: 0.25em 0px 0px; }
+.joy-rich-text-lists li { color-scheme: revert; forced-color-adjust: revert; math-depth: revert; position: revert; position-anchor: revert; text-size-adjust: revert; appearance: revert; color: revert; font: revert; font-palette: revert; font-synthesis: revert; position-area: revert; text-orientation: revert; text-rendering: revert; text-spacing-trim: revert; -webkit-font-smoothing: revert; -webkit-locale: revert; -webkit-text-orientation: revert; -webkit-writing-mode: revert; writing-mode: revert; zoom: revert; accent-color: revert; place-content: revert; place-items: revert; place-self: revert; alignment-baseline: revert; anchor-name: revert; anchor-scope: revert; animation-composition: revert; animation: revert; animation-trigger: revert; app-region: revert; aspect-ratio: revert; backdrop-filter: revert; backface-visibility: revert; background: revert; background-blend-mode: revert; baseline-shift: revert; baseline-source: revert; block-size: revert; border-block: revert; border: revert; border-radius: revert; border-collapse: revert; border-end-end-radius: revert; border-end-start-radius: revert; border-inline: revert; border-shape: revert; border-start-end-radius: revert; border-start-start-radius: revert; inset: revert; box-decoration-break: revert; box-shadow: revert; box-sizing: revert; break-after: revert; break-before: revert; break-inside: revert; buffered-rendering: revert; caption-side: revert; caret-animation: revert; caret-color: revert; caret-shape: revert; clear: revert; clip: revert; clip-path: revert; clip-rule: revert; color-interpolation: revert; color-interpolation-filters: revert; color-rendering: revert; columns: revert; column-fill: revert; gap: revert; rule-break: revert; rule: revert; rule-inset: revert; rule-visibility-items: revert; column-span: revert; contain: revert; contain-intrinsic-block-size: revert; contain-intrinsic-size: revert; contain-intrinsic-inline-size: revert; container: revert; content: revert; content-visibility: revert; corner-shape: revert; corner-block-end-shape: revert; corner-block-start-shape: revert; counter-increment: revert; counter-reset: revert; counter-set: revert; cursor: revert; cx: revert; cy: revert; d: revert; display: revert; dominant-baseline: revert; dynamic-range-limit: revert; empty-cells: revert; field-sizing: revert; fill: revert; fill-opacity: revert; fill-rule: revert; filter: revert; flex: revert; flex-flow: revert; flex-line-count: revert; float: revert; flood-color: revert; flood-opacity: revert; frame-sizing: revert; grid: revert; grid-area: revert; height: revert; hyphenate-character: revert; hyphenate-limit-chars: revert; hyphens: revert; image-orientation: revert; image-rendering: revert; initial-letter: revert; inline-size: revert; inset-block: revert; inset-inline: revert; interactivity: revert; interest-delay: revert; interpolate-size: revert; isolation: revert; letter-spacing: revert; lighting-color: revert; line-break: revert; list-style: revert; margin-block: revert; margin-inline: revert; margin-left: revert; margin-right: revert; margin-top: revert; margin-trim: revert; marker: revert; mask: revert; mask-type: revert; math-shift: revert; math-style: revert; max-block-size: revert; max-height: revert; max-inline-size: revert; max-width: revert; min-block-size: revert; min-height: revert; min-inline-size: revert; min-width: revert; mix-blend-mode: revert; object-fit: revert; object-position: revert; object-view-box: revert; offset: revert; opacity: revert; order: revert; orphans: revert; outline: revert; outline-offset: revert; overflow-anchor: revert; overflow-block: revert; overflow-clip-margin: revert; overflow-inline: revert; overflow-wrap: revert; overflow: revert; overlay: revert; overscroll-behavior-block: revert; overscroll-behavior-inline: revert; overscroll-behavior: revert; padding-block: revert; padding: revert; padding-inline: revert; page: revert; page-margin-safety: revert; page-orientation: revert; paint-order: revert; perspective: revert; perspective-origin: revert; pointer-events: revert; position-try: revert; position-visibility: revert; print-color-adjust: revert; quotes: revert; r: revert; reading-flow: revert; reading-order: revert; resize: revert; rotate: revert; ruby-align: revert; ruby-overhang: revert; ruby-position: revert; rule-overlap: revert; rx: revert; ry: revert; scale: revert; scroll-axis-lock: revert; scroll-behavior: revert; scroll-initial-target: revert; scroll-margin-block: revert; scroll-margin: revert; scroll-margin-inline: revert; scroll-marker-group: revert; scroll-padding-block: revert; scroll-padding: revert; scroll-padding-inline: revert; scroll-snap-align: revert; scroll-snap-stop: revert; scroll-snap-type: revert; scroll-target-group: revert; scroll-timeline: revert; scrollbar-color: revert; scrollbar-gutter: revert; scrollbar-width: revert; shape-image-threshold: revert; shape-margin: revert; shape-outside: revert; shape-rendering: revert; size: revert; speak: revert; stop-color: revert; stop-opacity: revert; stroke: revert; stroke-dasharray: revert; stroke-dashoffset: revert; stroke-linecap: revert; stroke-linejoin: revert; stroke-miterlimit: revert; stroke-opacity: revert; stroke-width: revert; tab-size: revert; table-layout: revert; text-align: revert; text-align-last: revert; text-anchor: revert; text-autospace: revert; text-box: revert; text-combine-upright: revert; text-decoration: revert; text-decoration-skip-ink: revert; text-emphasis: revert; text-emphasis-position: revert; text-fit: revert; text-indent: revert; text-justify: revert; text-overflow: revert; text-shadow: revert; text-transform: revert; text-underline-offset: revert; text-underline-position: revert; text-wrap: revert; timeline-scope: revert; timeline-trigger: revert; touch-action: revert; transform: revert; transform-box: revert; transform-origin: revert; transform-style: revert; transition: revert; translate: revert; trigger-scope: revert; user-select: revert; vector-effect: revert; vertical-align: revert; view-timeline: revert; view-transition-class: revert; view-transition-group: revert; view-transition-name: revert; view-transition-scope: revert; visibility: revert; border-spacing: revert; -webkit-box-align: revert; -webkit-box-decoration-break: revert; -webkit-box-direction: revert; -webkit-box-flex: revert; -webkit-box-ordinal-group: revert; -webkit-box-orient: revert; -webkit-box-pack: revert; -webkit-box-reflect: revert; -webkit-line-break: revert; -webkit-line-clamp: revert; -webkit-mask-box-image: revert; -webkit-rtl-ordering: revert; -webkit-ruby-position: revert; -webkit-tap-highlight-color: revert; -webkit-text-combine: revert; -webkit-text-decorations-in-effect: revert; -webkit-text-fill-color: revert; -webkit-text-security: revert; -webkit-text-stroke: revert; -webkit-user-drag: revert; white-space-collapse: revert; widows: revert; width: revert; will-change: revert; window-drag: revert; word-break: revert; word-spacing: revert; x: revert; y: revert; z-index: revert; margin-bottom: 0.25em; }
+.joy-rich-text-lists li > p, .joy-rich-text-lists li > blockquote { margin: 0px; }
+.jodit-editor:not(.jodit-popup-container) pre { text-align: left; white-space: pre-wrap; overflow-wrap: break-word; background-color: rgb(229, 229, 229); border-radius: 0.25rem; padding: 0.25rem; }
+.jodit-popup-container .jodit-toolbar-button__button .jodit-toolbar-button__text { font-family: "Inter UI"; }
+.jodit-popup-container .joy-lists-option { display: flex; -webkit-box-align: center; align-items: center; gap: 0.5rem; }
+.jodit-popup-container .joy-lists-option svg { width: 0.875rem; height: 0.875rem; flex-shrink: 0; }
+.jodit-editor h1:first-child, .jodit-editor h2:first-child, .jodit-editor h3:first-child, .jodit-editor h4:first-child, .jodit-editor h5:first-child, .jodit-editor h6:first-child, .jodit-editor p:first-child { margin-top: 0px; }
+.jodit-editor.jodit-editor p { word-break: break-word; }
+.jodit-editor.jodit-editor a { word-break: break-word; }
+.eAXxGg { width: 100%; margin-left: auto; margin-right: auto; }
+.cOlILy { display: flex; flex-wrap: wrap; }
+@media screen and (min-width: 60em) {
+  .cOlILy { display: flex; }
+}
+.iDSxTz { display: block; flex-basis: 0px; -webkit-box-flex: 1; flex-grow: 1; max-width: 100%; }
+@media screen and (min-width: 23.4375em) {
+}
+@media screen and (min-width: 60em) {
+}
+@media screen and (min-width: 64em) {
+}
+@media screen and (min-width: 90em) {
+}
+@media screen and (min-width: 120em) {
+}
+@media screen and (min-width: 0em) and (max-width: 59.9969em) {
+  .iDSxTz { flex-basis: 100%; margin-left: 0px; }
+}
+.jGRghS { display: block; flex-basis: 0px; -webkit-box-flex: 1; flex-grow: 1; max-width: 100%; }
+@media screen and (min-width: 23.4375em) {
+  .jGRghS { margin-left: 0%; -webkit-box-flex: 0; flex-grow: 0; flex-basis: 100%; max-width: 100%; }
+}
+@media screen and (min-width: 60em) {
+  .jGRghS { margin-left: 0%; -webkit-box-flex: 0; flex-grow: 0; flex-basis: 100%; max-width: 100%; }
+}
+@media screen and (min-width: 64em) {
+  .jGRghS { margin-left: 0%; -webkit-box-flex: 0; flex-grow: 0; flex-basis: 100%; max-width: 100%; }
+}
+@media screen and (min-width: 90em) {
+  .jGRghS { margin-left: 0%; -webkit-box-flex: 0; flex-grow: 0; flex-basis: 100%; max-width: 100%; }
+}
+@media screen and (min-width: 120em) {
+  .jGRghS { margin-left: 0%; -webkit-box-flex: 0; flex-grow: 0; flex-basis: 100%; max-width: 100%; }
+}
+@media screen and (min-width: 0em) and (max-width: 59.9969em) {
+  .jGRghS { flex-basis: 100%; margin-left: 0px; }
+}
+.dMriLu { display: block; flex-basis: 0px; -webkit-box-flex: 1; flex-grow: 1; max-width: 100%; }
+@media screen and (min-width: 23.4375em) {
+  .dMriLu { margin-left: 0%; -webkit-box-flex: 0; flex-grow: 0; flex-basis: 100%; max-width: 100%; }
+}
+@media screen and (min-width: 60em) {
+  .dMriLu { margin-left: 8.33333%; -webkit-box-flex: 0; flex-grow: 0; flex-basis: 83.3333%; max-width: 83.3333%; }
+}
+@media screen and (min-width: 64em) {
+  .dMriLu { margin-left: 8.33333%; -webkit-box-flex: 0; flex-grow: 0; flex-basis: 83.3333%; max-width: 83.3333%; }
+}
+@media screen and (min-width: 90em) {
+  .dMriLu { margin-left: 8.33333%; -webkit-box-flex: 0; flex-grow: 0; flex-basis: 83.3333%; max-width: 83.3333%; }
+}
+@media screen and (min-width: 120em) {
+  .dMriLu { margin-left: 8.33333%; -webkit-box-flex: 0; flex-grow: 0; flex-basis: 83.3333%; max-width: 83.3333%; }
+}
+@media screen and (min-width: 0em) and (max-width: 59.9969em) {
+  .dMriLu { flex-basis: 100%; margin-left: 0px; }
+}
+.hqIYwI { position: relative; display: flex; transition: color 500ms cubic-bezier(0.23, 1, 0.32, 1), transform 500ms cubic-bezier(0.23, 1, 0.32, 1); color: rgb(120, 151, 177); }
+.hqIYwI svg { width: 88px; height: inherit; }
+.hqIYwI svg path.clip-path { width: unset; transform: scale(0.01075, 0.0155); }
+.hqIYwI:hover { color: rgb(120, 151, 177); }
+.YhlHM { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; clip-path: url("https://withjoy.com/#footer2brand-desktop-clip-path"); }
+.jzavFn { width: 40px; }
+.cXmfuT { display: flex; flex-direction: column; -webkit-box-align: center; align-items: center; -webkit-box-pack: center; justify-content: center; gap: 1.1875rem; }
+.khtzMk > div > svg { width: 54px; }
+.khtzMk > div > div > canvas { width: 56px; }
+.cYQElG { box-shadow: none; background-clip: padding-box; cursor: default; pointer-events: none; user-select: none; }
+.cysqJC { animation: 500ms cubic-bezier(0.5, 0, 0.5, 1) 0s 1 normal none running jBcSpD; }
+.jLMvwR { opacity: 1; }
+.bUbjUY { bottom: 0px; position: fixed; top: 0px; left: 0px; height: 100vh; width: 100vw; transform: translate(0px); pointer-events: none; }
+.bUbjUY > :first-child { object-fit: cover; object-position: center bottom; height: 100%; position: absolute; width: 100%; }
+.bUbjUY > picture > img { display: block; width: 100%; height: 100%; object-fit: inherit; object-position: inherit; }
+.imPlOM { pointer-events: none; overflow: clip; visibility: initial; transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1), background 150ms cubic-bezier(0.23, 1, 0.32, 1), background-color 150ms cubic-bezier(0.23, 1, 0.32, 1); background-color: rgb(201, 221, 231) !important; color: rgb(70, 109, 153) !important; }
+.imPlOM [data-layer="middle"] > [class^="jyse-"], .imPlOM [data-layer="middle"] > [data-theme-sprite] { z-index: 11; }
+.imPlOM [data-photo-width="full"] { position: relative; z-index: 12; }
+.bINeIP { pointer-events: none; overflow: clip; visibility: initial; transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1), background 150ms cubic-bezier(0.23, 1, 0.32, 1), background-color 150ms cubic-bezier(0.23, 1, 0.32, 1); background-color: rgb(201, 221, 231) !important; color: rgb(70, 109, 153) !important; }
+.bINeIP [data-layer="middle"] > [class^="jyse-"], .bINeIP [data-layer="middle"] > [data-theme-sprite] { z-index: 11; }
+.bINeIP [data-photo-width="full"] { position: relative; z-index: 12; }
+.cIiAqZ a { position: relative; text-decoration: none; display: flex; -webkit-box-align: center; align-items: center; height: 100%; color: rgb(120, 151, 177); }
+.cIiAqZ a::after { margin-bottom: 13px; }
+.cIiAqZ a:not(.active):hover::after, .cIiAqZ a:not(.active):active::after { content: ""; position: absolute; bottom: 0px; left: 0px; width: 100%; height: 1px; border-radius: 8px; }
+.cIiAqZ a:not(.active):hover { color: rgb(105, 130, 151); }
+.cIiAqZ a:not(.active):hover::after { background-color: rgb(105, 130, 151); }
+.cIiAqZ a:not(.active):active { color: rgb(120, 151, 177); }
+.cIiAqZ a:not(.active):active::after { background-color: rgb(120, 151, 177); }
+.cIiAqZ a.active::after { content: ""; position: absolute; bottom: 0px; left: 0px; width: 100%; height: 1px; border-radius: 8px; background-color: rgb(120, 151, 177); }
+.hlAWLz { width: 100%; }
+@media screen and (min-width: 0em) and (max-width: 59.9969em) {
+  .hlAWLz { display: flex; flex-direction: column; -webkit-box-pack: center; justify-content: center; -webkit-box-align: center; align-items: center; }
+}
+.bNWXJv { flex-wrap: wrap; gap: 3rem; -webkit-box-align: stretch; align-items: stretch; width: 100%; -webkit-box-pack: start; justify-content: flex-start; }
+@-webkit-keyframes jBcSpD { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes jBcSpD { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}</style></head><body><div id="polaris-css-lockdown-container" style="z-index: 999999;"></div><div id="root"><div style="position:fixed;z-index:9999;top:16px;left:16px;right:16px;bottom:16px;pointer-events:none"></div><main class="joykit-box bqWLCW"><div class="joykit-box kuHCcd"><div id="guest-site-start"></div><div data-layer="back" class="joykit-box Framesstyles__StyledBoxBrannan-sc-31h6la-0 cvXnwb bINeIP"><div data-theme-sprite="42b613ae-ddce-45b6-a6ad-2d62ca1bf095" aria-hidden="true" class="ThemeSprites__SpriteBox-sc-9gncg-0 bUbjUY"><picture><source media="screen and (min-width: 60em)" srcset="https://withjoy.com/assets/public/styles/prod/coastal/34c513b5a2205e73b5347f36c9ea2df6085d95bfa1cffaf6edfaa804d4e576d0@1x?resize=w640&amp;v=1 640w, https://withjoy.com/assets/public/styles/prod/coastal/34c513b5a2205e73b5347f36c9ea2df6085d95bfa1cffaf6edfaa804d4e576d0@1x?resize=w960&amp;v=1 960w, https://withjoy.com/assets/public/styles/prod/coastal/34c513b5a2205e73b5347f36c9ea2df6085d95bfa1cffaf6edfaa804d4e576d0@1x?resize=w1280&amp;v=1 1280w, https://withjoy.com/assets/public/styles/prod/coastal/34c513b5a2205e73b5347f36c9ea2df6085d95bfa1cffaf6edfaa804d4e576d0@1x?resize=w1600&amp;v=1 1600w, https://withjoy.com/assets/public/styles/prod/coastal/34c513b5a2205e73b5347f36c9ea2df6085d95bfa1cffaf6edfaa804d4e576d0@1x?resize=w2048&amp;v=1 2048w" sizes="100vw"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" decoding="async" draggable="false"></picture></div><div class="joykit-box bXDsNW"><div class="joykit-box sc-iOeugr iTDPgP eAXxGg"><div class="joykit-box sc-jfvxQR dZvPcd cOlILy"><div class="joykit-box sc-eJDSGI cWpvsX iDSxTz"><div data-layer="middle" class="joykit-box dUANSc"><div class="joykit-box iiitzD"><div data-component="title-banner" data-uh="nah" class="joykit-box EventNameNavstyles__StyledRoot-sc-1h1cyw4-0 fMABLh hlAWLz"><div class="joykit-box sc-dkrFOg cVSKWA"><div class="joykit-box kEQbJR"><div class="joykit-box EventNameNavstyles__StyledTitle-sc-1h1cyw4-1 hCPikL"><h1 class="joykit-box sc-ftTHYK fINLEF eHGTMD"><p>Minh Nghi &amp; Ivan</p></h1></div><div class="joykit-box sc-dkrFOg cMevBa"><div class="joykit-box"><button role="combobox" type="button" aria-expanded="false" aria-haspopup="dialog" aria-controls="combobox-list-2-4" aria-label="Sprache auswählen" class="joykit-box sc-jSUZER itDqOo chLGiP"><span class="joykit-box sc-gKPRtg  QLyHt"><svg viewBox="0 0 14 15" aria-hidden="true" class="joykit-box sc-bcXHqe fHMySD hPicyf"><path id="Union" fill-rule="evenodd" clip-rule="evenodd" d="M7.00002 14.5C10.866 14.5 14 11.366 14 7.5C14 3.63401 10.866 0.5 7 0.5C3.13401 0.5 0 3.63401 0 7.5C0 11.366 3.13402 14.5 7.00002 14.5ZM4.13476 12.6588C3.68796 11.9817 3.32938 11.1484 3.09075 10.2113C2.88528 10.2849 2.692 10.3637 2.51213 10.4469C2.33311 10.5297 2.17595 10.6123 2.03812 10.6935C2.56374 11.5085 3.28468 12.1856 4.13476 12.6588ZM4.94354 11.88C4.61349 11.3349 4.33839 10.6655 4.14811 9.90576C4.83992 9.74759 5.6167 9.6429 6.44999 9.61061L6.44999 13.297C5.95152 13.1123 5.42103 12.6685 4.94354 11.88ZM3.94489 8.82391C4.71207 8.65146 5.55755 8.54194 6.44999 8.50985V6.4674C5.55867 6.43534 4.71418 6.32605 3.94777 6.15398C3.89133 6.5842 3.86105 7.03445 3.86105 7.5C3.86105 7.95758 3.8903 8.40038 3.94489 8.82391ZM4.15353 5.07272C4.3436 4.3219 4.61661 3.65991 4.94354 3.12005C5.42103 2.33155 5.95152 1.88771 6.44999 1.703L6.44999 5.36664C5.61887 5.33443 4.84397 5.23021 4.15353 5.07272ZM7.54999 6.4674V8.50985C8.44246 8.54194 9.28797 8.65147 10.0552 8.82393C10.1098 8.40039 10.139 7.95759 10.139 7.5C10.139 7.03444 10.1087 6.58419 10.0523 6.15396C9.28586 6.32605 8.44134 6.43534 7.54999 6.4674ZM9.84654 5.0727C9.15607 5.2302 8.38114 5.33443 7.54999 5.36664L7.54999 1.70296C8.04848 1.88765 8.57901 2.3315 9.05653 3.12005C9.38345 3.65991 9.65647 4.32189 9.84654 5.0727ZM11.1216 5.85662C11.1983 6.3837 11.239 6.93401 11.239 7.5C11.239 8.05824 11.1995 8.60121 11.1247 9.12169C11.628 9.29178 12.0803 9.4922 12.4692 9.71713C12.3302 10.0598 12.1599 10.3864 11.9619 10.6935C11.824 10.6123 11.6669 10.5297 11.4878 10.4469C11.308 10.3637 11.1148 10.2849 10.9093 10.2114C10.6707 11.1484 10.3121 11.9817 9.86536 12.6587C11.6754 11.6512 12.9 9.71859 12.9 7.5C12.9 6.70878 12.7443 5.95394 12.4617 5.26446C12.0737 5.4881 11.6229 5.6874 11.1216 5.85662ZM11.9512 4.29005C11.8159 4.36921 11.6623 4.44964 11.4879 4.53034C11.3065 4.61427 11.1114 4.69369 10.904 4.76778C10.6654 3.83922 10.3088 3.0133 9.86536 2.34128C10.7096 2.81123 11.4265 3.48244 11.9512 4.29005ZM3.09609 4.76781C2.88862 4.69371 2.69356 4.61428 2.51214 4.53034C2.33772 4.44965 2.18405 4.36921 2.0488 4.29005C2.57348 3.48241 3.29042 2.81118 4.13475 2.34122C3.69128 3.01326 3.33471 3.83921 3.09609 4.76781ZM1.53825 5.26446C1.92629 5.48811 2.37718 5.68742 2.87852 5.85665C2.80172 6.38372 2.76105 6.93401 2.76105 7.5C2.76105 8.05822 2.80062 8.60119 2.87538 9.12166C2.37206 9.29175 1.91966 9.49218 1.53074 9.71712C1.25299 9.03262 1.1 8.28418 1.1 7.5C1.1 6.70878 1.25575 5.95394 1.53825 5.26446ZM7.54999 13.297V9.61061C8.38331 9.6429 9.16013 9.7476 9.85195 9.90578C9.66167 10.6655 9.38657 11.3349 9.05653 11.88C8.57901 12.6685 8.04848 13.1124 7.54999 13.297Z" fill="currentColor"></path></svg></span><span class="sc-iBYQkv dIbTsh"><span aria-hidden="true" class="joykit-box bxNakl" style="transform: rotate(0deg); transition: transform 0.2s;"><svg viewBox="0 0 16 16" class="joykit-box sc-bcXHqe fHMySD hPicyf"><title>Chevron Down</title><path fill-rule="evenodd" clip-rule="evenodd" d="M8 12L2 5.89091L2.78505 5L8 10.3455L13.215 5L14 5.89091L8 12Z" fill="currentColor"></path></svg></span></span></button></div></div><nav class="joykit-box sc-dkrFOg eVTLJ"><ul class="joykit-box sc-dkrFOg cwwtjZ"><li class="joykit-box NavBarstyles__StyledLegacyNavLinkContainer-sc-1blrcx2-2 gtXcJw cIiAqZ"><a href="index.html"><p class="joykit-box sc-ftTHYK bdAGTM eHGTMD">Home</p></a></li><li class="joykit-box NavBarstyles__StyledLegacyNavLinkContainer-sc-1blrcx2-2 gtXcJw cIiAqZ"><p class="joykit-box sc-ftTHYK gAATap eHGTMD"></p><p class="joykit-box sc-ftTHYK bdAGTM eHGTMD">RSVP</p><p></p></li><li class="joykit-box NavBarstyles__StyledLegacyNavLinkContainer-sc-1blrcx2-2 gtXcJw cIiAqZ"><a aria-current="page" class="active" href="story.html"><p class="joykit-box sc-ftTHYK bdAGTM eHGTMD">NGHIVAN</p></a></li><li class="joykit-box NavBarstyles__StyledLegacyNavLinkContainer-sc-1blrcx2-2 gtXcJw cIiAqZ"><a href="accommodations.html"><p class="joykit-box sc-ftTHYK bdAGTM eHGTMD">Wo übernachten?</p></a></li><li class="joykit-box NavBarstyles__StyledLegacyNavLinkContainer-sc-1blrcx2-2 gtXcJw cIiAqZ"><a href="travel.html"><p class="joykit-box sc-ftTHYK bdAGTM eHGTMD">Travel/ Anreise</p></a></li><li class="joykit-box NavBarstyles__StyledLegacyNavLinkContainer-sc-1blrcx2-2 gtXcJw cIiAqZ"><a href="bridal-party.html"><p class="joykit-box sc-ftTHYK bdAGTM eHGTMD">Our Bridal Party &amp; Best Friends</p></a></li><li class="joykit-box NavBarstyles__StyledLegacyNavLinkContainer-sc-1blrcx2-2 gtXcJw cIiAqZ"><a href="app.html"><p class="joykit-box sc-ftTHYK bdAGTM eHGTMD">App herunterladen</p></a></li></ul></nav></div></div></div><div class="joykit-box sc-jfvxQR ekbiwa cOlILy"><div class="joykit-box YzyTa" style="opacity: 1; transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1);"><div class="joykit-box sc-eJDSGI cWpvsX jGRghS" style="display: block;"><div class="joykit-box bHkgRt"><div class="joykit-box OptimizedEventGuestSitePhotostyles__AnimatedPhotoBox-sc-fj20ow-0 jDoWVc jLMvwR" style="isolation: isolate;"><div class="joykit-box bFVyuf"><img alt="" class="joykit-box fzILpL" src="https://withjoy.com/media/e35d2e8dbad5fbe620f9f0ddcd20a760e8fe493725c9ac689/97a27900-bf12-11f1-b1c1-e9da1f713050-DAN03233.jpg?rendition=xlarge" srcset="images/009_97a27900-bf12-11f1-b1c1-e9da1f713050-DAN03233.jpg 640w, images/010_97a27900-bf12-11f1-b1c1-e9da1f713050-DAN03233.jpg 960w, images/008_97a27900-bf12-11f1-b1c1-e9da1f713050-DAN03233.jpg 1280w, images/011_97a27900-bf12-11f1-b1c1-e9da1f713050-DAN03233.jpg 1600w, images/012_97a27900-bf12-11f1-b1c1-e9da1f713050-DAN03233.jpg 2048w" sizes="1276px" style="width: 100%; height: 266.706%; left: 0%; top: -31.4188%;"><img src="images/013_97a27900-bf12-11f1-b1c1-e9da1f713050-DAN03233.jpg" alt="" class="joykit-box gQyGqc" style="width: 100%; height: 266.706%; left: 0%; top: -31.4188%; filter: blur(20px); transform: scale(1.05); opacity: 0; transition: opacity;"></div></div></div></div></div><div class="joykit-box sc-eJDSGI cWpvsX dMriLu" style="display: block;"><div class="joykit-box sc-dkrFOg fdheaC" style="opacity: 1; transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1);"></div></div><div class="joykit-box sc-eJDSGI cWpvsX jGRghS" style="display: block; z-index: 1;"><div class="joykit-box heZchD"><div class="joykit-box sc-dkrFOg gDSnBx"><div class="joykit-box" style="opacity: 1; transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1);"><p class="joykit-box sc-ftTHYK cIdCsJ eHGTMD" style="font-size: 2.25rem;">NGHIVAN</p></div><div class="joykit-box" style="opacity: 1; transition: opacity 150ms cubic-bezier(0.23, 1, 0.32, 1);"></div></div></div></div><div class="joykit-box bpChaP"><div id="story" class="joykit-box sc-eJDSGI cWpvsX jGRghS" style="padding-left: 0px; padding-right: 0px;"><div class="joykit-box fjRnEj"><div class="joykit-box jvmPRa"><div class="joykit-box Skeletonstyles__StyledSkeletonContentRoot-sc-1elaf6l-1 YzyTa cysqJC"><div class="joykit-box sc-dkrFOg klUBrW"><div class="joykit-box sc-dkrFOg Custom__ComponentsContainer-sc-gwwb6b-0 lcDiOA bNWXJv"><div class="joykit-box sc-dkrFOg bIvFPH"><div class="joykit-box sc-dkrFOg ivHJZu jodit-editor" data-richtext-id="2941d915-17aa-45d0-8d2b-64dce894d6a0"><p>
+So lautet der ehrenvolle Name für das Bündnis zweier Herzen: <strong>King Ivan</strong> und seiner <strong>Queen Nghi</strong> – liebevoll von der Familie geprägt.</p><p>Eine einzigartige Verbindung kroatischer und vietnamesischer Wurzeln, streng nach dem Siegel „Made in Germany“. </p><p>Es ist der wunderschöne Beweis dafür, dass selbst ein einfaches Wischen nach rechts Teil von Gottes göttlichem Plan sein kann, der zwei Herzen durch ein Meer von Möglichkeiten geführt hat, um ihr ewiges Königreich zu finden – erbaut auf Glaube, Liebe und dem gemeinsamen Miteinander.
+
+</p></div></div><div class="joykit-box YzyTa"><div class="joykit-box sc-dkrFOg dFFvoI"><div class="joykit-box sc-ezOQGI evMJLR jzrQXm"><div class="joykit-box sc-dkrFOg hJATYB"><p class="joykit-box sc-ftTHYK iRKwly eHGTMD">Minh Nghi, Minnie oder Nghi?</p><div class="joykit-box sc-ftTHYK kOkOnx eHGTMD"><div class="joykit-box sc-dkrFOg bgVFgz jodit-editor" data-richtext-id="faq-f0ff13d0-96b2-4670-b864-19e13f26da66-0"><p>Falls sich einige von euch fragen, warum hier auf der Website überall <strong>NGHI</strong>VAN steht, obwohl ihr mich vielleicht als Minnie bzw. Minh Nghi kennt – hier ist die kurze Auflösung für alle, die mit der vietnamesischen Namenslogik nicht vertraut sind:
+<br>
+Im Vietnamesischen steht der eigentliche Rufname ganz am Ende. Nghi ist mein richtiger Vorname und Minh mein Mittel-/Zusatzname.&nbsp; Aus der Kombination und Ausspracheschwierigkeit von Minh Nghi entstand im Kindergarten ganz einfach mein Rufname Minnie!<br> 
+<strong>Wie spricht man „Nghi“ aus?&nbsp;</strong><br>
+Das wirkt auf den ersten Blick wie ein kleiner Zungenbrecher, ist aber ganz leicht: Denk einfach an das Wort "Singen", ersetzt das "en" mit einem "i" --&gt; "Singhi“ – lass den Anfang weg und sprich nur den hinteren Teil aus: „Nghi“!
+</p></div></div></div><div class="joykit-box sc-dkrFOg hJATYB"><p class="joykit-box sc-ftTHYK iRKwly eHGTMD">Wie haben wir uns wirklich kennengelernt?</p><div class="joykit-box sc-ftTHYK kOkOnx eHGTMD"><div class="joykit-box sc-dkrFOg bgVFgz jodit-editor" data-richtext-id="faq-f0ff13d0-96b2-4670-b864-19e13f26da66-1"><p>Je nachdem, wen man fragt! Den Eltern haben wir erzählt, dass wir uns beim Ausgehen über den Weg gelaufen sind (was auch stimmt!). </p><p>Was wir verschwiegen haben: Ein kleiner Swipe nach rechts hat das Ganze erst ins Rollen gebracht. Aus einem digitalen Match wurde beim ersten gemeinsamen Abend ein echtes Match fürs Leben.</p></div></div></div><div class="joykit-box sc-dkrFOg hJATYB"><p class="joykit-box sc-ftTHYK iRKwly eHGTMD">Was passiert, wenn einer von uns Hunger hat?</p><div class="joykit-box sc-ftTHYK kOkOnx eHGTMD"><div class="joykit-box sc-dkrFOg bgVFgz jodit-editor" data-richtext-id="faq-f0ff13d0-96b2-4670-b864-19e13f26da66-2"><p>Akute Ausnahmezustand-Gefahr!
+<br>
+Während Ivan Hunger einfacher wegsteckt, wird Nghi ohne Essen zur echten Naturgewalt. </p><p>Ivans Überlebens-Hack: Immer einen Notfall-Snack dabei oder im Blick haben. Ein kleiner Bissen – und der Beziehungsfrieden ist gerettet!</p></div></div></div><div class="joykit-box sc-dkrFOg hJATYB"><p class="joykit-box sc-ftTHYK iRKwly eHGTMD">Wer braucht morgens länger und wer ist schuld am Zu-Spät-Kommen?</p><div class="joykit-box sc-ftTHYK kOkOnx eHGTMD"><div class="joykit-box sc-dkrFOg bgVFgz jodit-editor" data-richtext-id="faq-f0ff13d0-96b2-4670-b864-19e13f26da66-3"><p><strong>Offizielle Story:</strong> Ivan behauptet stur vor allen – und alle glauben ihm brav –, dass es natürlich immer an Nghi liegt.
+</p><p>
+<strong>Die Wahrheit, und nichts als die Wahrheit:</strong> Es ist <strong><u>JEDES MAL</u></strong> Ivan! </p><p>Während Nghi schon völlig startklar mit Schuhen und Jacke an der Tür steht, fällt Ivan plötzlich ein, dass er noch ganz dringend für Nummer 2 ins Bad muss. </p><p>Und zack: Schon sieht es nach außen wieder so aus, als hätte Nghi getrödelt. Schön herausgeredet, Ivan! <br>Gerechtigkeit für Nghi! ✊</p></div></div></div><div class="joykit-box sc-dkrFOg hJATYB"><p class="joykit-box sc-ftTHYK iRKwly eHGTMD">Hat Nghi den Antrag eigentlich schon geahnt?</p><div class="joykit-box sc-ftTHYK kOkOnx eHGTMD"><div class="joykit-box sc-dkrFOg bgVFgz jodit-editor" data-richtext-id="faq-f0ff13d0-96b2-4670-b864-19e13f26da66-4"><p><strong>Die Vorgeschichte: <br></strong>Nicht wirlich! Nach dem Vietnam-Urlaub – wo Nghi fest mit dem Antrag gerechnet hatte und nichts passierte – war die Erwartungshaltung beim spontanen Griechenland-Trip im Keller. </p><p>Einzige Sicherheitsmaßnahme: Die Nägel wurden vor dem Abflug natürlich trotzdem gemacht („Man weiß ja nie…“). 💅
+</p><p>
+<strong>Das Urlaubs-Drama:</strong> <br>Ivans Plan stand für das Wochenende. Auf der fieberhaften Suche nach dem „perfekten Ort“ löcherte er Nghi ununterbrochen mit komischen Fragen, hörte bei den Antworten nicht zu und brachte sie so zur Weißglut. Am Sonntagabend krachte es gewaltig. Es war so komsich, dass Nghi Angst hatte, dass das der Urlaub wird, wo sie realisieren, sie passen nicht zusammen!
+</p><p>
+<strong>Das Happy End:</strong> <br>Beim romantischen Abendessen stellte Ivan beim anschließenden Spaziergang schließlich die Frage. Nghi hat vor lauter Freudentränen so laut  geweint, dass sie Ivans halbe Rede verpasst hat. Ivan musste sogar nachfragen, ob Nghi "JA!" gesagt hatte..</p></div></div></div><div class="joykit-box sc-dkrFOg hJATYB"><p class="joykit-box sc-ftTHYK iRKwly eHGTMD">Was bedeutet es uns, dass ihr bei unserer Hochzeit dabei seid?</p><div class="joykit-box sc-ftTHYK kOkOnx eHGTMD"><div class="joykit-box sc-dkrFOg bgVFgz jodit-editor" data-richtext-id="faq-f0ff13d0-96b2-4670-b864-19e13f26da66-5"><p><strong>Ganz ehrlich: Einfach ALLES!</strong>
+</p><p>
+Für uns ist es alles andere als selbstverständlich, dass ihr euch die Zeit, die Reise nach Kroatien auf euch nehmt und Investment &amp; Mühe hineinsteckt, um diesen besonderen Tag mit uns zu feiern. Das bedeutet uns so unglaublich viel.
+</p><p>
+Gleichzeitig haben wir volles Verständnis für jeden, der den Weg nicht antreten kann – wir haben euch trotzdem im Herzen dabei! </p><p>An alle, die mit uns anstoßen: Wir können es kaum erwarten, unvergessliche Erinnerungen mit euch zu schaffen. Wir lieben euch alle! ❤️</p></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><div class="joykit-box sc-dkrFOg hUztmu"><div class="joykit-box Footerstyles__StyledFooterWrapper-sc-v0vvd3-0 eLRDWM cXmfuT"><a href="/" target="_blank" aria-label="Joy" id="menu2brand" class="ParticleJoyLogostyles__StyledJoyLogo-sc-fne30k-0 hqIYwI Footerstyles__StyledParticleJoyLogo-sc-v0vvd3-2 khtzMk" color="#7897b1"><div style="position: relative;"><svg viewBox="0 0 54 34" aria-hidden="true" focusable="false"><defs><clipPath id="footer2brand-desktop-clip-path" clipPathUnits="objectBoundingBox"><path class="clip-path" d="M11.71 44.44a.47.47 0 0 1 .251-.221c3.007-1.428 5.568-5.77 8.22-16.968l1.158-5.055L24.4 8.9C26.834-1.85 35.204-.274 37.833.697a.47.47 0 0 1 .292.329c.018.074.018.152-.001.226a.47.47 0 0 1-.107.199c-.88.994-1.92 3.474-3.34 9.38l-4.493 18.534c-2.893 12.01-12.062 15.323-17.996 15.757a.47.47 0 0 1-.518-.349.47.47 0 0 1 .039-.332zm77.964-31.975c3.647 1.165 3.602 5.05 3.064 7.553-.944 3.926-2.453 7.694-4.482 11.186a.47.47 0 0 1-.571.211.47.47 0 0 1-.298-.531c.636-4.044-.173-8.183-2.287-11.69-2.904-4.753 1.978-7.564 4.573-6.73zm-24.982 3.53c2.767-2.72 12.085-7.918 15.458 6.067 1.335 5.265 1.268 10.787-.197 16.018s-4.274 9.986-8.15 13.794a.48.48 0 0 1-.56.056.48.48 0 0 1-.229-.513c2.698-10.135 1.018-34.393-6.037-34.622a.47.47 0 0 1-.398-.309.47.47 0 0 1 .112-.491zm2.15 38.93a.47.47 0 0 1 .532.284.47.47 0 0 1-.189.573 11.37 11.37 0 0 1-7.26 2.205c-6.86-.31-7.146-5.713-5.134-8.25a7.88 7.88 0 0 1 4.15-2.525.47.47 0 0 1 .41.163.47.47 0 0 1 .1.204c.016.075.014.153-.008.227-.903 3.005 1.418 8.18 7.398 7.12zm-28.195-37a21.01 21.01 0 0 1 13.526-5.096c7.763 0 13.33 4.96 13.33 12.57-.097 2.806-.768 5.562-1.97 8.1a20.57 20.57 0 0 1-5.026 6.652c-3.666 3.225-8.38 5.01-13.263 5.027-8.026 0-13.537-5.027-13.537-12.706a20.74 20.74 0 0 1 1.999-7.974c1.192-2.498 2.872-4.732 4.94-6.572zm8.072 24.292c4.23-2.228 7.09-13.06 7.558-14.854.606-2.08 2.424-14.59-3.636-11.643-4.076 2.03-6.853 12.227-7.5 14.604l-.03.11-.04.142c-.766 3.017-2.47 14.797 3.647 11.643zm-45.082-.994a.47.47 0 0 0 .502.177.47.47 0 0 0 .344-.406c.114-1.942 2.207-4.285 5.785-4.022 2.527.194 3.82-3.816 1.726-5.93-2.584-2.617-6.426-1.588-8.358 1.143-2.675 3.782-1.635 7.004 0 9.038z" fill="currentColor"></path></clipPath><clipPath id="A"><path class="clip-path" fill="#fff" d="M0 0h93v58H0z"></path></clipPath></defs></svg><div class="ParticleJoyLogostyles__StyledCanvasWrapper-sc-fne30k-1 YhlHM"><canvas width="54px" height="35px" class="ParticleJoyLogostyles__StyledCanvas-sc-fne30k-2 jzavFn"></canvas></div></div></a><div class="joykit-box sc-dkrFOg dFdNxm"><a rel="noopener nofollow" target="_blank" href="https://help.withjoy.com/" class="joykit-box sc-ftTHYK hQMfgl eHGTMD" style="text-underline-position: under;">Hilfe für Gäste</a><a rel="noopener nofollow" target="_blank" href="https://withjoy.com/about/" class="joykit-box sc-ftTHYK hQMfgl eHGTMD" style="text-underline-position: under;">Über uns</a><a rel="noopener nofollow" target="_blank" href="https://withjoy.com/wedding-website" class="joykit-box sc-ftTHYK hQMfgl eHGTMD" style="text-underline-position: under;">Designs entdecken</a></div></div></div></div></div></div></div></div></div></div></main></div></body></html>
