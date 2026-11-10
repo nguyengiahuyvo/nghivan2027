@@ -4,10 +4,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="meta.title">Minh Nghi &amp; Ivan · 4. September 2027</title>
   <meta name="description" data-i18n-attr="content:meta.description" content="Wir heiraten! Minh Nghi &amp; Ivan – Samstag, 4. September 2027 in Petrčane, Kroatien. Alle Infos zu Unterkunft, Anreise und RSVP.">
-  <meta name="theme-color" content="#14263a">
+  <meta name="theme-color" content="#FAF9F7">
   <script>
-    document.documentElement.classList.add('js');
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('reduced');
+    (function () {
+      var html = document.documentElement;
+      html.classList.add('js');
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) html.classList.add('reduced');
+      // Language picker: shown right after login (?chooselang) or when no language was chosen yet.
+      var saved = null;
+      try { saved = localStorage.getItem('nghivan-lang'); } catch (e) {}
+      var params = new URLSearchParams(location.search);
+      if (params.has('chooselang') || (!saved && !params.get('lang'))) html.classList.add('needs-lang');
+    })();
   </script>
   <meta property="og:title" content="Minh Nghi &amp; Ivan · 4. September 2027">
   <meta property="og:description" content="Wir heiraten – an der kroatischen Küste in Petrčane. Feiert mit uns!">
@@ -16,42 +24,76 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&amp;family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="/images/hero-petrcane.webp" imagesrcset="/images/hero-petrcane-1000.webp 1000w, /images/hero-petrcane.webp 2000w" imagesizes="100vw">
+  <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@400;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
+  <!-- ============ LANGUAGE PICKER (after login) ============ -->
+  <div class="langpick" id="langpick" role="dialog" aria-modal="true" aria-labelledby="langpick-title">
+    <div class="langpick__inner">
+      <p class="langpick__mono" aria-hidden="true">N &amp; I</p>
+      <h1 class="langpick__title" id="langpick-title">Hallo · Xin chào · Bok · Hello · Bonjour</h1>
+      <p class="langpick__sub">Sprache · Ngôn ngữ · Jezik · Language · Langue</p>
+      <ul class="langpick__list">
+        <li><button type="button" data-pick-lang="de" lang="de"><span class="flag" data-flag="de" aria-hidden="true"></span>Deutsch</button></li>
+        <li><button type="button" data-pick-lang="vi" lang="vi"><span class="flag" data-flag="vi" aria-hidden="true"></span>Tiếng Việt</button></li>
+        <li><button type="button" data-pick-lang="hr" lang="hr"><span class="flag" data-flag="hr" aria-hidden="true"></span>Hrvatski</button></li>
+        <li><button type="button" data-pick-lang="en" lang="en"><span class="flag" data-flag="en" aria-hidden="true"></span>English</button></li>
+        <li><button type="button" data-pick-lang="fr" lang="fr"><span class="flag" data-flag="fr" aria-hidden="true"></span>Français</button></li>
+      </ul>
+    </div>
+  </div>
+
   <!-- ============ LOADER ============ -->
   <div class="loader" aria-hidden="true">
     <div class="loader__inner">
-      <span class="loader__mono"><span>N</span><em>&amp;</em><span>I</span></span>
+      <span class="loader__mono"><span>N</span><span class="loader__amp">&amp;</span><span>I</span></span>
       <span class="loader__date">04 · 09 · 2027</span>
     </div>
   </div>
 
-  <div class="grain" aria-hidden="true"></div>
+  <!-- ============ KEY FACTS (cloned into every [data-keyfacts]) ============ -->
+  <template id="keyfacts-tpl">
+    <div class="keyfacts">
+      <div class="keyfacts__item">
+        <svg class="keyfacts__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"></rect><path d="M3.5 10h17M8 3v4M16 3v4"></path></svg>
+        <small data-i18n="willkommen.9">Wann</small>
+        <strong data-i18n="willkommen.10">Sa, 4. September 2027</strong>
+      </div>
+      <div class="keyfacts__item">
+        <svg class="keyfacts__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21z"></path><circle cx="12" cy="9.8" r="2.4"></circle></svg>
+        <small data-i18n="willkommen.11">Wo</small>
+        <strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Pinija+Petr%C4%8Dane" target="_blank" rel="noopener" data-i18n="willkommen.12">Hotel Pinija, Petrčane</a></strong>
+      </div>
+      <div class="keyfacts__item">
+        <svg class="keyfacts__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16v11H4z"></path><path d="M4 7l8 6 8-6"></path></svg>
+        <small data-i18n="willkommen.13">RSVP bis</small>
+        <strong data-i18n="willkommen.14">1. Mai 2027</strong>
+      </div>
+    </div>
+  </template>
 
   <!-- ============ NAV ============ -->
   <nav class="nav" aria-label="Hauptnavigation" data-i18n-attr="aria-label:nav.7">
-    <a href="#home" class="nav__brand" aria-label="Zum Anfang" data-i18n-attr="aria-label:nav.8">N<em>&amp;</em>I</a>
+    <a href="#einladung" class="nav__brand" aria-label="Zur Einladung" data-i18n-attr="aria-label:nav.8">N<span>&amp;</span>I</a>
     <ul class="nav__links">
-      <li><a href="#willkommen" data-i18n="nav.1">Willkommen</a></li>
-      <li><a href="#story" data-i18n="nav.2">NGHIVAN</a></li>
+      <li><a href="#einladung" data-i18n="nav.1">Einladung</a></li>
+      <li><a href="#nghivan" data-i18n="nav.2">NGHIVAN (Über uns)</a></li>
       <li><a href="#unterkunft" data-i18n="nav.3">Wo übernachten?</a></li>
       <li><a href="#anreise" data-i18n="nav.4">Travel / Anreise</a></li>
       <li><a href="#bridal-party" data-i18n="nav.5">Bridal Party</a></li>
     </ul>
     <div class="lang" data-lang>
       <button class="lang__btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Sprache wählen" data-i18n-attr="aria-label:js.language">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+        <span class="flag" data-flag-current aria-hidden="true"></span>
         <span data-lang-current>DE</span>
       </button>
       <ul class="lang__list" role="listbox">
-        <li><button type="button" role="option" data-set-lang="de" lang="de" aria-selected="true"><b>DE</b><span>Deutsch</span></button></li>
-        <li><button type="button" role="option" data-set-lang="en" lang="en" aria-selected="false"><b>EN</b><span>English</span></button></li>
-        <li><button type="button" role="option" data-set-lang="vi" lang="vi" aria-selected="false"><b>VI</b><span>Tiếng Việt</span></button></li>
-        <li><button type="button" role="option" data-set-lang="fr" lang="fr" aria-selected="false"><b>FR</b><span>Français</span></button></li>
-        <li><button type="button" role="option" data-set-lang="hr" lang="hr" aria-selected="false"><b>HR</b><span>Hrvatski</span></button></li>
+        <li><button type="button" role="option" data-set-lang="de" lang="de" aria-selected="true"><span class="flag" data-flag="de" aria-hidden="true"></span><span>Deutsch</span></button></li>
+        <li><button type="button" role="option" data-set-lang="vi" lang="vi" aria-selected="false"><span class="flag" data-flag="vi" aria-hidden="true"></span><span>Tiếng Việt</span></button></li>
+        <li><button type="button" role="option" data-set-lang="hr" lang="hr" aria-selected="false"><span class="flag" data-flag="hr" aria-hidden="true"></span><span>Hrvatski</span></button></li>
+        <li><button type="button" role="option" data-set-lang="en" lang="en" aria-selected="false"><span class="flag" data-flag="en" aria-hidden="true"></span><span>English</span></button></li>
+        <li><button type="button" role="option" data-set-lang="fr" lang="fr" aria-selected="false"><span class="flag" data-flag="fr" aria-hidden="true"></span><span>Français</span></button></li>
       </ul>
     </div>
     <a href="#rsvp" class="nav__cta" data-i18n="nav.6">RSVP</a>
@@ -62,556 +104,619 @@
 
   <div class="menu" id="menu" aria-hidden="true">
     <ul>
-      <li><a href="#willkommen" data-i18n="menu.1"><small>01</small>Willkommen</a></li>
-      <li><a href="#story" data-i18n="menu.2"><small>02</small>NGHIVAN</a></li>
+      <li><a href="#einladung" data-i18n="menu.1"><small>01</small>Einladung</a></li>
+      <li><a href="#nghivan" data-i18n="menu.2"><small>02</small>NGHIVAN (Über uns)</a></li>
       <li><a href="#unterkunft" data-i18n="menu.3"><small>03</small>Wo übernachten?</a></li>
       <li><a href="#anreise" data-i18n="menu.4"><small>04</small>Travel / Anreise</a></li>
       <li><a href="#bridal-party" data-i18n="menu.5"><small>05</small>Bridal Party</a></li>
       <li><a href="#rsvp" data-i18n="menu.6"><small>06</small>RSVP</a></li>
     </ul>
-    <div class="menu__langs"><button type="button" data-set-lang="de" lang="de" aria-label="Deutsch">DE</button><button type="button" data-set-lang="en" lang="en" aria-label="English">EN</button><button type="button" data-set-lang="vi" lang="vi" aria-label="Tiếng Việt">VI</button><button type="button" data-set-lang="fr" lang="fr" aria-label="Français">FR</button><button type="button" data-set-lang="hr" lang="hr" aria-label="Hrvatski">HR</button></div>
-    <p class="menu__foot" data-i18n="menu.7">Samstag, 4. September 2027 · Petrčane</p>
+    <div class="menu__langs">
+      <button type="button" data-set-lang="de" lang="de" aria-label="Deutsch"><span class="flag" data-flag="de" aria-hidden="true"></span>DE</button>
+      <button type="button" data-set-lang="vi" lang="vi" aria-label="Tiếng Việt"><span class="flag" data-flag="vi" aria-hidden="true"></span>VI</button>
+      <button type="button" data-set-lang="hr" lang="hr" aria-label="Hrvatski"><span class="flag" data-flag="hr" aria-hidden="true"></span>HR</button>
+      <button type="button" data-set-lang="en" lang="en" aria-label="English"><span class="flag" data-flag="en" aria-hidden="true"></span>EN</button>
+      <button type="button" data-set-lang="fr" lang="fr" aria-label="Français"><span class="flag" data-flag="fr" aria-hidden="true"></span>FR</button>
+    </div>
+    <p class="menu__foot"><span data-i18n="menu.7">Samstag, 4. September 2027 · Petrčane</span><br><span data-i18n="home.8">RSVP bis 1. Mai 2027</span></p>
   </div>
 
   <main>
-    <!-- ============ HERO ============ -->
-    <header class="hero" id="home">
-      <div class="hero__media" data-hero-media="">
-        <img src="/images/hero-petrcane.webp" srcset="/images/hero-petrcane-1000.webp 1000w, /images/hero-petrcane.webp 2000w" sizes="100vw" alt="Die Bucht von Petrčane an der kroatischen Küste" fetchpriority="high" data-i18n-attr="alt:home.10">
-      </div>
-      <div class="hero__veil"></div>
-
-      <div class="hero__content">
-        <p class="eyebrow hero__eyebrow" data-hero-fade="" data-i18n="home.1">Wir heiraten</p>
-        <h1 class="hero__title">
-          <span class="hero__line" data-split="">Minh Nghi</span>
-          <span class="hero__amp" data-hero-amp="">&amp;</span>
-          <span class="hero__line" data-split="">Ivan</span>
-        </h1>
-        <p class="hero__meta" data-hero-fade="">
-          <span data-i18n="home.2">Samstag, 4. September 2027</span>
-          <i aria-hidden="true"></i>
-          <span data-i18n="home.3">Petrčane · Zadar County · Kroatien</span>
-        </p>
-
-        <div class="countdown" data-hero-fade="" aria-label="Countdown bis zur Hochzeit" data-i18n-attr="aria-label:home.11">
-          <div class="countdown__unit"><span data-cd="d">000</span><small data-i18n="home.4">Tage</small></div>
-          <div class="countdown__unit"><span data-cd="h">00</span><small data-i18n="home.5">Std.</small></div>
-          <div class="countdown__unit"><span data-cd="m">00</span><small data-i18n="home.6">Min.</small></div>
-          <div class="countdown__unit"><span data-cd="s">00</span><small data-i18n="home.7">Sek.</small></div>
+    <!-- =====================================================
+         PAGE 1 — EINLADUNG (home)
+         ===================================================== -->
+    <div class="page page--home" data-page="einladung" id="einladung">
+      <header class="hero">
+        <div class="hero__bg" aria-hidden="true"></div>
+        <div class="container hero__grid">
+          <h1 class="hero__invite" data-hero-fade="" data-i18n="home.13">Mit großer Freude laden wir euch ein, unsere Hochzeit gemeinsam mit uns zu feiern.</h1>
+          <p class="hero__names" aria-label="Minh Nghi &amp; Ivan">
+            <span class="hero__line" data-split="">Minh Nghi</span>
+            <span class="hero__amp" data-hero-amp="">&amp;</span>
+            <span class="hero__line" data-split="">Ivan</span>
+          </p>
+          <figure class="hero__photo" data-hero-fade="">
+            <img src="/images/couple-studio-700.webp" srcset="/images/couple-studio-700.webp 700w, /images/couple-studio.webp 1200w" sizes="(max-width: 960px) 80vw, 34vw" alt="Minh Nghi und Ivan Hand in Hand" fetchpriority="high" data-i18n-attr="alt:home.14">
+          </figure>
+          <div class="hero__facts" data-keyfacts="hero" data-hero-fade=""></div>
+          <div class="hero__countdown" data-hero-fade="">
+            <p class="hero__cd-label">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3h11M6.5 21h11M7.5 3c0 4.5 4.5 6 4.5 9s-4.5 4.5-4.5 9M16.5 3c0 4.5-4.5 6-4.5 9s4.5 4.5 4.5 9"></path></svg>
+              <span data-i18n="home.11">Countdown bis zur Hochzeit</span>
+            </p>
+            <div class="countdown">
+              <div class="countdown__unit"><span data-cd="d">000</span><small data-i18n="home.4">Tage</small></div>
+              <div class="countdown__unit"><span data-cd="h">00</span><small data-i18n="home.5">Std.</small></div>
+              <div class="countdown__unit"><span data-cd="m">00</span><small data-i18n="home.6">Min.</small></div>
+              <div class="countdown__unit"><span data-cd="s">00</span><small data-i18n="home.7">Sek.</small></div>
+            </div>
+          </div>
+          <div class="hero__cta" data-hero-fade="">
+            <a href="#rsvp" class="btn">
+              <span data-i18n="home.8">RSVP bis 1. Mai 2027</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+            <a href="#willkommen" class="hero__scroll" data-scroll-to="willkommen" aria-label="Nach unten scrollen" data-i18n-attr="aria-label:home.12">
+              <span data-i18n="home.9">Scroll</span><i></i>
+            </a>
+          </div>
         </div>
+      </header>
 
-        <a href="#rsvp" class="btn btn--light" data-hero-fade="">
-          <span data-i18n="home.8">RSVP bis 1. Mai 2027</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-        </a>
+      <!-- Marquee -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>Cảm ơn</span><b>✦</b><span>Hvala</span><b>✦</b><span>Danke</span><b>✦</b><span>04 · 09 · 2027</span><b>✦</b><span>Petrčane</span><b>✦</b><span>NGHIVAN</span><b>✦</b>
+          <span>Cảm ơn</span><b>✦</b><span>Hvala</span><b>✦</b><span>Danke</span><b>✦</b><span>04 · 09 · 2027</span><b>✦</b><span>Petrčane</span><b>✦</b><span>NGHIVAN</span><b>✦</b>
+        </div>
       </div>
 
-      <a href="#willkommen" class="hero__scroll" data-hero-fade="" aria-label="Nach unten scrollen" data-i18n-attr="aria-label:home.12">
-        <span data-i18n="home.9">Scroll</span><i></i>
-      </a>
-    </header>
+      <!-- Welcome text (content unchanged) -->
+      <section class="welcome section" id="willkommen">
+        <div class="container welcome__grid">
+          <figure class="welcome__photo">
+            <div class="arch" data-reveal="clip">
+              <img src="/images/couple-sunset-700.webp" srcset="/images/couple-sunset-700.webp 700w, /images/couple-sunset.webp 1200w" sizes="(max-width: 860px) 90vw, 42vw" alt="Nghi und Ivan am Strand bei Sonnenuntergang, Nghi zeigt ihren Verlobungsring" loading="lazy" data-parallax="0.12" data-i18n-attr="alt:willkommen.15">
+            </div>
+            <figcaption data-reveal="" data-i18n="willkommen.1">Sie hat Ja gesagt – Griechenland, 2025</figcaption>
+          </figure>
 
-    <!-- ============ MARQUEE ============ -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee__track">
-        <span>Cảm ơn</span><b>✦</b><span>Hvala</span><b>✦</b><span>Danke</span><b>✦</b><span>04 · 09 · 2027</span><b>✦</b><span>Petrčane</span><b>✦</b><span>NGHIVAN</span><b>✦</b>
-        <span>Cảm ơn</span><b>✦</b><span>Hvala</span><b>✦</b><span>Danke</span><b>✦</b><span>04 · 09 · 2027</span><b>✦</b><span>Petrčane</span><b>✦</b><span>NGHIVAN</span><b>✦</b>
-      </div>
+          <div class="welcome__text">
+            <p class="eyebrow" data-reveal="" data-i18n="home.15">Willkommen</p>
+            <h2 class="display" data-reveal="" data-i18n="willkommen.2">Wir heiraten<em>!</em></h2>
+            <p class="lead" data-reveal="" data-i18n="willkommen.3">Und wir freuen uns riesig, wenn ihr diesen unvergesslichen Tag an der kroatischen Küste mit uns feiert.</p>
+            <p data-reveal="" data-i18n="willkommen.4">Eine Reise nach Kroatien macht man nicht mal eben so – umso dankbarer sind wir für jeden Einzelnen von euch, der diesen Weg auf sich nimmt. Um eure Reise so entspannt wie möglich zu gestalten, haben wir auf dieser Website alle wichtigen Infos zu Unterkunft, Anreise und Ablauf zusammengestellt.</p>
+            <p data-reveal="" data-i18n="willkommen.5">Lasst uns bis zum <strong>01. Mai 2027</strong> wissen, ob ihr dabei seid (RSVP).</p>
+            <p data-reveal="" data-i18n="willkommen.6">Wir können es kaum erwarten, mit euch anzustoßen und Erinnerungen fürs Leben zu schaffen!</p>
+
+            <p class="thanks" data-reveal="" data-i18n="willkommen.7"><span lang="vi">Cảm ơn</span>, <span lang="hr">Hvala</span> &amp; Danke!</p>
+            <p class="signature" data-reveal="" data-i18n="willkommen.8">Love you lots,<br><span>Nghi &amp; Ivan</span> <span class="heart">❤</span></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Overview: guides guests to the sub-pages -->
+      <section class="overview section">
+        <div class="container section__head section__head--center">
+          <p class="eyebrow" data-reveal="" data-i18n="overview.1">Alles für euren Besuch</p>
+          <h2 class="display display--sm" data-reveal="" data-i18n="overview.2">Entdeckt unsere Website</h2>
+        </div>
+        <div class="container overview__grid" data-reveal-group="">
+          <a class="tile" href="#nghivan">
+            <span class="tile__media"><img src="/images/couple-studio-700.webp" alt="" loading="lazy"></span>
+            <span class="tile__body"><small>02</small><b data-i18n="nav.2">NGHIVAN (Über uns)</b><span data-i18n="overview.3">Unsere Geschichte – und wie man „Nghi“ ausspricht.</span><i aria-hidden="true">→</i></span>
+          </a>
+          <a class="tile" href="#unterkunft">
+            <span class="tile__media"><img src="/images/hotel-pinija.webp" alt="" loading="lazy"></span>
+            <span class="tile__body"><small>03</small><b data-i18n="nav.3">Wo übernachten?</b><span data-i18n="overview.4">Hotel Pinija, Ferienwohnungen und die schönsten Orte rund um die Location.</span><i aria-hidden="true">→</i></span>
+          </a>
+          <a class="tile" href="#anreise">
+            <span class="tile__media"><img src="/images/beach-sunset-800.webp" alt="" loading="lazy"></span>
+            <span class="tile__body"><small>04</small><b data-i18n="nav.4">Travel / Anreise</b><span data-i18n="overview.5">Flug, Auto, Maut und unsere Insider-Tipps für Dalmatien.</span><i aria-hidden="true">→</i></span>
+          </a>
+          <a class="tile" href="#bridal-party">
+            <span class="tile__media tile__media--art"><span>T &amp; F</span></span>
+            <span class="tile__body"><small>05</small><b data-i18n="nav.5">Bridal Party</b><span data-i18n="overview.6">Unsere Trauzeugen, Brautjungfern und Groomsmen – eure Ansprechpartner.</span><i aria-hidden="true">→</i></span>
+          </a>
+          <a class="tile tile--rsvp" href="#rsvp">
+            <span class="tile__media"><img src="/images/couple-sunset-700.webp" alt="" loading="lazy"></span>
+            <span class="tile__body"><small>06</small><b data-i18n="nav.6">RSVP</b><span data-i18n="overview.7">Bitte gebt uns bis zum <strong>1. Mai 2027</strong> Bescheid.</span><i aria-hidden="true">→</i></span>
+          </a>
+        </div>
+      </section>
     </div>
 
-    <!-- ============ WELCOME ============ -->
-    <section class="welcome section" id="willkommen">
-      <div class="container welcome__grid">
-        <figure class="welcome__photo">
-          <div class="arch" data-reveal="clip">
-            <img src="/images/couple-sunset-700.webp" srcset="/images/couple-sunset-700.webp 700w, /images/couple-sunset.webp 1200w" sizes="(max-width: 860px) 90vw, 42vw" alt="Nghi und Ivan am Strand bei Sonnenuntergang, Nghi zeigt ihren Verlobungsring" loading="lazy" data-parallax="0.12" data-i18n-attr="alt:willkommen.15">
+    <!-- =====================================================
+         PAGE 2 — NGHIVAN (Über uns)
+         ===================================================== -->
+    <div class="page" data-page="nghivan" id="nghivan" hidden>
+      <div class="page__facts"><div class="container" data-keyfacts="bar"></div></div>
+      <section class="story section" id="story">
+        <div class="story__title" aria-label="NGHIVAN">
+          <span>N</span><span>G</span><span>H</span><span>I</span><span>V</span><span>A</span><span>N</span>
+        </div>
+
+        <div class="container story__intro">
+          <div class="story__photo">
+            <div class="story__frame" data-reveal="clip">
+              <img src="/images/couple-studio-700.webp" srcset="/images/couple-studio-700.webp 700w, /images/couple-studio.webp 1200w" sizes="(max-width: 860px) 90vw, 38vw" alt="Nghi im weißen Áo dài und Ivan Hand in Hand vor einem grünen Samtvorhang" loading="lazy" data-parallax="0.1" data-i18n-attr="alt:story.39">
+            </div>
+            <svg class="seal" viewBox="0 0 200 200" aria-hidden="true">
+              <defs><path id="seal-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"></path></defs>
+              <text><textPath href="#seal-circle">KROATIEN ✦ VIETNAM ✦ MADE IN GERMANY ✦ </textPath></text>
+              <text x="100" y="114" text-anchor="middle" class="seal__mono">N&amp;I</text>
+            </svg>
           </div>
-          <figcaption data-reveal="" data-i18n="willkommen.1">Sie hat Ja gesagt – Griechenland, 2025</figcaption>
-        </figure>
 
-        <div class="welcome__text">
-          <p class="eyebrow" data-reveal="" data-i18n="nav.1">Willkommen</p>
-          <h2 class="display" data-reveal="" data-i18n="willkommen.2">Wir heiraten<em>!</em></h2>
-          <p class="lead" data-reveal="" data-i18n="willkommen.3">Und wir freuen uns riesig, wenn ihr diesen unvergesslichen Tag an der kroatischen Küste mit uns feiert.</p>
-          <p data-reveal="" data-i18n="willkommen.4">Eine Reise nach Kroatien macht man nicht mal eben so – umso dankbarer sind wir für jeden Einzelnen von euch, der diesen Weg auf sich nimmt. Um eure Reise so entspannt wie möglich zu gestalten, haben wir auf dieser Website alle wichtigen Infos zu Unterkunft, Anreise und Ablauf zusammengestellt.</p>
-          <p data-reveal="" data-i18n="willkommen.5">Lasst uns bis zum <strong>01. Mai 2027</strong> wissen, ob ihr dabei seid (RSVP).</p>
-          <p data-reveal="" data-i18n="willkommen.6">Wir können es kaum erwarten, mit euch anzustoßen und Erinnerungen fürs Leben zu schaffen!</p>
-
-          <p class="thanks" data-reveal="" data-i18n="willkommen.7"><span lang="vi">Cảm ơn</span>, <span lang="hr">Hvala</span> &amp; Danke!</p>
-          <p class="signature" data-reveal="" data-i18n="willkommen.8">Love you lots,<br><span>Nghi &amp; Ivan</span> <span class="heart">❤</span></p>
-        </div>
-      </div>
-
-      <div class="container facts" data-reveal-group="">
-        <div class="fact">
-          <small data-i18n="willkommen.9">Wann</small>
-          <strong data-i18n="willkommen.10">Sa, 4. September 2027</strong>
-        </div>
-        <div class="fact">
-          <small data-i18n="willkommen.11">Wo</small>
-          <strong data-i18n="willkommen.12">Hotel Pinija, Petrčane</strong>
-        </div>
-        <div class="fact">
-          <small data-i18n="willkommen.13">RSVP bis</small>
-          <strong data-i18n="willkommen.14">1. Mai 2027</strong>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ STORY ============ -->
-    <section class="story section" id="story">
-      <div class="story__title" aria-label="NGHIVAN">
-        <span>N</span><span>G</span><span>H</span><span>I</span><span>V</span><span>A</span><span>N</span>
-      </div>
-
-      <div class="container story__intro">
-        <div class="story__photo">
-          <div class="story__frame" data-reveal="clip">
-            <img src="/images/couple-studio-700.webp" srcset="/images/couple-studio-700.webp 700w, /images/couple-studio.webp 1200w" sizes="(max-width: 860px) 90vw, 38vw" alt="Nghi im weißen Áo dài und Ivan Hand in Hand vor einem grünen Samtvorhang" loading="lazy" data-parallax="0.1" data-i18n-attr="alt:story.39">
+          <div class="story__text">
+            <p class="eyebrow" data-reveal="" data-i18n="story.1">Unsere Geschichte</p>
+            <h2 class="display" data-reveal="" data-i18n="story.2">Das Bündnis<br>zweier Herzen</h2>
+            <p class="lead" data-reveal="" data-i18n="story.3">So lautet der ehrenvolle Name für das Bündnis zweier Herzen: <em>King Ivan</em> und seiner <em>Queen Nghi</em> – liebevoll von der Familie geprägt.</p>
+            <p data-reveal="" data-i18n="story.4">Eine einzigartige Verbindung kroatischer und vietnamesischer Wurzeln, streng nach dem Siegel „Made in Germany“.</p>
+            <p data-reveal="" data-i18n="story.5">Es ist der wunderschöne Beweis dafür, dass selbst ein einfaches Wischen nach rechts Teil von Gottes göttlichem Plan sein kann, der zwei Herzen durch ein Meer von Möglichkeiten geführt hat, um ihr ewiges Königreich zu finden – erbaut auf Glaube, Liebe und dem gemeinsamen Miteinander.</p>
           </div>
-          <svg class="seal" viewBox="0 0 200 200" aria-hidden="true">
-            <defs><path id="seal-circle" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"></path></defs>
-            <text><textPath href="#seal-circle">KROATIEN ✦ VIETNAM ✦ MADE IN GERMANY ✦ </textPath></text>
-            <text x="100" y="114" text-anchor="middle" class="seal__mono">N&amp;I</text>
-          </svg>
         </div>
 
-        <div class="story__text">
-          <p class="eyebrow" data-reveal="" data-i18n="story.1">Unsere Geschichte</p>
-          <h2 class="display" data-reveal="" data-i18n="story.2">Das Bündnis<br>zweier Herzen</h2>
-          <p class="lead" data-reveal="" data-i18n="story.3">So lautet der ehrenvolle Name für das Bündnis zweier Herzen: <em>King Ivan</em> und seiner <em>Queen Nghi</em> – liebevoll von der Familie geprägt.</p>
-          <p data-reveal="" data-i18n="story.4">Eine einzigartige Verbindung kroatischer und vietnamesischer Wurzeln, streng nach dem Siegel „Made in Germany“.</p>
-          <p data-reveal="" data-i18n="story.5">Es ist der wunderschöne Beweis dafür, dass selbst ein einfaches Wischen nach rechts Teil von Gottes göttlichem Plan sein kann, der zwei Herzen durch ein Meer von Möglichkeiten geführt hat, um ihr ewiges Königreich zu finden – erbaut auf Glaube, Liebe und dem gemeinsamen Miteinander.</p>
-        </div>
-      </div>
-
-      <!-- Name explainer -->
-      <div class="container name-card" data-reveal="">
-        <div class="name-card__head">
-          <p class="eyebrow" data-i18n="story.6">Kurz erklärt</p>
-          <h3 data-i18n="story.7">Minh Nghi, Minnie oder Nghi?</h3>
-        </div>
-        <div class="name-card__body">
-          <p data-i18n="story.8">Falls sich einige von euch fragen, warum hier auf der Website überall NGHIVAN steht, obwohl ihr mich vielleicht als Minnie bzw. Minh Nghi kennt – hier ist die kurze Auflösung für alle, die mit der vietnamesischen Namenslogik nicht vertraut sind:</p>
-          <p data-i18n="story.9">Im Vietnamesischen steht der eigentliche Rufname ganz am Ende. <strong>Nghi</strong> ist mein richtiger Vorname und <strong>Minh</strong> mein Mittel-/Zusatzname. Aus der Kombination und Ausspracheschwierigkeit von Minh Nghi entstand im Kindergarten ganz einfach mein Rufname <strong>Minnie</strong>!</p>
-          <h4 data-i18n="story.10">Wie spricht man „Nghi“ aus?</h4>
-          <p data-i18n="story.11">Das wirkt auf den ersten Blick wie ein kleiner Zungenbrecher, ist aber ganz leicht: Denk einfach an das Wort „Singen“, ersetz das „en“ mit einem „i“ – lass den Anfang weg und sprich nur den hinteren Teil aus:</p>
-          <ol class="pronounce" aria-label="Aussprache in drei Schritten" data-i18n-attr="aria-label:story.40">
-            <li><span data-i18n="story.12">Si<b>ngen</b></span></li>
-            <li><span data-i18n="story.13">Si<b>nghi</b></span></li>
-            <li><span><s data-i18n="story.14">Si</s><b data-i18n="story.15">Nghi</b></span></li>
-          </ol>
-        </div>
-      </div>
-
-      <!-- Q&A chapters -->
-      <div class="container chapters">
-        <article class="chapter">
-          <span class="chapter__no" data-reveal="">01</span>
-          <div class="chapter__body">
-            <h3 data-reveal="" data-i18n="story.16">Wie haben wir uns wirklich kennengelernt?</h3>
-            <p data-reveal="" data-i18n="story.17">Je nachdem, wen man fragt! Den Eltern haben wir erzählt, dass wir uns beim Ausgehen über den Weg gelaufen sind (was auch stimmt!).</p>
-            <p data-reveal="" data-i18n="story.18">Was wir verschwiegen haben: Ein kleiner Swipe nach rechts hat das Ganze erst ins Rollen gebracht. Aus einem digitalen Match wurde beim ersten gemeinsamen Abend ein echtes Match fürs Leben.</p>
+        <!-- Name explainer -->
+        <div class="container name-card" data-reveal="">
+          <div class="name-card__head">
+            <p class="eyebrow" data-i18n="story.6">Kurz erklärt</p>
+            <h3 data-i18n="story.7">Minh Nghi, Minnie oder Nghi?</h3>
           </div>
-        </article>
-
-        <article class="chapter">
-          <span class="chapter__no" data-reveal="">02</span>
-          <div class="chapter__body">
-            <h3 data-reveal="" data-i18n="story.19">Was passiert, wenn einer von uns Hunger hat?</h3>
-            <p class="chapter__kicker" data-reveal="" data-i18n="story.20">Akute Ausnahmezustand-Gefahr!</p>
-            <p data-reveal="" data-i18n="story.21">Während Ivan Hunger einfacher wegsteckt, wird Nghi ohne Essen zur echten Naturgewalt.</p>
-            <p data-reveal="" data-i18n="story.22"><strong>Ivans Überlebens-Hack:</strong> Immer einen Notfall-Snack dabei oder im Blick haben. Ein kleiner Bissen – und der Beziehungsfrieden ist gerettet!</p>
-          </div>
-        </article>
-
-        <article class="chapter chapter--wide chapter--cols">
-          <span class="chapter__no" data-reveal="">03</span>
-          <div class="chapter__body">
-            <h3 data-reveal="" data-i18n="story.23">Wer braucht morgens länger und wer ist schuld am Zu-Spät-Kommen?</h3>
-            <p data-reveal="" data-i18n="story.24"><strong>Offizielle Story:</strong> Ivan behauptet stur vor allen – und alle glauben ihm brav –, dass es natürlich immer an Nghi liegt.</p>
-            <p data-reveal="" data-i18n="story.25"><strong>Die Wahrheit, und nichts als die Wahrheit:</strong> Es ist JEDES MAL Ivan!</p>
-            <p data-reveal="" data-i18n="story.26">Während Nghi schon völlig startklar mit Schuhen und Jacke an der Tür steht, fällt Ivan plötzlich ein, dass er noch ganz dringend für Nummer 2 ins Bad muss. Und zack: Schon sieht es nach außen wieder so aus, als hätte Nghi getrödelt. Schön herausgeredet, Ivan!</p>
-            <p class="chapter__kicker" data-reveal="" data-i18n="story.27">Gerechtigkeit für Nghi! ✊</p>
-          </div>
-        </article>
-
-        <article class="chapter chapter--wide">
-          <span class="chapter__no" data-reveal="">04</span>
-          <div class="chapter__body">
-            <h3 data-reveal="" data-i18n="story.28">Hat Nghi den Antrag eigentlich schon geahnt?</h3>
-            <ol class="proposal">
-              <li data-reveal="">
-                <small data-i18n="story.29">Die Vorgeschichte</small>
-                <p data-i18n="story.30">Nicht wirklich! Nach dem Vietnam-Urlaub – wo Nghi fest mit dem Antrag gerechnet hatte und nichts passierte – war die Erwartungshaltung beim spontanen Griechenland-Trip im Keller. Einzige Sicherheitsmaßnahme: Die Nägel wurden vor dem Abflug natürlich trotzdem gemacht („Man weiß ja nie…“). 💅</p>
-              </li>
-              <li data-reveal="">
-                <small data-i18n="story.31">Das Urlaubs-Drama</small>
-                <p data-i18n="story.32">Ivans Plan stand für das Wochenende. Auf der fieberhaften Suche nach dem „perfekten Ort“ löcherte er Nghi ununterbrochen mit komischen Fragen, hörte bei den Antworten nicht zu und brachte sie so zur Weißglut. Am Sonntagabend krachte es gewaltig. Es war so komisch, dass Nghi Angst hatte, dass das der Urlaub wird, wo sie realisieren, sie passen nicht zusammen!</p>
-              </li>
-              <li data-reveal="">
-                <small data-i18n="story.33">Das Happy End</small>
-                <p data-i18n="story.34">Nach dem romantischen Abendessen stellte Ivan beim anschließenden Spaziergang schließlich die Frage. Nghi hat vor lauter Freudentränen so laut geweint, dass sie Ivans halbe Rede verpasst hat. Ivan musste sogar nachfragen, ob Nghi „JA!“ gesagt hatte …</p>
-              </li>
+          <div class="name-card__body">
+            <p data-i18n="story.8">Falls sich einige von euch fragen, warum hier auf der Website überall NGHIVAN steht, obwohl ihr mich vielleicht als Minnie bzw. Minh Nghi kennt – hier ist die kurze Auflösung für alle, die mit der vietnamesischen Namenslogik nicht vertraut sind:</p>
+            <p data-i18n="story.9">Im Vietnamesischen steht der eigentliche Rufname ganz am Ende. <strong>Nghi</strong> ist mein richtiger Vorname und <strong>Minh</strong> mein Mittel-/Zusatzname. Aus der Kombination und Ausspracheschwierigkeit von Minh Nghi entstand im Kindergarten ganz einfach mein Rufname <strong>Minnie</strong>!</p>
+            <h4 data-i18n="story.10">Wie spricht man „Nghi“ aus?</h4>
+            <p data-i18n="story.11">Das wirkt auf den ersten Blick wie ein kleiner Zungenbrecher, ist aber ganz leicht: Denk einfach an das Wort „Singen“, ersetz das „en“ mit einem „i“ – lass den Anfang weg und sprich nur den hinteren Teil aus:</p>
+            <ol class="pronounce" aria-label="Aussprache in drei Schritten" data-i18n-attr="aria-label:story.40">
+              <li><span data-i18n="story.12">Si<b>ngen</b></span></li>
+              <li><span data-i18n="story.13">Si<b>nghi</b></span></li>
+              <li><span><s data-i18n="story.14">Si</s><b data-i18n="story.15">Nghi</b></span></li>
             </ol>
           </div>
-        </article>
-      </div>
-
-      <blockquote class="container story__quote">
-        <p class="eyebrow" data-reveal="" data-i18n="story.35">Was bedeutet es uns, dass ihr bei unserer Hochzeit dabei seid?</p>
-        <p class="story__quote-big" data-reveal="" data-i18n="story.36">Ganz ehrlich: <em>Einfach ALLES!</em></p>
-        <div class="story__quote-cols">
-          <p data-reveal="" data-i18n="story.37">Für uns ist es alles andere als selbstverständlich, dass ihr euch die Zeit nehmt, die Reise nach Kroatien auf euch nehmt und Investment &amp; Mühe hineinsteckt, um diesen besonderen Tag mit uns zu feiern. Das bedeutet uns so unglaublich viel.</p>
-          <p data-reveal="" data-i18n="story.38">Gleichzeitig haben wir volles Verständnis für jeden, der den Weg nicht antreten kann – wir haben euch trotzdem im Herzen dabei! An alle, die mit uns anstoßen: Wir können es kaum erwarten, unvergessliche Erinnerungen mit euch zu schaffen. Wir lieben euch alle! ❤️</p>
         </div>
-      </blockquote>
-    </section>
 
-    <!-- ============ ACCOMMODATIONS ============ -->
-    <section class="stay section" id="unterkunft">
-      <div class="container section__head">
-        <p class="eyebrow" data-reveal="" data-i18n="unterkunft.1">Unterkunft</p>
-        <h2 class="display" data-reveal="" data-i18n="nav.3">Wo übernachten?</h2>
-        <p class="lead" data-reveal="" data-i18n="unterkunft.2">Damit ihr nach der Feier nicht weit laufen müsst, haben wir hier eure Übernachtungsmöglichkeiten rund um unsere Hochzeitslocation in Petrčane zusammengestellt. Egal ob voller Hotel-Komfort mit Meerblick oder ein gemütliches Apartment bzw. eine Villa mit Freunden &amp; Familie – wählt einfach das, was am besten zu euren Plänen und eurem Budget passt!</p>
-      </div>
-
-      <div class="container">
-        <div class="notice" data-reveal="">
-          <div class="notice__text">
-            <strong data-i18n="unterkunft.3">Bitte direkt beim Hotel buchen – das ist günstiger!</strong>
-            <p data-i18n="unterkunft.4">Bucht auf <a href="https://hotel-pinija.hr" target="_blank" rel="noopener">hotel-pinija.hr</a> und gebt dort unseren Rabattcode für 5&nbsp;% ein (mehr haben wir leider nicht erhalten).</p>
-          </div>
-          <button class="code" type="button" data-copy="WEDDING" aria-label="Rabattcode WEDDING kopieren" data-i18n-attr="aria-label:unterkunft.36">
-            <span class="code__label" data-i18n="unterkunft.5">Code</span>
-            <span class="code__value">WEDDING</span>
-            <span class="code__hint" data-copy-hint="" data-i18n="unterkunft.6">Kopieren</span>
-          </button>
-        </div>
-      </div>
-
-      <div class="container options">
-        <article class="option option--featured" data-reveal="">
-          <div class="option__media">
-            <img src="/images/hotel-pinija.webp" alt="Luftaufnahme des Hotel Pinija auf der Halbinsel in Petrčane" loading="lazy" data-i18n-attr="alt:unterkunft.37">
-            <span class="badge" data-i18n="unterkunft.7">Wir übernachten hier</span>
-          </div>
-          <div class="option__body">
-            <div class="option__top"><span class="option__no" data-i18n="unterkunft.8">Option 1</span><span class="chip" data-i18n="unterkunft.9">0 km</span></div>
-            <h3 data-i18n="unterkunft.10">Hotel Pinija <small>Unsere Hochzeits-Location</small></h3>
-            <p data-i18n="unterkunft.11">Für alle, die es maximal komfortabel mögen: Ihr könnt direkt vor Ort im 4-Sterne-Hotel Pinija übernachten. Ihr stolpert nach der Feier quasi direkt von der Tanzfläche ins Bett und genießt am nächsten Morgen das Frühstück mit Meerblick.</p>
-            <ul class="ticks">
-              <li data-i18n="unterkunft.12">Frühstücksbuffet inklusive</li>
-              <li data-i18n="unterkunft.13">Pool- &amp; Spa-Bereich</li>
-              <li data-i18n="unterkunft.14">Direkter Strandzugang</li>
-            </ul>
-            <a class="link-arrow" href="https://hotel-pinija.hr" target="_blank" rel="noopener" data-i18n="unterkunft.15">Zur Hotel-Website <span aria-hidden="true">→</span></a>
-          </div>
-        </article>
-
-        <article class="option" data-reveal="">
-          <div class="option__media">
-            <img src="/images/hero-petrcane-1000.webp" alt="Die Häuser von Petrčane am Wasser" loading="lazy" data-i18n-attr="alt:unterkunft.38">
-          </div>
-          <div class="option__body">
-            <div class="option__top"><span class="option__no" data-i18n="unterkunft.16">Option 2</span><span class="chip" data-i18n="unterkunft.17">0,8 km</span></div>
-            <h3 data-i18n="unterkunft.18">Ferienwohnungen &amp; Airbnbs <small>Direkt nebenan &amp; preiswerter</small></h3>
-            <p data-i18n="unterkunft.19">Petrčane bietet wunderschöne private Apartments, Pensionen und Villen mit Pools. Viele davon liegen direkt hinter dem Hotel Pinija (nur 2 bis 5 Gehminuten entfernt). Meist deutlich günstiger und perfekt für Familien oder Freundesgruppen.</p>
-            <details class="more">
-              <summary data-i18n="unterkunft.20">Mehr erfahren</summary>
-              <div class="more__body">
-                <p data-i18n="unterkunft.21"><strong>So findet ihr sie:</strong> Sucht einfach auf Airbnb.de oder Booking.com nach „Petrčane“.</p>
-                <p data-i18n="unterkunft.22"><strong>💡 Zusammentun?</strong> Ihr möchtet euch für eine Ferienwohnung oder eine Villa mit anderen Gästen zusammenschließen, wisst aber nicht, wer noch sucht? Sprecht uns einfach an – wir vernetzen euch super gerne untereinander!</p>
-                <p data-i18n="unterkunft.23"><strong>🌊 Wichtiger Hinweis zum Strand:</strong> In Kroatien sind alle Strände öffentlich zugänglich! Auch wenn ihr nicht im Hotel übernachtet, könnt ihr den Strand am Hotel Pinija uneingeschränkt nutzen. Bringt einfach eure eigenen Handtücher oder Liegematten mit (die festen Hotelliegen sind kostenpflichtig bzw. Hotelgästen vorbehalten).</p>
-              </div>
-            </details>
-            <div class="option__links">
-              <a class="link-arrow" href="https://www.airbnb.de/s/Petr%C4%8Dane--Kroatien/homes" target="_blank" rel="noopener" data-i18n="unterkunft.24">Airbnb <span aria-hidden="true">→</span></a>
-              <a class="link-arrow" href="https://www.booking.com/searchresults.de.html?ss=Petr%C4%8Dane" target="_blank" rel="noopener" data-i18n="unterkunft.25">Booking.com <span aria-hidden="true">→</span></a>
+        <!-- Q&A chapters -->
+        <div class="container chapters">
+          <article class="chapter">
+            <span class="chapter__no" data-reveal="">01</span>
+            <div class="chapter__body">
+              <h3 data-reveal="" data-i18n="story.16">Wie haben wir uns wirklich kennengelernt?</h3>
+              <p data-reveal="" data-i18n="story.17">Je nachdem, wen man fragt! Den Eltern haben wir erzählt, dass wir uns beim Ausgehen über den Weg gelaufen sind (was auch stimmt!).</p>
+              <p data-reveal="" data-i18n="story.18">Was wir verschwiegen haben: Ein kleiner Swipe nach rechts hat das Ganze erst ins Rollen gebracht. Aus einem digitalen Match wurde beim ersten gemeinsamen Abend ein echtes Match fürs Leben.</p>
             </div>
-          </div>
-        </article>
+          </article>
 
-        <article class="option" data-reveal="">
-          <div class="option__media">
-            <img src="/images/beach-sunset-800.webp" alt="Kiesstrand bei Sonnenuntergang an der Küste bei Zadar" loading="lazy" data-i18n-attr="alt:unterkunft.39">
-          </div>
-          <div class="option__body">
-            <div class="option__top"><span class="option__no" data-i18n="unterkunft.26">Option 3</span><span class="chip" data-i18n="unterkunft.27">8,9 km</span></div>
-            <h3 data-i18n="unterkunft.28">Außerhalb von Petrčane <small>Vordörfer &amp; Umgebung von Zadar</small></h3>
-            <p data-i18n="unterkunft.29">Wer nicht die gesamte Zeit in Petrčane verbringen möchte, kann sich auch wunderbar in den umliegenden Küstenorten einquartieren. Beliebt: 1–2 Nächte nahe am Geschehen und die restlichen Tage in einer gemütlichen Ferienwohnung oder auf einem Campingplatz in den ruhigeren Vordörfern.</p>
-            <details class="more">
-              <summary data-i18n="unterkunft.20">Mehr erfahren</summary>
-              <div class="more__body">
-                <p data-i18n="unterkunft.30"><strong>Warum die Vordörfer ideal für einen Strandurlaub sind:</strong> In der Innenstadt von Zadar gibt es zwar eine historische Altstadt und tolle Restaurants, die Stadtstrände sind jedoch meist nicht so schön wie in den umliegenden Dörfern.</p>
-                <p data-i18n="unterkunft.31"><strong>Unser Tipp:</strong> Tagsüber das glasklare Meer in den Vordörfern genießen und erst abends für Flaniermeilen, Kultur und Abendessen in die Innenstadt von Zadar fahren. Mehr Tipps findet ihr unter <a href="#anreise">Travel / Anreise</a>.</p>
-              </div>
-            </details>
-          </div>
-        </article>
-      </div>
+          <article class="chapter">
+            <span class="chapter__no" data-reveal="">02</span>
+            <div class="chapter__body">
+              <h3 data-reveal="" data-i18n="story.19">Was passiert, wenn einer von uns Hunger hat?</h3>
+              <p class="chapter__kicker" data-reveal="" data-i18n="story.20">Akute Ausnahmezustand-Gefahr!</p>
+              <p data-reveal="" data-i18n="story.21">Während Ivan Hunger einfacher wegsteckt, wird Nghi ohne Essen zur echten Naturgewalt.</p>
+              <p data-reveal="" data-i18n="story.22"><strong>Ivans Überlebens-Hack:</strong> Immer einen Notfall-Snack dabei oder im Blick haben. Ein kleiner Bissen – und der Beziehungsfrieden ist gerettet!</p>
+            </div>
+          </article>
 
-      <!-- Map + neighborhoods -->
-      <div class="container areas__head">
-        <div>
-          <p class="eyebrow" data-reveal="" data-i18n="unterkunft.32">Empfohlene Orte</p>
-          <h2 class="display display--sm" data-reveal="" data-i18n="unterkunft.33">Die schönsten Orte<br>rund um die Location</h2>
+          <article class="chapter chapter--wide chapter--cols">
+            <span class="chapter__no" data-reveal="">03</span>
+            <div class="chapter__body">
+              <h3 data-reveal="" data-i18n="story.23">Wer braucht morgens länger und wer ist schuld am Zu-Spät-Kommen?</h3>
+              <p data-reveal="" data-i18n="story.24"><strong>Offizielle Story:</strong> Ivan behauptet stur vor allen – und alle glauben ihm brav –, dass es natürlich immer an Nghi liegt.</p>
+              <p data-reveal="" data-i18n="story.25"><strong>Die Wahrheit, und nichts als die Wahrheit:</strong> Es ist JEDES MAL Ivan!</p>
+              <p data-reveal="" data-i18n="story.26">Während Nghi schon völlig startklar mit Schuhen und Jacke an der Tür steht, fällt Ivan plötzlich ein, dass er noch ganz dringend für Nummer 2 ins Bad muss. Und zack: Schon sieht es nach außen wieder so aus, als hätte Nghi getrödelt. Schön herausgeredet, Ivan!</p>
+              <p class="chapter__kicker" data-reveal="" data-i18n="story.27">Gerechtigkeit für Nghi! ✊</p>
+            </div>
+          </article>
+
+          <article class="chapter chapter--wide">
+            <span class="chapter__no" data-reveal="">04</span>
+            <div class="chapter__body">
+              <h3 data-reveal="" data-i18n="story.28">Hat Nghi den Antrag eigentlich schon geahnt?</h3>
+              <ol class="proposal">
+                <li data-reveal="">
+                  <small data-i18n="story.29">Die Vorgeschichte</small>
+                  <p data-i18n="story.30">Nicht wirklich! Nach dem Vietnam-Urlaub – wo Nghi fest mit dem Antrag gerechnet hatte und nichts passierte – war die Erwartungshaltung beim spontanen Griechenland-Trip im Keller. Einzige Sicherheitsmaßnahme: Die Nägel wurden vor dem Abflug natürlich trotzdem gemacht („Man weiß ja nie…“). 💅</p>
+                </li>
+                <li data-reveal="">
+                  <small data-i18n="story.31">Das Urlaubs-Drama</small>
+                  <p data-i18n="story.32">Ivans Plan stand für das Wochenende. Auf der fieberhaften Suche nach dem „perfekten Ort“ löcherte er Nghi ununterbrochen mit komischen Fragen, hörte bei den Antworten nicht zu und brachte sie so zur Weißglut. Am Sonntagabend krachte es gewaltig. Es war so komisch, dass Nghi Angst hatte, dass das der Urlaub wird, wo sie realisieren, sie passen nicht zusammen!</p>
+                </li>
+                <li data-reveal="">
+                  <small data-i18n="story.33">Das Happy End</small>
+                  <p data-i18n="story.34">Nach dem romantischen Abendessen stellte Ivan beim anschließenden Spaziergang schließlich die Frage. Nghi hat vor lauter Freudentränen so laut geweint, dass sie Ivans halbe Rede verpasst hat. Ivan musste sogar nachfragen, ob Nghi „JA!“ gesagt hatte …</p>
+                </li>
+              </ol>
+            </div>
+          </article>
         </div>
-        <p data-reveal="" data-i18n="unterkunft.34">Wenn ihr als Gruppe zusammenbleiben, unabhängiger wohnen oder euren Aufenthalt verlängern möchtet: Hier sind unsere Lieblingsorte in der Nähe – bucht einfach direkt über die Plattform eurer Wahl.</p>
-      </div>
 
-      <div class="container">
-        <figure class="map" data-reveal="clip">
-          <img src="/images/map.webp" alt="Karte der Küste zwischen Punta Skala, Petrčane, Kožino und Zadar" loading="lazy" data-i18n-attr="alt:unterkunft.40">
-          <a class="map__pin" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Pinija+Petr%C4%8Dane" target="_blank" rel="noopener" style="--x:36%;--y:24%">
-            <span class="map__dot"></span><span class="map__label" data-i18n="unterkunft.35">Hotel Pinija · Hochzeit</span>
-          </a>
-        </figure>
-      </div>
+        <blockquote class="container story__quote">
+          <p class="eyebrow" data-reveal="" data-i18n="story.35">Was bedeutet es uns, dass ihr bei unserer Hochzeit dabei seid?</p>
+          <p class="story__quote-big" data-reveal="" data-i18n="story.36">Ganz ehrlich: <em>Einfach ALLES!</em></p>
+          <div class="story__quote-cols">
+            <p data-reveal="" data-i18n="story.37">Für uns ist es alles andere als selbstverständlich, dass ihr euch die Zeit nehmt, die Reise nach Kroatien auf euch nehmt und Investment &amp; Mühe hineinsteckt, um diesen besonderen Tag mit uns zu feiern. Das bedeutet uns so unglaublich viel.</p>
+            <p data-reveal="" data-i18n="story.38">Gleichzeitig haben wir volles Verständnis für jeden, der den Weg nicht antreten kann – wir haben euch trotzdem im Herzen dabei! An alle, die mit uns anstoßen: Wir können es kaum erwarten, unvergessliche Erinnerungen mit euch zu schaffen. Wir lieben euch alle! ❤️</p>
+          </div>
+        </blockquote>
+      </section>
+    </div>
 
-      <div class="carousel" data-carousel="">
-        <div class="carousel__controls container">
-          <span class="carousel__count"><b data-carousel-index="">01</b> / 08</span>
-          <div>
-            <button type="button" class="round-btn" data-carousel-prev="" aria-label="Vorheriger Ort" data-i18n-attr="aria-label:unterkunft.41"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg></button>
-            <button type="button" class="round-btn" data-carousel-next="" aria-label="Nächster Ort" data-i18n-attr="aria-label:unterkunft.42"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></svg></button>
+    <!-- =====================================================
+         PAGE 3 — WO ÜBERNACHTEN?
+         ===================================================== -->
+    <div class="page" data-page="unterkunft" id="unterkunft" hidden>
+      <div class="page__facts"><div class="container" data-keyfacts="bar"></div></div>
+      <section class="stay section">
+        <div class="container section__head">
+          <p class="eyebrow" data-reveal="" data-i18n="unterkunft.1">Unterkunft</p>
+          <h2 class="display" data-reveal="" data-i18n="nav.3">Wo übernachten?</h2>
+          <p class="lead" data-reveal="" data-i18n="unterkunft.2">Damit ihr nach der Feier nicht weit laufen müsst, haben wir hier eure Übernachtungsmöglichkeiten rund um unsere Hochzeitslocation in Petrčane zusammengestellt. Egal ob voller Hotel-Komfort mit Meerblick oder ein gemütliches Apartment bzw. eine Villa mit Freunden &amp; Familie – wählt einfach das, was am besten zu euren Plänen und eurem Budget passt!</p>
+        </div>
+
+        <div class="container">
+          <div class="notice" data-reveal="">
+            <div class="notice__text">
+              <strong data-i18n="unterkunft.3">Rabattcode von Hotel Pinija:</strong>
+              <p data-i18n="unterkunft.4">Wenn ihr im Hotel übernachten wollt, könnt ihr direkt auf <a href="https://hotel-pinija.hr" target="_blank" rel="noopener">hotel-pinija.hr</a> unseren Rabattcode für <strong>5&nbsp;%</strong> eingeben (mehr haben wir leider nicht erhalten 😭).</p>
+            </div>
+            <button class="code" type="button" data-copy="WEDDING" aria-label="Rabattcode WEDDING kopieren" data-i18n-attr="aria-label:unterkunft.36">
+              <span class="code__label" data-i18n="unterkunft.5">Code</span>
+              <span class="code__value">WEDDING</span>
+              <span class="code__hint" data-copy-hint="" data-i18n="unterkunft.6">Kopieren</span>
+            </button>
           </div>
         </div>
-        <div class="carousel__track" data-carousel-track="" tabindex="0" aria-label="Empfohlene Orte" data-i18n-attr="aria-label:unterkunft.32">
-          <!-- cards injected from data in main.js -->
-        </div>
-      </div>
-    </section>
 
-    <!-- ============ TRAVEL ============ -->
-    <section class="travel section" id="anreise">
-      <div class="travel__banner">
-        <div class="travel__banner-media"><img src="/images/beach-sunset.webp" srcset="/images/beach-sunset-800.webp 800w, /images/beach-sunset.webp 1600w" sizes="100vw" alt="Sonnenuntergang am Strand nahe Zadar" loading="lazy" data-parallax="0.12" data-i18n-attr="alt:anreise.40"></div>
-        <div class="travel__banner-text">
-          <p class="eyebrow eyebrow--light" data-reveal="" data-i18n="nav.4">Travel / Anreise</p>
-          <h2 class="display display--light" data-reveal="" data-i18n="anreise.1">Auf nach<br><em>Dalmatien</em></h2>
-        </div>
-      </div>
+        <div class="container options">
+          <article class="option option--featured" data-reveal="">
+            <div class="option__media">
+              <img src="/images/hotel-pinija.webp" alt="Luftaufnahme des Hotel Pinija auf der Halbinsel in Petrčane" loading="lazy" data-i18n-attr="alt:unterkunft.37">
+              <span class="badge" data-i18n="unterkunft.7">Wir übernachten hier</span>
+            </div>
+            <div class="option__body">
+              <div class="option__top"><span class="option__no" data-i18n="unterkunft.8">Option 1</span><span class="chip" data-i18n="unterkunft.9">0 km</span></div>
+              <h3 data-i18n="unterkunft.10">Hotel Pinija <small>Unsere Hochzeits-Location</small></h3>
+              <p data-i18n="unterkunft.11">Für alle, die es maximal komfortabel mögen: Ihr könnt direkt vor Ort im 4-Sterne-Hotel Pinija übernachten. Ihr stolpert nach der Feier quasi direkt von der Tanzfläche ins Bett und genießt am nächsten Morgen das Frühstück mit Meerblick.</p>
+              <ul class="ticks">
+                <li data-i18n="unterkunft.12">Frühstücksbuffet inklusive</li>
+                <li data-i18n="unterkunft.13">Pool- &amp; Spa-Bereich</li>
+                <li data-i18n="unterkunft.14">Direkter Strandzugang</li>
+              </ul>
+              <p class="promo">
+                <span data-i18n="unterkunft.43">Rabattcode (5%):</span>
+                <button class="promo__code" type="button" data-copy="WEDDING" aria-label="Rabattcode WEDDING kopieren" data-i18n-attr="aria-label:unterkunft.36">WEDDING</button>
+              </p>
+              <a class="link-arrow" href="https://hotel-pinija.hr" target="_blank" rel="noopener" data-i18n="unterkunft.15">Zur Hotel-Website <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
 
-      <div class="container">
-        <div class="tabs" data-tabs="">
-          <div class="tabs__list" role="tablist" aria-label="Anreise-Optionen" data-i18n-attr="aria-label:anreise.41">
-            <button role="tab" aria-selected="true" aria-controls="tab-flug" id="t-flug" data-i18n="t-flug.1">Flug ab München</button>
-            <button role="tab" aria-selected="false" aria-controls="tab-us" id="t-us" tabindex="-1" data-i18n="t-us.1">From the US</button>
-            <button role="tab" aria-selected="false" aria-controls="tab-auto" id="t-auto" tabindex="-1" data-i18n="t-auto.1">Mit dem Auto</button>
-            <span class="tabs__ink" aria-hidden="true"></span>
-          </div>
-
-          <!-- Flug -->
-          <div class="tabs__panel" role="tabpanel" id="tab-flug" aria-labelledby="t-flug">
-            <div class="panel-grid">
-              <div>
-                <h3 class="h3" data-i18n="travel.flug.1">Zadar International Airport <small>(ZAD) · 20 Min. zum Hotel Pinija</small></h3>
-                <p data-i18n="travel.flug.2">Für unsere Gäste aus der Region München / Bayern: Wir sind bisher sehr oft vom Flughafen <strong>Memmingen (FMM)</strong> nach Zadar geflogen.</p>
-                <a class="link-arrow" href="https://www.zadar-airport.hr/en/homepage/" target="_blank" rel="noopener" data-i18n="travel.flug.3">zadar-airport.hr <span aria-hidden="true">→</span></a>
-              </div>
-              <div class="tip-stack">
-                <div class="tip"><span class="tip__icon">€</span><div><strong data-i18n="travel.flug.4">Schnäppchen-Tipp</strong><p data-i18n="travel.flug.5">Die Flüge unter der Woche sind teilweise extrem günstig – mit etwas Glück und nur mit kleinem Rucksack/Handgepäck gibt es Tickets schon ab 35&nbsp;€ pro Flug.</p></div></div>
-                <div class="tip"><span class="tip__icon" data-i18n="travel.flug.6">P</span><div><strong data-i18n="travel.flug.7">Parken am Flughafen Memmingen</strong><p data-i18n="travel.flug.8">Es gibt günstige externe Parkplätze (ca. 10–15 Minuten zu Fuß vom Terminal), bei denen man für 4–5 Tage nur etwa 40&nbsp;€ zahlt.</p></div></div>
-                <div class="tip"><span class="tip__icon">!</span><div><strong data-i18n="travel.flug.9">Pufferzeit vor der Schranke einplanen</strong><p data-i18n="travel.flug.10">Es kann sein, dass man kurz warten muss, bis Plätze frei werden. Unser Trick: Richtet eure Ankunft am Parkplatz nach den Zeiten von 1–2 landenden Flügen vor eurem Flug – so erwischt ihr genau den Moment, wenn abreisende Passagiere ausparken.</p></div></div>
+          <article class="option" data-reveal="">
+            <div class="option__media">
+              <img src="/images/hero-petrcane-1000.webp" alt="Die Häuser von Petrčane am Wasser" loading="lazy" data-i18n-attr="alt:unterkunft.38">
+            </div>
+            <div class="option__body">
+              <div class="option__top"><span class="option__no" data-i18n="unterkunft.16">Option 2</span><span class="chip" data-i18n="unterkunft.17">0,8 km</span></div>
+              <h3 data-i18n="unterkunft.18">Ferien&shy;wohnungen &amp; Airbnbs <small>Direkt nebenan &amp; preiswerter</small></h3>
+              <p data-i18n="unterkunft.19">Petrčane bietet wunderschöne private Apartments, Pensionen und Villen mit Pools. Viele davon liegen direkt hinter dem Hotel Pinija (nur 2 bis 5 Gehminuten entfernt). Meist deutlich günstiger und perfekt für Familien oder Freundesgruppen.</p>
+              <details class="more">
+                <summary><span data-i18n="unterkunft.20">Mehr erfahren</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+                <div class="more__body">
+                  <p data-i18n="unterkunft.21"><strong>So findet ihr sie:</strong> Sucht einfach auf Airbnb.de oder Booking.com nach „Petrčane“.</p>
+                  <p data-i18n="unterkunft.22"><strong>💡 Zusammentun?</strong> Ihr möchtet euch für eine Ferienwohnung oder eine Villa mit anderen Gästen zusammenschließen, wisst aber nicht, wer noch sucht? Sprecht uns einfach an – wir vernetzen euch super gerne untereinander!</p>
+                  <p data-i18n="unterkunft.23"><strong>🌊 Wichtiger Hinweis zum Strand:</strong> In Kroatien sind alle Strände öffentlich zugänglich! Auch wenn ihr nicht im Hotel übernachtet, könnt ihr den Strand am Hotel Pinija uneingeschränkt nutzen. Bringt einfach eure eigenen Handtücher oder Liegematten mit (die festen Hotelliegen sind kostenpflichtig bzw. Hotelgästen vorbehalten).</p>
+                </div>
+              </details>
+              <div class="option__links">
+                <a class="link-arrow" href="https://www.airbnb.de/s/Petr%C4%8Dane--Kroatien/homes" target="_blank" rel="noopener" data-i18n="unterkunft.24">Airbnb <span aria-hidden="true">→</span></a>
+                <a class="link-arrow" href="https://www.booking.com/searchresults.de.html?ss=Petr%C4%8Dane" target="_blank" rel="noopener" data-i18n="unterkunft.25">Booking.com <span aria-hidden="true">→</span></a>
               </div>
             </div>
+          </article>
+
+          <article class="option" data-reveal="">
+            <div class="option__media">
+              <img src="/images/beach-sunset-800.webp" alt="Kiesstrand bei Sonnenuntergang an der Küste bei Zadar" loading="lazy" data-i18n-attr="alt:unterkunft.39">
+            </div>
+            <div class="option__body">
+              <div class="option__top"><span class="option__no" data-i18n="unterkunft.26">Option 3</span><span class="chip" data-i18n="unterkunft.27">8,9 km</span></div>
+              <h3 data-i18n="unterkunft.28">Außerhalb von Petrčane <small>Vordörfer &amp; Umgebung von Zadar</small></h3>
+              <p data-i18n="unterkunft.29">Wer nicht die gesamte Zeit in Petrčane verbringen möchte, kann sich auch wunderbar in den umliegenden Küstenorten einquartieren. Beliebt: 1–2 Nächte nahe am Geschehen und die restlichen Tage in einer gemütlichen Ferienwohnung oder auf einem Campingplatz in den ruhigeren Vordörfern.</p>
+              <details class="more">
+                <summary><span data-i18n="unterkunft.20">Mehr erfahren</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+                <div class="more__body">
+                  <p data-i18n="unterkunft.30"><strong>Warum die Vordörfer ideal für einen Strandurlaub sind:</strong> In der Innenstadt von Zadar gibt es zwar eine historische Altstadt und tolle Restaurants, die Stadtstrände sind jedoch meist nicht so schön wie in den umliegenden Dörfern.</p>
+                  <p data-i18n="unterkunft.31"><strong>Unser Tipp:</strong> Tagsüber das glasklare Meer in den Vordörfern genießen und erst abends für Flaniermeilen, Kultur und Abendessen in die Innenstadt von Zadar fahren. Mehr Tipps findet ihr unter <a href="#anreise">Travel / Anreise</a>.</p>
+                </div>
+              </details>
+            </div>
+          </article>
+        </div>
+
+        <!-- Recommended places -->
+        <div class="areas">
+          <div class="container areas__head">
+            <div>
+              <p class="eyebrow eyebrow--strong" data-reveal="" data-i18n="unterkunft.32">Empfohlene Orte</p>
+              <h2 class="display display--sm" data-reveal="" data-i18n="unterkunft.33">Die schönsten Orte<br>rund um die Location</h2>
+            </div>
+            <p data-reveal="" data-i18n="unterkunft.34">Wenn ihr als Gruppe zusammenbleiben, unabhängiger wohnen oder euren Aufenthalt verlängern möchtet: Hier sind unsere Lieblingsorte in der Nähe – bucht einfach direkt über die Plattform eurer Wahl.</p>
           </div>
 
-          <!-- US -->
-          <div class="tabs__panel" role="tabpanel" id="tab-us" aria-labelledby="t-us" hidden="" lang="en">
-            <div class="panel-grid">
+          <div class="container">
+            <figure class="map" data-reveal="clip">
+              <img src="/images/map.webp" alt="Karte der Küste zwischen Punta Skala, Petrčane, Kožino und Zadar" loading="lazy" data-i18n-attr="alt:unterkunft.40">
+              <a class="map__pin" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Pinija+Petr%C4%8Dane" target="_blank" rel="noopener" style="--x:36%;--y:24%">
+                <span class="map__dot"></span><span class="map__label" data-i18n="unterkunft.35">Hotel Pinija · Hochzeit</span>
+              </a>
+            </figure>
+          </div>
+
+          <div class="carousel" data-carousel="">
+            <div class="carousel__controls container">
+              <span class="carousel__count"><b data-carousel-index="">01</b> / <span data-carousel-total="">08</span></span>
               <div>
-                <h3 class="h3" data-i18n="travel.us.1">For our guests traveling from the US</h3>
-                <p data-i18n="travel.us.2">Great news for everyone flying in from the States: United Airlines offers a direct nonstop flight from Newark directly to Split!</p>
-                <div class="flight">
-                  <div><b>EWR</b><small data-i18n="travel.us.3">Newark</small></div>
-                  <div class="flight__line"><span data-i18n="travel.us.4">United Airlines · nonstop</span></div>
-                  <div><b>SPU</b><small data-i18n="travel.us.5">Split</small></div>
+                <button type="button" class="round-btn" data-carousel-prev="" aria-label="Vorheriger Ort" data-i18n-attr="aria-label:unterkunft.41"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"></path></svg></button>
+                <button type="button" class="round-btn" data-carousel-next="" aria-label="Nächster Ort" data-i18n-attr="aria-label:unterkunft.42"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"></path></svg></button>
+              </div>
+            </div>
+            <div class="carousel__track" data-carousel-track="" tabindex="0" aria-label="Empfohlene Orte" data-i18n-attr="aria-label:unterkunft.32">
+              <!-- cards injected from data in main.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =====================================================
+         PAGE 4 — TRAVEL / ANREISE
+         ===================================================== -->
+    <div class="page" data-page="anreise" id="anreise" hidden>
+      <div class="page__facts"><div class="container" data-keyfacts="bar"></div></div>
+      <section class="travel section">
+        <div class="travel__banner">
+          <div class="travel__banner-media"><img src="/images/beach-sunset.webp" srcset="/images/beach-sunset-800.webp 800w, /images/beach-sunset.webp 1600w" sizes="100vw" alt="Sonnenuntergang am Strand nahe Zadar" loading="lazy" data-parallax="0.12" data-i18n-attr="alt:anreise.40"></div>
+          <div class="travel__banner-text">
+            <p class="eyebrow eyebrow--light" data-reveal="" data-i18n="nav.4">Travel / Anreise</p>
+            <h2 class="display display--light" data-reveal="" data-i18n="anreise.1">Auf nach<br><em>Dalmatien</em></h2>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="tabs" data-tabs="">
+            <div class="tabs__list" role="tablist" aria-label="Anreise-Optionen" data-i18n-attr="aria-label:anreise.41">
+              <button role="tab" aria-selected="true" aria-controls="tab-flug" id="t-flug" data-i18n="t-flug.1">Flug ab München</button>
+              <button role="tab" aria-selected="false" aria-controls="tab-us" id="t-us" tabindex="-1" data-i18n="t-us.1">From the US</button>
+              <button role="tab" aria-selected="false" aria-controls="tab-auto" id="t-auto" tabindex="-1" data-i18n="t-auto.1">Mit dem Auto</button>
+              <span class="tabs__ink" aria-hidden="true"></span>
+            </div>
+
+            <!-- Flug -->
+            <div class="tabs__panel" role="tabpanel" id="tab-flug" aria-labelledby="t-flug">
+              <div class="panel-grid">
+                <div>
+                  <h3 class="h3" data-i18n="travel.flug.1"><small class="h3__pre">Nächster Flughafen:</small> Zadar International Airport <small>(ZAD) · 20 Min. zum Hotel Pinija</small></h3>
+                  <p data-i18n="travel.flug.2">Für unsere Gäste aus der Region München / Bayern: Wir sind bisher sehr oft vom Flughafen <strong>Memmingen (FMM)</strong> nach Zadar geflogen.</p>
+                  <a class="link-arrow" href="https://www.zadar-airport.hr/en/homepage/" target="_blank" rel="noopener" data-i18n="travel.flug.3">zadar-airport.hr <span aria-hidden="true">→</span></a>
+                </div>
+                <div class="tip-stack">
+                  <div class="tip"><span class="tip__icon">€</span><div><strong data-i18n="travel.flug.4">Schnäppchen-Tipp</strong><p data-i18n="travel.flug.5">Die Flüge unter der Woche sind teilweise extrem günstig – mit etwas Glück und nur mit kleinem Rucksack/Handgepäck gibt es Tickets schon ab 35&nbsp;€ pro Flug.</p></div></div>
+                  <div class="tip"><span class="tip__icon" data-i18n="travel.flug.6">P</span><div><strong data-i18n="travel.flug.7">Parken am Flughafen Memmingen</strong><p data-i18n="travel.flug.8">Es gibt günstige externe Parkplätze (ca. 10–15 Minuten zu Fuß vom Terminal), bei denen man für 4–5 Tage nur etwa 40&nbsp;€ zahlt.</p></div></div>
+                  <div class="tip"><span class="tip__icon">!</span><div><strong data-i18n="travel.flug.9">Pufferzeit vor der Schranke einplanen</strong><p data-i18n="travel.flug.10">Es kann sein, dass man kurz warten muss, bis Plätze frei werden. Unser Trick: Richtet eure Ankunft am Parkplatz nach den Zeiten von 1–2 landenden Flügen vor eurem Flug – so erwischt ihr genau den Moment, wenn abreisende Passagiere ausparken.</p></div></div>
                 </div>
               </div>
-              <div class="tip-stack">
-                <div class="tip"><span class="tip__icon">→</span><div><strong data-i18n="travel.us.6">Getting from Split to Petrčane / Zadar</strong><p data-i18n="travel.us.7">Split Airport is about a 1.5-hour scenic drive along the coast up to Petrčane. Renting a car directly at Split Airport is super easy and the best way to travel to the wedding location while having total flexibility to explore the coastline!</p></div></div>
-                <div class="tip"><span class="tip__icon">✈</span><div><strong data-i18n="travel.us.8">Connecting flights</strong><p data-i18n="travel.us.9">Alternatively, look for convenient 1-stop connections directly into Zadar Airport (ZAD), which is just 20 minutes from Hotel Pinija.</p></div></div>
+            </div>
+
+            <!-- US -->
+            <div class="tabs__panel" role="tabpanel" id="tab-us" aria-labelledby="t-us" hidden="" lang="en">
+              <div class="panel-grid">
+                <div>
+                  <h3 class="h3" data-i18n="travel.us.1">For our guests traveling from the US</h3>
+                  <p data-i18n="travel.us.2">Great news for everyone flying in from the States: United Airlines offers a direct nonstop flight from Newark directly to Split!</p>
+                  <div class="flight">
+                    <div><b>EWR</b><small data-i18n="travel.us.3">Newark</small></div>
+                    <div class="flight__line"><span data-i18n="travel.us.4">United Airlines · nonstop</span></div>
+                    <div><b>SPU</b><small data-i18n="travel.us.5">Split</small></div>
+                  </div>
+                </div>
+                <div class="tip-stack">
+                  <div class="tip"><span class="tip__icon">→</span><div><strong data-i18n="travel.us.6">Getting from Split to Petrčane / Zadar</strong><p data-i18n="travel.us.7">Split Airport is about a 1.5-hour scenic drive along the coast up to Petrčane. Renting a car directly at Split Airport is super easy and the best way to travel to the wedding location while having total flexibility to explore the coastline!</p></div></div>
+                  <div class="tip"><span class="tip__icon">✈</span><div><strong data-i18n="travel.us.8">Connecting flights</strong><p data-i18n="travel.us.9">Alternatively, look for convenient 1-stop connections directly into Zadar Airport (ZAD), which is just 20 minutes from Hotel Pinija.</p></div></div>
+                </div>
               </div>
+            </div>
+
+            <!-- Auto -->
+            <div class="tabs__panel" role="tabpanel" id="tab-auto" aria-labelledby="t-auto" hidden="">
+              <div class="stats">
+                <div><b data-i18n="travel.auto.1">~9 Std.</b><small data-i18n="travel.auto.2">reine Fahrzeit ab München</small></div>
+                <div><b data-i18n="travel.auto.3">3 Länder</b><small data-i18n="travel.auto.4">Österreich · Slowenien · Kroatien</small></div>
+                <div><b data-i18n="travel.auto.5">2 Stopps</b><small data-i18n="travel.auto.6">Hallein &amp; Novo mesto</small></div>
+              </div>
+              <p class="note" data-i18n="travel.auto.7">⛽ <strong>Tipp zum Tanken:</strong> Unbedingt das erste Mal in Österreich und danach wieder in Kroatien tanken – dort ist der Treibstoff meist deutlich günstiger.</p>
+
+              <h3 class="h3" data-i18n="travel.auto.8">Maut &amp; Tunnelgebühren</h3>
+              <p data-i18n="travel.auto.9">Denkt bitte unbedingt daran, eure Mautprodukte vor der Abreise online zu buchen! Das spart enorm viel Zeit an den Mautstellen und verhindert teure Bußgelder.</p>
+              <div class="tolls">
+                <div class="toll">
+                  <span class="toll__cc">AT</span>
+                  <h4 data-i18n="travel.auto.10">Österreich</h4>
+                  <p data-i18n="travel.auto.11"><strong>Vignette</strong> für die Autobahnen (z.&nbsp;B. 10-Tages-Vignette).</p>
+                  <p data-i18n="travel.auto.12"><strong>Streckenmaut:</strong> Tunnelgebühren auf der Tauernautobahn (Tauern- und Katschbergtunnel) sowie für den Karawankentunnel Richtung Süden.</p>
+                  <a class="btn btn--outline btn--sm toll__btn" href="https://shop.asfinag.at/" target="_blank" rel="noopener"><span data-i18n="travel.auto.15">Offiziell vorab bei der ASFINAG</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+                </div>
+                <div class="toll">
+                  <span class="toll__cc">SI</span>
+                  <h4 data-i18n="travel.auto.13">Slowenien</h4>
+                  <p data-i18n="travel.auto.14"><strong>E-Vinjeta:</strong> Digitale Vignette für das slowenische Autobahnnetz (1-Wochen- oder 1-Monats-Vignette, je nachdem wie lange ihr bleibt).</p>
+                  <a class="btn btn--outline btn--sm toll__btn" href="https://shop.asfinag.at/" target="_blank" rel="noopener"><span data-i18n="travel.auto.15">Offiziell vorab bei der ASFINAG</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+                </div>
+                <div class="toll">
+                  <span class="toll__cc">HR</span>
+                  <h4 data-i18n="travel.auto.16">Kroatien</h4>
+                  <p data-i18n="travel.auto.17">An der Autobahnauffahrt einfach ein Ticket ziehen und beim Verlassen der Autobahn zahlen (bar oder bequem per Kreditkarte).</p>
+                </div>
+              </div>
+              <div class="warning">
+                <strong data-i18n="travel.auto.18">⚠️ Wichtig für die Rückfahrt (Karawankentunnel)</strong>
+                <p data-i18n="travel.auto.19">Fahrt ihr auf der Heimreise von Süden nach Norden durch den Karawankentunnel, wird die Tunnelmaut für die Nordrichtung direkt auf slowenischer Seite an der Mautstelle <strong>Hrušica</strong> bezahlt – nicht vorab über die österreichische ASFINAG.</p>
+              </div>
+
+              <div class="route-head">
+                <h3 class="h3" data-i18n="travel.auto.20">Unsere Lieblingsroute &amp; Pausen-Tipps</h3>
+                <a class="btn btn--dark btn--sm" href="https://maps.app.goo.gl/hbZaRd4resnjDbTB9" target="_blank" rel="noopener"><span data-i18n="travel.auto.21">Route in Google Maps</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+              </div>
+              <p data-i18n="travel.auto.22">Wir sind diese Strecke schon extrem oft gefahren und machen standardmäßig folgende zwei Stopps:</p>
+              <ol class="route" data-route="">
+                <span class="route__line" aria-hidden="true"><span></span></span>
+                <li><b data-i18n="travel.auto.23">München</b><p data-i18n="travel.auto.24">Start – ca. 9 Stunden bis zur Küste.</p></li>
+                <li><b data-i18n="travel.auto.25">1. Pause: Hallein, Österreich</b><p data-i18n="travel.auto.26">Perfekt zum günstig Tanken. Direkt neben der JET Tankstelle liegt ein McDonald’s für einen kurzen Snack. Man muss kurz von der Autobahn abfahren, aber der Abstecher lohnt sich!</p></li>
+                <li>
+                  <b data-i18n="travel.auto.27">2. Pause: Novo mesto, Slowenien</b>
+                  <p data-i18n="travel.auto.28"><a href="https://maps.app.goo.gl/8MNEtB6n74offDbM7" target="_blank" rel="noopener">Tankstelle Petrol</a> – ab hier fahren wir über die Landstraße weiter. Achtung, sehr kurvig – wer leicht seekrank wird: Reiseübelkeit-Tabletten einpacken!</p>
+                  <p class="route__why" data-i18n="travel.auto.33"><strong>Warum wir das machen:</strong> Kilometermäßig ist die Strecke kürzer und ihr umgeht den Hauptautobahn-Grenzübergang, an dem man in der Hauptsaison oft ewig im Stau steht. Für uns haben sich die Kurven bisher jedes Mal zeitlich absolut ausgezahlt – entscheidet einfach selbst, was euch lieber ist!</p>
+                </li>
+                <li><b data-i18n="travel.auto.29">Grenze Slowenien → Kroatien</b><p data-i18n="travel.auto.30">Wer erst in Kroatien tanken möchte, kann gleich nach der Grenze bei der <a href="https://maps.app.goo.gl/VbJSz7dNyj27jhDS9" target="_blank" rel="noopener">INA Tankstelle</a> auftanken (Achtung: sehr viele Mücken!). Auf den Autobahntankstellen ist der Sprit auf jeden Fall teurer.</p></li>
+                <li><b data-i18n="travel.auto.31">Petrčane</b><p data-i18n="travel.auto.32">Angekommen – ab ins Meer! 🌊</p></li>
+              </ol>
             </div>
           </div>
 
-          <!-- Auto -->
-          <div class="tabs__panel" role="tabpanel" id="tab-auto" aria-labelledby="t-auto" hidden="">
-            <div class="stats">
-              <div><b data-i18n="travel.auto.1">~9 Std.</b><small data-i18n="travel.auto.2">reine Fahrzeit ab München</small></div>
-              <div><b data-i18n="travel.auto.3">3 Länder</b><small data-i18n="travel.auto.4">Österreich · Slowenien · Kroatien</small></div>
-              <div><b data-i18n="travel.auto.5">2 Stopps</b><small data-i18n="travel.auto.6">Hallein &amp; Novo mesto</small></div>
+          <!-- Only shown for the flight tabs (see initTabs in main.js) -->
+          <div class="callout" data-reveal="" data-tabs-only="tab-flug tab-us">
+            <div class="callout__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M5 16l1.5-5A2 2 0 0 1 8.4 9.6h7.2a2 2 0 0 1 1.9 1.4L19 16M4 16h16v3H4zM7 19v1.5M17 19v1.5"></path></svg>
             </div>
-            <p class="note" data-i18n="travel.auto.7">⛽ <strong>Tipp zum Tanken:</strong> Unbedingt das erste Mal in Österreich und danach wieder in Kroatien tanken – dort ist der Treibstoff meist deutlich günstiger.</p>
-
-            <h3 class="h3" data-i18n="travel.auto.8">Maut &amp; Tunnelgebühren</h3>
-            <p data-i18n="travel.auto.9">Denkt bitte unbedingt daran, eure Mautprodukte vor der Abreise online zu buchen! Das spart enorm viel Zeit an den Mautstellen und verhindert teure Bußgelder.</p>
-            <div class="tolls">
-              <div class="toll">
-                <span class="toll__cc">AT</span>
-                <h4 data-i18n="travel.auto.10">Österreich</h4>
-                <p data-i18n="travel.auto.11"><strong>Vignette</strong> für die Autobahnen (z.&nbsp;B. 10-Tages-Vignette).</p>
-                <p data-i18n="travel.auto.12"><strong>Streckenmaut:</strong> Tunnelgebühren auf der Tauernautobahn (Tauern- und Katschbergtunnel) sowie für den Karawankentunnel Richtung Süden.</p>
-              </div>
-              <div class="toll">
-                <span class="toll__cc">SI</span>
-                <h4 data-i18n="travel.auto.13">Slowenien</h4>
-                <p data-i18n="travel.auto.14"><strong>E-Vinjeta:</strong> Digitale Vignette für das slowenische Autobahnnetz (1-Wochen- oder 1-Monats-Vignette, je nachdem wie lange ihr bleibt).</p>
-                <a class="link-arrow" href="https://shop.asfinag.at/" target="_blank" rel="noopener" data-i18n="travel.auto.15">Offiziell vorab bei der ASFINAG <span aria-hidden="true">→</span></a>
-              </div>
-              <div class="toll">
-                <span class="toll__cc">HR</span>
-                <h4 data-i18n="travel.auto.16">Kroatien</h4>
-                <p data-i18n="travel.auto.17">An der Autobahnauffahrt einfach ein Ticket ziehen und beim Verlassen der Autobahn zahlen (bar oder bequem per Kreditkarte).</p>
-              </div>
+            <div>
+              <h3 data-i18n="anreise.2">Mobil vor Ort: Mietwagen-Empfehlung</h3>
+              <p data-i18n="anreise.3">Wir empfehlen euch dringend, euch ein Mietauto zu buchen. Öffentliche Verkehrsmittel werden vor Ort eher nicht intensiv genutzt und sind schwer einzuschätzen (wir kennen die Öffis vor Ort selbst nicht). Mit dem Mietwagen seid ihr super flexibel und kommt überall problemlos hin!</p>
             </div>
-            <div class="warning">
-              <strong data-i18n="travel.auto.18">⚠️ Wichtig für die Rückfahrt (Karawankentunnel)</strong>
-              <p data-i18n="travel.auto.19">Fahrt ihr auf der Heimreise von Süden nach Norden durch den Karawankentunnel, wird die Tunnelmaut für die Nordrichtung direkt auf slowenischer Seite an der Mautstelle <strong>Hrušica</strong> bezahlt – nicht vorab über die österreichische ASFINAG.</p>
-            </div>
-
-            <div class="route-head">
-              <h3 class="h3" data-i18n="travel.auto.20">Unsere Lieblingsroute &amp; Pausen-Tipps</h3>
-              <a class="btn btn--dark btn--sm" href="https://maps.app.goo.gl/hbZaRd4resnjDbTB9" target="_blank" rel="noopener"><span data-i18n="travel.auto.21">Route in Google Maps</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-            </div>
-            <p data-i18n="travel.auto.22">Wir sind diese Strecke schon extrem oft gefahren und machen standardmäßig folgende zwei Stopps:</p>
-            <ol class="route" data-route="">
-              <span class="route__line" aria-hidden="true"><span></span></span>
-              <li><b data-i18n="travel.auto.23">München</b><p data-i18n="travel.auto.24">Start – ca. 9 Stunden bis zur Küste.</p></li>
-              <li><b data-i18n="travel.auto.25">1. Pause: Hallein, Österreich</b><p data-i18n="travel.auto.26">Perfekt zum günstig Tanken. Direkt neben der JET Tankstelle liegt ein McDonald’s für einen kurzen Snack. Man muss kurz von der Autobahn abfahren, aber der Abstecher lohnt sich!</p></li>
-              <li><b data-i18n="travel.auto.27">2. Pause: Novo mesto, Slowenien</b><p data-i18n="travel.auto.28"><a href="https://maps.app.goo.gl/8MNEtB6n74offDbM7" target="_blank" rel="noopener">Tankstelle Petrol</a> – ab hier fahren wir über die Landstraße weiter. Kilometermäßig kürzer, und ihr umgeht den Hauptgrenzübergang, an dem man in der Hauptsaison oft ewig im Stau steht. Achtung, sehr kurvig – wer leicht seekrank wird: Reiseübelkeit-Tabletten einpacken!</p></li>
-              <li><b data-i18n="travel.auto.29">Grenze Slowenien → Kroatien</b><p data-i18n="travel.auto.30">Wer erst in Kroatien tanken möchte, kann gleich nach der Grenze bei der <a href="https://maps.app.goo.gl/VbJSz7dNyj27jhDS9" target="_blank" rel="noopener">INA Tankstelle</a> auftanken (Achtung: sehr viele Mücken!). Auf den Autobahntankstellen ist der Sprit auf jeden Fall teurer.</p></li>
-              <li><b data-i18n="travel.auto.31">Petrčane</b><p data-i18n="travel.auto.32">Angekommen – ab ins Meer! 🌊</p></li>
-            </ol>
           </div>
         </div>
 
-        <div class="callout" data-reveal="">
-          <div class="callout__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M5 16l1.5-5A2 2 0 0 1 8.4 9.6h7.2a2 2 0 0 1 1.9 1.4L19 16M4 16h16v3H4zM7 19v1.5M17 19v1.5"></path></svg>
-          </div>
+        <!-- Tips -->
+        <div class="container section__head section__head--split">
           <div>
-            <h3 data-i18n="anreise.2">Mobil vor Ort: Mietwagen-Empfehlung</h3>
-            <p data-i18n="anreise.3">Wir empfehlen euch dringend, euch ein Mietauto zu buchen. Öffentliche Verkehrsmittel werden vor Ort eher nicht intensiv genutzt und sind schwer einzuschätzen (wir kennen die Öffis vor Ort selbst nicht). Mit dem Mietwagen seid ihr super flexibel und kommt überall problemlos hin!</p>
+            <p class="eyebrow" data-reveal="" data-i18n="anreise.4">Insider-Tipps</p>
+            <h2 class="display display--sm" data-reveal="" data-i18n="anreise.5">Dalmatien Strand-<br>&amp; Reisetipps</h2>
+          </div>
+          <p data-reveal="" data-i18n="anreise.6">Damit euer Urlaub an der kroatischen Küste perfekt wird, hier unsere wichtigsten Insider-Tipps.</p>
+        </div>
+        <div class="container tips" data-reveal-group="">
+          <div class="tipcard"><span>🩴</span><h4 data-i18n="anreise.7">Wasserschuhe</h4><p data-i18n="anreise.8">Für Unerfahrene Pflicht! Schützen die Füße vor spitzen Kieselsteinen und Seeigeln. Es gibt auch welche, die gut und wie (weiße) Sneaker ausschauen. Wir haben unsere bei Amazon geholt.</p></div>
+          <div class="tipcard"><span>🧘</span><h4 data-i18n="anreise.9">Isomatte mitnehmen</h4><p data-i18n="anreise.10">Dünne Klapp-Isomatten oder gepolsterte Liegematten machen das Liegen auf Kieselsteinen richtig bequem – ein Handtuch reicht meist nicht.</p></div>
+          <div class="tipcard"><span>🤿</span><h4 data-i18n="anreise.11">Schnorchel einpacken</h4><p data-i18n="anreise.12">Durch die Kieselstrände ist das Wasser glasklar – man sieht die Unterwasserwelt perfekt!</p></div>
+          <div class="tipcard"><span>🚤</span><h4 data-i18n="anreise.13">Tages-Bootstour</h4><p data-i18n="anreise.14">Perfekt für Schwimmer, z.&nbsp;B. Richtung Kornaten oder Dugi Otok. Das Boot hält in traumhaften Buchten zum Schwimmen und Schnorcheln direkt vom Deck aus. Wir waren erst auf einer und können sie gut weiterempfehlen. Meldet euch bei uns für Links (Nur für Schwimmer).</p></div>
+          <div class="tipcard"><span>💶</span><h4 data-i18n="anreise.15">Bargeld parat haben</h4><p data-i18n="anreise.16">Obwohl der Euro gilt und vieles mit Karte geht, nehmen kleine Strandbars, Bäcker oder Parkautomaten manchmal nur Cash.</p></div>
+          <div class="tipcard"><span>🧴</span><h4 data-i18n="anreise.17">Sonnencreme &amp; Mückenspray</h4><p data-i18n="anreise.18">Die Sonne ist intensiv – und abends unter den Pinienbäumen helfen Mückensprays.</p></div>
+        </div>
+
+        <!-- Places -->
+        <div class="container places">
+          <div class="places__col">
+            <p class="eyebrow" data-reveal="" data-i18n="anreise.19">Von uns bereits besucht</p>
+            <dl class="visited">
+              <div data-reveal="" data-gallery-row="visited-zadar"><dt data-i18n="anreise.20">Zadar &amp; Umgebung</dt><dd data-i18n="anreise.21">Zadar · Nin · Ražanac · Posedarje · Novigrad · Sukošan</dd></div>
+              <div data-reveal="" data-gallery-row="visited-dugi-otok"><dt data-i18n="anreise.22">Insel-Highlight</dt><dd data-i18n="anreise.23">Dugi Otok – absolute Empfehlung: eine geführte Bootstour buchen!</dd></div>
+              <div data-reveal="" data-gallery-row="visited-kuestenroute"><dt data-i18n="anreise.24">Küstenroute Richtung Süden</dt><dd data-i18n="anreise.25">Vodice · Šibenik · Split · Makarska · Gradac · Drvenik (Brin)</dd></div>
+              <div data-reveal="" data-gallery-row="visited-sueden"><dt data-i18n="anreise.26">Weiter im Süden</dt><dd data-i18n="anreise.27">Mostar (Bosnien und Herzegowina) · Dubrovnik</dd></div>
+            </dl>
+          </div>
+          <div class="places__col">
+            <p class="eyebrow" data-reveal="" data-i18n="anreise.28">Highlights entlang der Route</p>
+            <ul class="highlights">
+              <li data-reveal="" data-i18n="anreise.29"><b>🎬 Game of Thrones Drehorte</b> Dubrovnik (King’s Landing) und Split (Daenerys’ Drachenhöhle) liegen direkt an der Küste.</li>
+              <li data-reveal="" data-i18n="anreise.30"><b>🏝️ Inseln &amp; Bootstouren</b> Tages-Schiffstouren buchen oder mit Bootsführerschein selbst ein Boot mieten.</li>
+              <li data-reveal="" data-i18n="anreise.31"><b>🍷 Wein &amp; Olivenöl</b> Gemütliche Tastings in traditionellen Konobas im Hinterland.</li>
+              <li data-reveal="" data-i18n="anreise.32"><b>🏛️ Kultur &amp; Abende</b> Altstadt-Bummel, Restaurants und Bars in Zadar (15 Min.) oder Split.</li>
+              <li data-reveal="" data-i18n="anreise.33"><b>Nationalpark Krka</b> Spektakuläre Wasserfälle und Holzstege bei Šibenik.</li>
+              <li data-reveal="" data-i18n="anreise.34"><b>Trogir</b> Historische UNESCO-Altstadt auf einer kleinen Insel kurz vor Split.</li>
+              <li data-reveal="" data-i18n="anreise.35"><b>Primošten</b> Malerisches Fischerdorf auf einer Halbinsel mit schöner Promenade.</li>
+              <li data-reveal="" data-i18n="anreise.36"><b>Omiš</b> Wo der Fluss ins Meer mündet – steile Felswände, Ziplining &amp; Rafting.</li>
+              <li data-reveal="" data-i18n="anreise.37"><b>Hvar &amp; Brač</b> Z.&nbsp;B. Bol / Goldenes Horn – per Fähre ab Split.</li>
+              <li data-reveal="" data-i18n="anreise.38"><b>Ston &amp; Mali Ston</b> Längste Festungsmauer Europas &amp; frische Austern.</li>
+              <li data-reveal="" data-i18n="anreise.39"><b>Kravica-Wasserfälle</b> Auf dem Weg nach Mostar (BiH) – lädt zum Baden ein.</li>
+            </ul>
           </div>
         </div>
-      </div>
+      </section>
+    </div>
 
-      <!-- Tips -->
-      <div class="container section__head section__head--split">
-        <div>
-          <p class="eyebrow" data-reveal="" data-i18n="anreise.4">Insider-Tipps</p>
-          <h2 class="display display--sm" data-reveal="" data-i18n="anreise.5">Dalmatien Strand-<br>&amp; Reisetipps</h2>
-        </div>
-        <p data-reveal="" data-i18n="anreise.6">Damit euer Urlaub an der kroatischen Küste perfekt wird, hier unsere wichtigsten Insider-Tipps.</p>
-      </div>
-      <div class="container tips" data-reveal-group="">
-        <div class="tipcard"><span>🩴</span><h4 data-i18n="anreise.7">Wasserschuhe</h4><p data-i18n="anreise.8">Für Unerfahrene Pflicht! Schützen die Füße vor spitzen Kieselsteinen und Seeigeln.</p></div>
-        <div class="tipcard"><span>🧘</span><h4 data-i18n="anreise.9">Isomatte mitnehmen</h4><p data-i18n="anreise.10">Dünne Klapp-Isomatten oder gepolsterte Liegematten machen das Liegen auf Kieselsteinen richtig bequem – ein Handtuch reicht meist nicht.</p></div>
-        <div class="tipcard"><span>🤿</span><h4 data-i18n="anreise.11">Schnorchel einpacken</h4><p data-i18n="anreise.12">Durch die Kieselstrände ist das Wasser glasklar – man sieht die Unterwasserwelt perfekt!</p></div>
-        <div class="tipcard"><span>🚤</span><h4 data-i18n="anreise.13">Tages-Bootstour</h4><p data-i18n="anreise.14">Perfekt für Schwimmer, z.&nbsp;B. Richtung Kornaten oder Dugi Otok. Das Boot hält in traumhaften Buchten zum Schwimmen und Schnorcheln direkt vom Deck aus.</p></div>
-        <div class="tipcard"><span>💶</span><h4 data-i18n="anreise.15">Bargeld parat haben</h4><p data-i18n="anreise.16">Obwohl der Euro gilt und vieles mit Karte geht, nehmen kleine Strandbars, Bäcker oder Parkautomaten manchmal nur Cash.</p></div>
-        <div class="tipcard"><span>🧴</span><h4 data-i18n="anreise.17">Sonnencreme &amp; Mückenspray</h4><p data-i18n="anreise.18">Die Sonne ist intensiv – und abends unter den Pinienbäumen helfen Mückensprays.</p></div>
-      </div>
-
-      <!-- Places -->
-      <div class="container places">
-        <div class="places__col">
-          <p class="eyebrow" data-reveal="" data-i18n="anreise.19">Von uns bereits besucht</p>
-          <dl class="visited">
-            <div data-reveal=""><dt data-i18n="anreise.20">Zadar &amp; Umgebung</dt><dd data-i18n="anreise.21">Zadar · Nin · Ražanac · Posedarje · Novigrad · Sukošan</dd></div>
-            <div data-reveal=""><dt data-i18n="anreise.22">Insel-Highlight</dt><dd data-i18n="anreise.23">Dugi Otok – absolute Empfehlung: eine geführte Bootstour buchen!</dd></div>
-            <div data-reveal=""><dt data-i18n="anreise.24">Küsten-Route gen Süden</dt><dd data-i18n="anreise.25">Vodice · Šibenik · Split · Makarska · Gradac · Drvenik (Brin)</dd></div>
-            <div data-reveal=""><dt data-i18n="anreise.26">Weiter im Süden</dt><dd data-i18n="anreise.27">Mostar (Bosnien und Herzegowina) · Dubrovnik</dd></div>
-          </dl>
-        </div>
-        <div class="places__col">
-          <p class="eyebrow" data-reveal="" data-i18n="anreise.28">Highlights entlang der Route</p>
-          <ul class="highlights">
-            <li data-reveal="" data-i18n="anreise.29"><b>🎬 Game of Thrones Drehorte</b> Dubrovnik (King’s Landing) und Split (Daenerys’ Drachenhöhle) liegen direkt an der Küste.</li>
-            <li data-reveal="" data-i18n="anreise.30"><b>🏝️ Inseln &amp; Bootstouren</b> Tages-Schiffstouren buchen oder mit Bootsführerschein selbst ein Boot mieten.</li>
-            <li data-reveal="" data-i18n="anreise.31"><b>🍷 Wein &amp; Olivenöl</b> Gemütliche Tastings in traditionellen Konobas im Hinterland.</li>
-            <li data-reveal="" data-i18n="anreise.32"><b>🏛️ Kultur &amp; Abende</b> Altstadt-Bummel, Restaurants und Bars in Zadar (15 Min.) oder Split.</li>
-            <li data-reveal="" data-i18n="anreise.33"><b>Nationalpark Krka</b> Spektakuläre Wasserfälle und Holzstege bei Šibenik.</li>
-            <li data-reveal="" data-i18n="anreise.34"><b>Trogir</b> Historische UNESCO-Altstadt auf einer kleinen Insel kurz vor Split.</li>
-            <li data-reveal="" data-i18n="anreise.35"><b>Primošten</b> Malerisches Fischerdorf auf einer Halbinsel mit schöner Promenade.</li>
-            <li data-reveal="" data-i18n="anreise.36"><b>Omiš</b> Wo der Fluss ins Meer mündet – steile Felswände, Ziplining &amp; Rafting.</li>
-            <li data-reveal="" data-i18n="anreise.37"><b>Hvar &amp; Brač</b> Z.&nbsp;B. Bol / Goldenes Horn – per Fähre ab Split.</li>
-            <li data-reveal="" data-i18n="anreise.38"><b>Ston &amp; Mali Ston</b> Längste Festungsmauer Europas &amp; frische Austern.</li>
-            <li data-reveal="" data-i18n="anreise.39"><b>Kravica-Wasserfälle</b> Auf dem Weg nach Mostar (BiH) – lädt zum Baden ein.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ BRIDAL PARTY ============ -->
-    <section class="party section" id="bridal-party">
-      <div class="container section__head section__head--center">
-        <p class="eyebrow" data-reveal="" data-i18n="bridal-party.1">Our Bridal Party &amp; Best Friends</p>
-        <h2 class="display" data-reveal="" data-i18n="bridal-party.2">Ihr braucht Hilfe<br>oder plant was?</h2>
-        <p class="lead" data-reveal="" data-i18n="bridal-party.3">Bei allen Fragen und Anliegen steht euch unsere Bridal Party zur Seite. Wer noch keine Gesichter zu den Namen hat: Wendet euch einfach an unsere Brüder – sie stellen gerne den Kontakt für euch her!</p>
-      </div>
-
-      <div class="container party__leads" data-reveal-group="">
-        <div class="person person--lead"><span class="person__mono">T</span><h3>Thanh</h3><p data-i18n="bridal-party.4">Trauzeugin</p></div>
-        <div class="party__heart" aria-hidden="true">&amp;</div>
-        <div class="person person--lead"><span class="person__mono">F</span><h3>Foti</h3><p data-i18n="bridal-party.5">Trauzeuge</p></div>
-      </div>
-      <div class="container party__grid" data-reveal-group="">
-        <div class="person"><span class="person__mono">M</span><h3>Mai Anh</h3><p data-i18n="bridal-party.6">Brautjungfer</p></div>
-        <div class="person"><span class="person__mono">M</span><h3>Mai</h3><p data-i18n="bridal-party.6">Brautjungfer</p></div>
-        <div class="person"><span class="person__mono">A</span><h3>Anh</h3><p data-i18n="bridal-party.6">Brautjungfer</p></div>
-        <div class="person"><span class="person__mono">A</span><h3>Andi</h3><p data-i18n="bridal-party.7">Groomsman</p></div>
-        <div class="person"><span class="person__mono">D</span><h3>Daniel</h3><p data-i18n="bridal-party.7">Groomsman</p></div>
-      </div>
-    </section>
-
-    <!-- ============ RSVP ============ -->
-    <section class="rsvp" id="rsvp">
-      <div class="rsvp__media"><img src="/images/couple-sunset.webp" srcset="/images/couple-sunset-700.webp 700w, /images/couple-sunset.webp 1200w" sizes="100vw" alt="" loading="lazy" data-parallax="0.15"></div>
-      <div class="rsvp__veil"></div>
-      <div class="container rsvp__content">
-        <p class="eyebrow eyebrow--light" data-reveal="" data-i18n="nav.6">RSVP</p>
-        <h2 class="rsvp__title" data-reveal="" data-i18n="rsvp.1">Seid ihr dabei?</h2>
-        <p class="rsvp__lead" data-reveal="" data-i18n="rsvp.2">Bitte gebt uns bis zum <strong>1. Mai 2027</strong> Bescheid. Einfach euren Namen eingeben – dauert nur eine Minute.</p>
-        <div class="rsvp__actions" data-reveal="">
-          <a class="btn btn--light btn--lg" href="https://withjoy.com/nghivan2027/rsvp" target="_blank" rel="noopener">
-            <span data-i18n="rsvp.3">Jetzt zusagen</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
-          </a>
+    <!-- =====================================================
+         PAGE 5 — BRIDAL PARTY
+         ===================================================== -->
+    <div class="page" data-page="bridal-party" id="bridal-party" hidden>
+      <div class="page__facts"><div class="container" data-keyfacts="bar"></div></div>
+      <section class="party section">
+        <div class="container section__head section__head--center">
+          <h2 class="display party__title" data-reveal="" data-i18n="bridal-party.1">Our Bridal Party &amp; Best Friends</h2>
+          <h3 class="party__sub" data-reveal="" data-i18n="bridal-party.2">Ihr braucht Hilfe<br>oder plant was?</h3>
+          <p class="lead" data-reveal="" data-i18n="bridal-party.3">Bei allen Fragen und Anliegen steht euch unsere Bridal Party zur Seite. Wer noch keine Gesichter zu den Namen hat: Wendet euch einfach an unsere Brüder – sie stellen gerne den Kontakt für euch her!</p>
         </div>
 
-        <div class="app" data-reveal="">
-          <div>
-            <strong data-i18n="rsvp.4">Fotos teilen mit der Joy-App</strong>
-            <p data-i18n="rsvp.5">Lade Joy herunter und tritt mit unserem Event-Handle bei. Sieh dir Fotos an, teile sie und bleib unterwegs immer auf dem Laufenden.</p>
+        <div class="container party__leads" data-reveal-group="">
+          <div class="person person--lead" data-person="thanh"><span class="person__photo"><span class="person__mono">T</span></span><h3>Thanh</h3><p data-i18n="bridal-party.4">Trauzeugin</p></div>
+          <div class="party__amp" aria-hidden="true">&amp;</div>
+          <div class="person person--lead" data-person="foti"><span class="person__photo"><span class="person__mono">F</span></span><h3>Foti</h3><p data-i18n="bridal-party.5">Trauzeuge</p></div>
+        </div>
+        <div class="container party__grid" data-reveal-group="">
+          <div class="person" data-person="mai-anh"><span class="person__photo"><span class="person__mono">M</span></span><h3>Mai Anh</h3><p data-i18n="bridal-party.6">Brautjungfer</p></div>
+          <div class="person" data-person="mai"><span class="person__photo"><span class="person__mono">M</span></span><h3>Mai</h3><p data-i18n="bridal-party.6">Brautjungfer</p></div>
+          <div class="person" data-person="anh"><span class="person__photo"><span class="person__mono">A</span></span><h3>Anh</h3><p data-i18n="bridal-party.6">Brautjungfer</p></div>
+          <div class="person" data-person="andi"><span class="person__photo"><span class="person__mono">A</span></span><h3>Andi</h3><p data-i18n="bridal-party.7">Groomsman</p></div>
+          <div class="person" data-person="daniel"><span class="person__photo"><span class="person__mono">D</span></span><h3>Daniel</h3><p data-i18n="bridal-party.7">Groomsman</p></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =====================================================
+         PAGE 6 — RSVP
+         ===================================================== -->
+    <div class="page" data-page="rsvp" id="rsvp" hidden>
+      <section class="rsvp">
+        <div class="rsvp__media"><img src="/images/couple-sunset.webp" srcset="/images/couple-sunset-700.webp 700w, /images/couple-sunset.webp 1200w" sizes="100vw" alt="" loading="lazy" data-parallax="0.15"></div>
+        <div class="rsvp__veil"></div>
+        <div class="container rsvp__content">
+          <p class="eyebrow eyebrow--light" data-reveal="" data-i18n="nav.6">RSVP</p>
+          <h2 class="rsvp__title" data-reveal="" data-i18n="rsvp.1">Seid ihr dabei?</h2>
+          <p class="rsvp__lead" data-reveal="" data-i18n="rsvp.2">Bitte gebt uns bis zum <strong>1. Mai 2027</strong> Bescheid. Einfach euren Namen eingeben – dauert nur eine Minute.</p>
+          <div class="rsvp__actions" data-reveal="">
+            <a class="btn btn--light btn--lg" href="https://withjoy.com/nghivan2027/rsvp" target="_blank" rel="noopener">
+              <span data-i18n="rsvp.3">Jetzt zusagen</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
           </div>
-          <button class="code code--light" type="button" data-copy="nghivan2027" aria-label="Event-Handle nghivan2027 kopieren" data-i18n-attr="aria-label:rsvp.8">
-            <span class="code__label" data-i18n="rsvp.6">Handle</span>
-            <span class="code__value">nghivan2027</span>
-            <span class="code__hint" data-copy-hint="" data-i18n="unterkunft.6">Kopieren</span>
-          </button>
-          <a class="link-arrow link-arrow--light" href="https://withjoy.com/nghivan2027/app" target="_blank" rel="noopener" data-i18n="rsvp.7">App herunterladen <span aria-hidden="true">→</span></a>
+          <div class="rsvp__facts" data-keyfacts="light" data-reveal=""></div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
+
+    <!-- Next-page link (filled in by main.js) -->
+    <nav class="pager container" aria-label="Weiter" data-i18n-attr="aria-label:js.next" data-pager hidden></nav>
   </main>
 
   <footer class="footer">
     <div class="container footer__inner">
-      <p class="footer__mono">N<em>&amp;</em>I</p>
+      <p class="footer__mono">N<span>&amp;</span>I</p>
       <p class="footer__line" data-i18n="footer.1">Minh Nghi &amp; Ivan · 04.09.2027 · Petrčane, Kroatien</p>
+      <p class="footer__rsvp" data-i18n="home.8">RSVP bis 1. Mai 2027</p>
       <p class="footer__love" data-i18n="footer.2"><span lang="vi">Cảm ơn</span>, <span lang="hr">Hvala</span> &amp; Danke ❤️</p>
-      <a href="#home" class="footer__top" data-i18n="footer.3">Nach oben ↑</a>
+      <a href="#top" class="footer__top" data-scroll-top="" data-i18n="footer.3">Nach oben ↑</a>
     </div>
   </footer>
+
+  <!-- ============ LIGHTBOX (image carousels) ============ -->
+  <dialog class="lightbox" aria-label="Bildergalerie" data-i18n-attr="aria-label:js.gallery">
+    <button type="button" class="lightbox__close" data-lb-close aria-label="Schließen" data-i18n-attr="aria-label:js.close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    <figure class="lightbox__stage" data-lb-stage>
+      <img data-lb-img alt="">
+      <figcaption><b data-lb-title></b> <span data-lb-count></span></figcaption>
+    </figure>
+    <button type="button" class="lightbox__nav lightbox__nav--prev" data-lb-prev aria-label="Vorheriges Bild" data-i18n-attr="aria-label:js.prevImage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+    <button type="button" class="lightbox__nav lightbox__nav--next" data-lb-next aria-label="Nächstes Bild" data-i18n-attr="aria-label:js.nextImage"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+    <div class="lightbox__dots" data-lb-dots></div>
+  </dialog>
 
   <div class="toast" role="status" aria-live="polite"></div>
 
   <script type="module" src="/src/main.js"></script>
-
-
 </body></html>
