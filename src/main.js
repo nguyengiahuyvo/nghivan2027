@@ -148,7 +148,7 @@ function resolveHash(hash) {
   if (PAGES.includes(id)) return { page: id };
   if (id in ALIASES) return { page: ALIASES[id] };
   const el = document.getElementById(id);
-  const host = el?.closest('[data-page]');
+  const host = el?.closest('main [data-page]');
   if (host) return { page: host.dataset.page, anchor: el };
   return { page: 'einladung' };
 }
@@ -173,9 +173,10 @@ function renderPager() {
 
 function showPage(page, { anchor } = {}) {
   if (page !== currentPage) {
-    $$('[data-page]').forEach((p) => { p.hidden = p.dataset.page !== page; });
+    // Only the page wrappers inside <main> — never <html>, which carries data-current-page.
+    $$('main [data-page]').forEach((p) => { p.hidden = p.dataset.page !== page; });
     currentPage = page;
-    root.dataset.page = page;
+    root.dataset.currentPage = page;
     markActive(page);
     renderPager();
     scrollToTop(true);
