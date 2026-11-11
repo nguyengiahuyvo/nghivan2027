@@ -29,7 +29,9 @@ Recommended places (page "Wo übernachten?"):
 | `galleries/visited-kuestenroute/` | Küstenroute Richtung Süden |
 | `galleries/visited-sueden/` | Weiter im Süden |
 
-The first image of a place is used as its card photo. Until a folder has images, the site
+The first image of a place is used as its card photo — prefix a file with `00-` to make it the cover.
+Originals are kept (untracked) in `docs/Photo/`; HEIC/TIF files must be converted to WebP/JPG first,
+and photos should be stripped of GPS metadata before they go online. Until a folder has images, the site
 falls back to the photos already in `public/images/` (or a coloured placeholder).
 
 ## Bridal party portraits — `people/<slug>.jpg`

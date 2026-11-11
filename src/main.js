@@ -113,6 +113,16 @@ $$('[data-person]').forEach((p) => {
   $('.person__photo', p).innerHTML = `<img src="${src}" alt="${esc(name)}" loading="lazy">`;
 });
 
+/* Start-page "Bridal Party" tile: small portrait collage once photos exist */
+{
+  const art = $('.tile__media--art');
+  const faces = ['thanh', 'foti', 'mai-anh', 'andi'].map(personPhoto).filter(Boolean);
+  if (art && faces.length === 4) {
+    art.classList.add('tile__media--faces');
+    art.innerHTML = faces.map((src) => `<img src="${src}" alt="" loading="lazy">`).join('');
+  }
+}
+
 /* ---------------------------------------------------------
    Smooth scroll (Lenis) synced with GSAP
    --------------------------------------------------------- */

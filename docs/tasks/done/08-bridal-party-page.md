@@ -31,4 +31,4 @@ texts under `bridal-party.*` in `src/i18n/*.json`.
 
 - „Our Bridal Party & Best Friends“ is now the large main heading; „Ihr braucht Hilfe oder plant was?“ is a smaller sub-heading.
 - Thanh & Foti use the same card style as everyone else (only slightly larger photo, small „&“).
-- Round photo slots for every person; they show the initial until a photo is added as `src/assets/people/<name>.jpg` (Drive folder was not accessible).
+- Round portraits for all seven people (from `docs/Photo/Bridal Party`, square-cropped to 640 px WebP); the start-page Bridal Party tile shows a 4-portrait collage.

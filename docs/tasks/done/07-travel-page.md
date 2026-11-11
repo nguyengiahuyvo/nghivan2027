@@ -82,4 +82,4 @@ texts under `travel.*` and `anreise.*` in `src/i18n/*.json`.
 - ASFINAG link is now its own button under Österreich and Slowenien.
 - Novo mesto: „Warum wir das machen: …“ added as a highlighted note; the duplicate reason sentence was removed from the old text.
 - Wasserschuhe and Tages-Bootstour texts extended; „Küstenroute Richtung Süden“ renamed.
-- „Von uns bereits besucht“: each entry gets a „Fotos ansehen“ button as soon as its folder has images (`src/assets/galleries/visited-*`). Currently only „Zadar & Umgebung“ has photos (existing site images).
+- „Von uns bereits besucht“: each entry gets a „Fotos ansehen“ button as soon as its folder has images (`src/assets/galleries/visited-*`). All four entries now have photos from `docs/Photo` (8 / 5 / 9 / 18 images).

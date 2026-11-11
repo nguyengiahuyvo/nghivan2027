@@ -36,9 +36,8 @@ changed text must also be added to all five locale files in `src/i18n/`
 Tasks 00–09 are implemented; their files are in [done/](done/) with a status note each.
 Task 10 is waiting for details from the couple.
 
-**Still needed from the couple:** the photos from the Google Drive folder (it requires a Google
-login, so they could not be downloaded). Drop them into `src/assets/galleries/<place>/` and
-`src/assets/people/<name>.jpg` — see `src/assets/README.md`. No code changes needed.
+**Photos:** added on 2026-11-11 from `docs/Photo` (originals are git-ignored; converted WebP copies live in
+`src/assets/`). To add more, see `src/assets/README.md`.
 
 ## Suggested order (original plan)
 

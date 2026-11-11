@@ -74,4 +74,4 @@ Section "Die schönsten Orte rund um die Location" (with map).
 - „Mehr erfahren“ is now a pill button with chevron (turns dark when open).
 - „Empfohlene Orte“ in its own highlighted band; places reordered: Petrčane, Punta Skala, Kožino, Zadar, Sukošan, Jovići, Ražanac, Nin.
 - Clicking a place photo opens a swipeable image carousel (lightbox).
-- **Open:** the Drive images need a Google login and could not be downloaded. Drop them into `src/assets/galleries/<place>/` (see `src/assets/README.md`); until then existing photos are used, and Punta Skala, Kožino and Ražanac show a coloured placeholder.
+- Photos from `docs/Photo` (2026-11-11) converted to WebP (max. 1600 px, GPS/EXIF removed) into `src/assets/galleries/<place>/` — all 8 places now have carousels. Covers chosen via `00-` prefix (Petrčane harbour, Zadar aerial). Videos (.MOV) were not included.
