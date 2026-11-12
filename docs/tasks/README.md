@@ -29,7 +29,13 @@ changed text must also be added to all five locale files in `src/i18n/`
 | 07 | [07-travel-page.md](done/07-travel-page.md) | "Travel / Anreise" – tabs, texts, ASFINAG button, route, tips, carousels | 15–19 | ✅ Done |
 | 08 | [08-bridal-party-page.md](done/08-bridal-party-page.md) | Bridal Party – headings, photos | 20 | ✅ Done |
 | 09 | [09-remove-joy-app.md](done/09-remove-joy-app.md) | Remove "Fotos teilen mit der Joy-App" block | 21 | ✅ Done |
-| 10 | [10-wedding-timeline-tbd.md](10-wedding-timeline-tbd.md) | Wedding Timeline – on hold | 22 | ⏸ On hold |
+| 10 | [10-wedding-timeline-tbd.md](10-wedding-timeline-tbd.md) | Wedding Timeline – on hold (placeholder now on "Infos für Gäste") | 22 | ⏸ On hold |
+
+### 2. Anpassung (`anpassungen2.pdf` — git-ignored, it contains the password)
+
+| # | File | Area | PDF slides | Status |
+|---|------|------|-----------|----------|
+| 11 | [11-anpassung-2.md](done/11-anpassung-2.md) | Password & hero photo, typography (Sloop Script / Alice / Lora), florals & coastal motifs, new page "Infos für Gäste", logo NGHIVAN, NGHIVAN page, icon tiles, menu order, tone of voice per language | 26–37 | ✅ Done (2 open items) |
 
 ## Progress
 

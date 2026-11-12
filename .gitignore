@@ -5,3 +5,6 @@ dist/
 
 # Original photo uploads (converted copies live in src/assets/)
 docs/Photo/
+
+# Contains the site password — never commit (repo is public)
+docs/anpassungen2.pdf

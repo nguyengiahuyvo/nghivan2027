@@ -39,7 +39,8 @@ falls back to the photos already in `public/images/` (or a coloured placeholder)
 `thanh`, `foti`, `mai-anh`, `mai`, `anh`, `andi`, `daniel` — e.g. `people/thanh.jpg`.
 Square crops look best. Without a photo, the initial letter is shown.
 
-## Hero photo
+## Hero photo — `hero/`
 
-The photo of Minh Nghi & Ivan on the start page is `public/images/couple-studio-700.webp`
-(and the larger `couple-studio.webp`). Replace both files to change it.
+Drop the start-page photo of Minh Nghi & Ivan into `hero/` (e.g. `hero/couple.jpg`, portrait
+format, ~1200 px wide). The first file by name is used; without one, the site falls back to
+`public/images/couple-studio*.webp`.

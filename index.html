@@ -24,14 +24,111 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-  <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alice&amp;family=Lora:wght@400;500;600;700&amp;family=Pinyon+Script&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
+  <!-- ============ LINE-ART SPRITE: florals, coastal motifs, page icons ============ -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <!-- Peony -->
+    <symbol id="m-peony" viewBox="0 0 100 100">
+      <path d="M22 46C18 30 32 18 42 24C46 12 62 14 64 26C76 20 86 34 78 46C86 56 72 66 62 60C56 70 40 70 36 60C24 64 16 54 22 46Z"/>
+      <path d="M36 44C34 34 44 30 50 34C56 30 66 34 64 44C62 52 54 54 50 50C46 54 38 52 36 44Z"/>
+      <path d="M44 42C46 38 54 38 56 42M46 46C48 44 52 44 54 46"/>
+      <path d="M42 24C44 32 46 36 50 34M64 26C60 32 58 34 56 36M78 46C70 44 66 44 64 44M36 60C40 54 42 52 44 50M22 46C28 44 32 44 36 44"/>
+      <path d="M50 68C50 78 48 88 46 98"/>
+      <path d="M48 82C38 78 30 82 26 90C34 92 42 90 48 82ZM49 76C58 70 68 72 72 78C64 84 56 82 49 76Z"/>
+      <path d="M48 82C40 84 34 86 28 89M49 76C57 75 64 76 70 78"/>
+    </symbol>
+    <!-- Lily -->
+    <symbol id="m-lily" viewBox="0 0 100 100">
+      <g>
+        <path d="M50 40C43 31 43 17 50 5C57 17 57 31 50 40Z"/>
+        <path transform="rotate(60 50 40)" d="M50 40C43 31 43 17 50 5C57 17 57 31 50 40Z"/>
+        <path transform="rotate(120 50 40)" d="M50 40C43 31 43 17 50 5C57 17 57 31 50 40Z"/>
+        <path transform="rotate(180 50 40)" d="M50 40C43 31 43 17 50 5C57 17 57 31 50 40Z"/>
+        <path transform="rotate(240 50 40)" d="M50 40C43 31 43 17 50 5C57 17 57 31 50 40Z"/>
+        <path transform="rotate(300 50 40)" d="M50 40C43 31 43 17 50 5C57 17 57 31 50 40Z"/>
+      </g>
+      <path d="M50 40V14M50 40L72 27M50 40L72 53M50 40L28 53M50 40L28 27"/>
+      <path d="M50 40L45 27M50 40L55 26M50 40L50 24"/>
+      <circle cx="45" cy="26" r="1.6"/><circle cx="55" cy="25" r="1.6"/><circle cx="50" cy="23" r="1.6"/>
+      <path d="M50 75C52 84 50 92 48 99"/>
+      <path d="M50 86C60 78 70 78 76 82C68 90 58 90 50 86Z"/>
+    </symbol>
+    <!-- Tulip -->
+    <symbol id="m-tulip" viewBox="0 0 100 100">
+      <path d="M34 22C30 34 32 50 50 56C68 50 70 34 66 22C60 30 56 30 50 18C44 30 40 30 34 22Z"/>
+      <path d="M40 28C42 44 46 52 50 56C54 52 58 44 60 28"/>
+      <path d="M50 56C50 70 51 84 50 98"/>
+      <path d="M50 92C40 80 32 66 34 50C42 62 48 74 50 92ZM51 84C58 74 66 66 70 56C70 70 62 80 51 84Z"/>
+    </symbol>
+    <!-- Coral -->
+    <symbol id="m-coral" viewBox="0 0 100 100">
+      <path d="M50 98C50 80 48 70 40 60C34 52 34 42 30 34M40 60C44 50 50 46 52 36C53 30 50 24 52 16M52 36C58 32 62 26 62 18M50 80C58 74 64 66 66 56C68 48 72 44 74 36M66 56C72 54 78 50 80 42M44 68C36 66 26 66 20 58M30 34C26 30 24 24 26 18M30 34C34 30 36 26 36 20M20 58C16 54 14 48 16 42M74 36C74 30 72 26 74 20"/>
+    </symbol>
+    <!-- Scallop shell -->
+    <symbol id="m-shell" viewBox="0 0 100 100">
+      <path d="M18 52Q20 40 26 34Q30 26 36 22Q42 16 50 15Q58 16 64 22Q70 26 74 34Q80 40 82 52C78 68 66 82 50 86C34 82 22 68 18 52Z"/>
+      <path d="M50 86L26 34M50 86L36 22M50 86L50 15M50 86L64 22M50 86L74 34M50 86L18 52M50 86L82 52"/>
+      <path d="M42 85L36 94H64L58 85"/>
+    </symbol>
+    <!-- Wave line (divider) -->
+    <symbol id="m-wave" viewBox="0 0 240 30">
+      <path d="M0 15C20 5 40 5 60 15S100 25 120 15S160 5 180 15S220 25 240 15"/>
+      <path d="M30 23C45 18 60 18 75 23S105 28 120 23S150 18 165 23S195 28 210 23" opacity=".55"/>
+    </symbol>
+
+    <!-- Page icons (48×48) -->
+    <symbol id="i-invite" viewBox="0 0 48 48">
+      <rect x="6" y="12" width="36" height="25" rx="3"/><path d="M6.5 13.5L24 27l17.5-13.5"/>
+      <path d="M24 33.5s-5-3.1-5-6.3c0-1.7 1.3-2.9 2.8-2.9 1 0 1.8.5 2.2 1.3.4-.8 1.2-1.3 2.2-1.3 1.5 0 2.8 1.2 2.8 2.9 0 3.2-5 6.3-5 6.3z"/>
+    </symbol>
+    <symbol id="i-compass" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="13" opacity=".5"/>
+      <path d="M24 11v3M24 34v3M11 24h3M34 24h3"/><path d="M29.5 18.5L26 26l-7.5 3.5L22 22z"/><circle cx="24" cy="24" r="1.2"/>
+    </symbol>
+    <symbol id="i-bed" viewBox="0 0 48 48">
+      <path d="M6 36V13M42 36V26M6 26h36M6 31h36"/><path d="M6 36v3M42 36v3"/>
+      <rect x="10" y="19" width="10" height="7" rx="3"/><path d="M20 26v-4c0-1.7 1.3-3 3-3h14c2.8 0 5 2.2 5 5v2"/>
+    </symbol>
+    <symbol id="i-palm" viewBox="0 0 48 48">
+      <path d="M4 40c4-2 8-2 12 0s8 2 12 0 8-2 12 0 4 1 4 1"/><path d="M8 34h32"/>
+      <path d="M26 34c0-8-1-14-4-19"/><path d="M22 15c-3-4-9-5-13-2 4 0 8 1 13 2zM22 15c2-4 8-6 13-4-4 1-9 2-13 4zM22 15c-1 4-5 8-10 9 2-4 5-7 10-9zM22 15c3 2 6 6 6 11-3-3-5-6-6-11z"/>
+      <circle cx="38" cy="10" r="3.5"/>
+    </symbol>
+    <symbol id="i-cheers" viewBox="0 0 48 48">
+      <path d="M13 9h9l-1 11c-.3 3-2.6 5-5 5s-4.7-2-5-5z" transform="rotate(-12 17 17)"/>
+      <path d="M26 9h9l-1 11c-.3 3-2.6 5-5 5s-4.7-2-5-5z" transform="rotate(12 30 17)"/>
+      <path d="M15 26l-1.5 12M10 39l7 1M33 26l1.5 12M38 39l-7 1"/>
+      <path d="M24 4v4M19.5 5.5l1.5 2.5M28.5 5.5L27 8"/>
+    </symbol>
+    <symbol id="i-rings" viewBox="0 0 48 48">
+      <circle cx="18" cy="28" r="10"/><circle cx="30" cy="28" r="10"/>
+      <path d="M14 14l4-5 4 5-4 4z"/>
+    </symbol>
+    <symbol id="i-rsvp" viewBox="0 0 48 48">
+      <rect x="7" y="9" width="34" height="30" rx="3"/><path d="M13 16h22M13 21h14"/>
+      <circle cx="31" cy="30" r="6"/><path d="M28.4 30l1.9 1.9 3.4-3.6"/>
+    </symbol>
+    <symbol id="i-dinner" viewBox="0 0 48 48">
+      <circle cx="24" cy="25" r="11"/><circle cx="24" cy="25" r="7" opacity=".5"/>
+      <path d="M7 12v9c0 1.5 1 2.5 2.5 2.5S12 22.5 12 21v-9M9.5 12v26M39 12c-2.5 2-3.5 6-3.5 11h3.5v15"/>
+    </symbol>
+    <symbol id="i-music" viewBox="0 0 48 48">
+      <path d="M18 34V12l20-4v22"/><circle cx="13.5" cy="34" r="4.5"/><circle cx="33.5" cy="30" r="4.5"/><path d="M18 18l20-4"/>
+      <path d="M6 10l2 2M10 6l1 3M42 38l2 2"/>
+    </symbol>
+    <symbol id="i-sparkle" viewBox="0 0 48 48">
+      <path d="M24 6c1.5 9 4.5 12 13.5 13.5C28.5 21 25.5 24 24 33c-1.5-9-4.5-12-13.5-13.5C19.5 18 22.5 15 24 6z"/>
+      <path d="M36 30c.6 3.4 1.8 4.6 5.2 5.2-3.4.6-4.6 1.8-5.2 5.2-.6-3.4-1.8-4.6-5.2-5.2 3.4-.6 4.6-1.8 5.2-5.2z"/>
+    </symbol>
+  </svg>
+
   <!-- ============ LANGUAGE PICKER (after login) ============ -->
   <div class="langpick" id="langpick" role="dialog" aria-modal="true" aria-labelledby="langpick-title">
     <div class="langpick__inner">
-      <p class="langpick__mono" aria-hidden="true">N &amp; I</p>
+      <p class="langpick__mono" aria-hidden="true">NGHIVAN</p>
       <h1 class="langpick__title" id="langpick-title">Hallo · Xin chào · Bok · Hello · Bonjour</h1>
       <p class="langpick__sub">Sprache · Ngôn ngữ · Jezik · Language · Langue</p>
       <ul class="langpick__list">
@@ -47,7 +144,7 @@
   <!-- ============ LOADER ============ -->
   <div class="loader" aria-hidden="true">
     <div class="loader__inner">
-      <span class="loader__mono"><span>N</span><span class="loader__amp">&amp;</span><span>I</span></span>
+      <span class="loader__mono"><span>Minh Nghi</span><span class="loader__amp">&amp;</span><span>Ivan</span></span>
       <span class="loader__date">04 · 09 · 2027</span>
     </div>
   </div>
@@ -75,13 +172,14 @@
 
   <!-- ============ NAV ============ -->
   <nav class="nav" aria-label="Hauptnavigation" data-i18n-attr="aria-label:nav.7">
-    <a href="#einladung" class="nav__brand" aria-label="Zur Einladung" data-i18n-attr="aria-label:nav.8">N<span>&amp;</span>I</a>
+    <a href="#einladung" class="nav__brand" aria-label="Zur Einladung" data-i18n-attr="aria-label:nav.8">NGHIVAN</a>
     <ul class="nav__links">
       <li><a href="#einladung" data-i18n="nav.1">Einladung</a></li>
-      <li><a href="#nghivan" data-i18n="nav.2">NGHIVAN (Über uns)</a></li>
+      <li><a href="#infos" data-i18n="nav.10">Infos für Gäste</a></li>
       <li><a href="#unterkunft" data-i18n="nav.3">Wo übernachten?</a></li>
       <li><a href="#anreise" data-i18n="nav.4">Travel / Anreise</a></li>
       <li><a href="#bridal-party" data-i18n="nav.5">Bridal Party</a></li>
+      <li><a href="#nghivan" data-i18n="nav.2">NGHIVAN (Über uns)</a></li>
     </ul>
     <div class="lang" data-lang>
       <button class="lang__btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Sprache wählen" data-i18n-attr="aria-label:js.language">
@@ -104,12 +202,13 @@
 
   <div class="menu" id="menu" aria-hidden="true">
     <ul>
-      <li><a href="#einladung" data-i18n="menu.1"><small>01</small>Einladung</a></li>
-      <li><a href="#nghivan" data-i18n="menu.2"><small>02</small>NGHIVAN (Über uns)</a></li>
-      <li><a href="#unterkunft" data-i18n="menu.3"><small>03</small>Wo übernachten?</a></li>
-      <li><a href="#anreise" data-i18n="menu.4"><small>04</small>Travel / Anreise</a></li>
-      <li><a href="#bridal-party" data-i18n="menu.5"><small>05</small>Bridal Party</a></li>
-      <li><a href="#rsvp" data-i18n="menu.6"><small>06</small>RSVP</a></li>
+      <li><a href="#einladung"><svg class="menu__icon" aria-hidden="true"><use href="#i-invite"></use></svg><small>01</small><span data-i18n="nav.1">Einladung</span></a></li>
+      <li><a href="#infos"><svg class="menu__icon" aria-hidden="true"><use href="#i-compass"></use></svg><small>02</small><span data-i18n="nav.10">Infos für Gäste</span></a></li>
+      <li><a href="#unterkunft"><svg class="menu__icon" aria-hidden="true"><use href="#i-bed"></use></svg><small>03</small><span data-i18n="nav.3">Wo übernachten?</span></a></li>
+      <li><a href="#anreise"><svg class="menu__icon" aria-hidden="true"><use href="#i-palm"></use></svg><small>04</small><span data-i18n="nav.4">Travel / Anreise</span></a></li>
+      <li><a href="#bridal-party"><svg class="menu__icon" aria-hidden="true"><use href="#i-cheers"></use></svg><small>05</small><span data-i18n="nav.5">Bridal Party</span></a></li>
+      <li><a href="#nghivan"><svg class="menu__icon" aria-hidden="true"><use href="#i-rings"></use></svg><small>06</small><span data-i18n="nav.2">NGHIVAN (Über uns)</span></a></li>
+      <li><a href="#rsvp"><svg class="menu__icon" aria-hidden="true"><use href="#i-rsvp"></use></svg><small>07</small><span data-i18n="nav.6">RSVP</span></a></li>
     </ul>
     <div class="menu__langs">
       <button type="button" data-set-lang="de" lang="de" aria-label="Deutsch"><span class="flag" data-flag="de" aria-hidden="true"></span>DE</button>
@@ -128,12 +227,15 @@
     <div class="page page--home" data-page="einladung" id="einladung">
       <header class="hero">
         <div class="hero__bg" aria-hidden="true"></div>
+        <svg class="deco deco--hero-peony" aria-hidden="true"><use href="#m-peony"></use></svg>
+        <svg class="deco deco--hero-lily" aria-hidden="true"><use href="#m-lily"></use></svg>
+        <svg class="deco deco--hero-coral" aria-hidden="true"><use href="#m-coral"></use></svg>
         <div class="container hero__grid">
           <h1 class="hero__invite" data-hero-fade="" data-i18n="home.13">Mit großer Freude laden wir euch ein, unsere Hochzeit gemeinsam mit uns zu feiern.</h1>
           <p class="hero__names" aria-label="Minh Nghi &amp; Ivan">
-            <span class="hero__line" data-split="">Minh Nghi</span>
+            <span class="hero__line" data-hero-name="">Minh Nghi</span>
             <span class="hero__amp" data-hero-amp="">&amp;</span>
-            <span class="hero__line" data-split="">Ivan</span>
+            <span class="hero__line" data-hero-name="">Ivan</span>
           </p>
           <figure class="hero__photo" data-hero-fade="">
             <img src="/images/couple-studio-700.webp" srcset="/images/couple-studio-700.webp 700w, /images/couple-studio.webp 1200w" sizes="(max-width: 960px) 80vw, 34vw" alt="Minh Nghi und Ivan Hand in Hand" fetchpriority="high" data-i18n-attr="alt:home.14">
@@ -195,45 +297,178 @@
         </div>
       </section>
 
-      <!-- Overview: guides guests to the sub-pages -->
+      <!-- Overview: line-art tiles that guide guests to the sub-pages -->
       <section class="overview section">
         <div class="container section__head section__head--center">
           <p class="eyebrow" data-reveal="" data-i18n="overview.1">Alles für euren Besuch</p>
           <h2 class="display display--sm" data-reveal="" data-i18n="overview.2">Entdeckt unsere Website</h2>
+          <div class="divider" aria-hidden="true"><svg class="divider__wave"><use href="#m-wave"></use></svg><svg class="divider__shell"><use href="#m-shell"></use></svg><svg class="divider__wave"><use href="#m-wave"></use></svg></div>
         </div>
         <div class="container overview__grid" data-reveal-group="">
-          <a class="tile" href="#nghivan">
-            <span class="tile__media"><img src="/images/couple-studio-700.webp" alt="" loading="lazy"></span>
-            <span class="tile__body"><small>02</small><b data-i18n="nav.2">NGHIVAN (Über uns)</b><span data-i18n="overview.3">Unsere Geschichte – und wie man „Nghi“ ausspricht.</span><i aria-hidden="true">→</i></span>
+          <a class="tile" href="#infos">
+            <svg class="tile__flora" aria-hidden="true"><use href="#m-tulip"></use></svg>
+            <svg class="tile__icon" aria-hidden="true"><use href="#i-compass"></use></svg>
+            <b class="tile__title" data-i18n="nav.10">Infos für Gäste</b>
+            <span class="tile__text" data-i18n="overview.8">Dresscode, Ablaufplan und Antworten auf eure Fragen.</span>
+            <i class="tile__go" aria-hidden="true">→</i>
           </a>
           <a class="tile" href="#unterkunft">
-            <span class="tile__media"><img src="/images/hotel-pinija.webp" alt="" loading="lazy"></span>
-            <span class="tile__body"><small>03</small><b data-i18n="nav.3">Wo übernachten?</b><span data-i18n="overview.4">Hotel Pinija, Ferienwohnungen und die schönsten Orte rund um die Location.</span><i aria-hidden="true">→</i></span>
+            <svg class="tile__flora" aria-hidden="true"><use href="#m-lily"></use></svg>
+            <svg class="tile__icon" aria-hidden="true"><use href="#i-bed"></use></svg>
+            <b class="tile__title" data-i18n="nav.3">Wo übernachten?</b>
+            <span class="tile__text" data-i18n="overview.4">Hotel Pinija, Ferienwohnungen und die schönsten Orte rund um die Location.</span>
+            <i class="tile__go" aria-hidden="true">→</i>
           </a>
           <a class="tile" href="#anreise">
-            <span class="tile__media"><img src="/images/beach-sunset-800.webp" alt="" loading="lazy"></span>
-            <span class="tile__body"><small>04</small><b data-i18n="nav.4">Travel / Anreise</b><span data-i18n="overview.5">Flug, Auto, Maut und unsere Insider-Tipps für Dalmatien.</span><i aria-hidden="true">→</i></span>
+            <svg class="tile__flora" aria-hidden="true"><use href="#m-coral"></use></svg>
+            <svg class="tile__icon" aria-hidden="true"><use href="#i-palm"></use></svg>
+            <b class="tile__title" data-i18n="nav.4">Travel / Anreise</b>
+            <span class="tile__text" data-i18n="overview.5">Flug, Auto, Maut und unsere Insider-Tipps für Dalmatien.</span>
+            <i class="tile__go" aria-hidden="true">→</i>
           </a>
           <a class="tile" href="#bridal-party">
-            <span class="tile__media tile__media--art"><span>T &amp; F</span></span>
-            <span class="tile__body"><small>05</small><b data-i18n="nav.5">Bridal Party</b><span data-i18n="overview.6">Unsere Trauzeugen, Brautjungfern und Groomsmen – eure Ansprechpartner.</span><i aria-hidden="true">→</i></span>
+            <svg class="tile__flora" aria-hidden="true"><use href="#m-peony"></use></svg>
+            <svg class="tile__icon" aria-hidden="true"><use href="#i-cheers"></use></svg>
+            <b class="tile__title" data-i18n="nav.5">Bridal Party</b>
+            <span class="tile__text" data-i18n="overview.6">Unsere Trauzeugen, Brautjungfern und Groomsmen – eure Ansprechpartner.</span>
+            <i class="tile__go" aria-hidden="true">→</i>
           </a>
-          <a class="tile tile--rsvp" href="#rsvp">
-            <span class="tile__media"><img src="/images/couple-sunset-700.webp" alt="" loading="lazy"></span>
-            <span class="tile__body"><small>06</small><b data-i18n="nav.6">RSVP</b><span data-i18n="overview.7">Bitte gebt uns bis zum <strong>1. Mai 2027</strong> Bescheid.</span><i aria-hidden="true">→</i></span>
+          <a class="tile" href="#nghivan">
+            <svg class="tile__flora" aria-hidden="true"><use href="#m-shell"></use></svg>
+            <svg class="tile__icon" aria-hidden="true"><use href="#i-rings"></use></svg>
+            <b class="tile__title" data-i18n="nav.2">NGHIVAN (Über uns)</b>
+            <span class="tile__text" data-i18n="overview.3">Unsere Geschichte – und wie man „Nghi“ ausspricht.</span>
+            <i class="tile__go" aria-hidden="true">→</i>
           </a>
+          <a class="tile" href="#rsvp">
+            <svg class="tile__flora" aria-hidden="true"><use href="#m-tulip"></use></svg>
+            <svg class="tile__icon" aria-hidden="true"><use href="#i-rsvp"></use></svg>
+            <b class="tile__title" data-i18n="nav.6">RSVP</b>
+            <span class="tile__text" data-i18n="overview.7">Bitte gebt uns bis zum <strong>1. Mai 2027</strong> Bescheid.</span>
+            <i class="tile__go" aria-hidden="true">→</i>
+          </a>
+        </div>
+        <p class="container home-note" data-reveal="">
+          <svg aria-hidden="true"><use href="#i-compass"></use></svg>
+          <span data-i18n="home.16">Dresscode &amp; FAQs findet ihr unter <a href="#infos">Infos für Gäste</a>.</span>
+        </p>
+      </section>
+    </div>
+
+    <!-- =====================================================
+         PAGE 2 — INFOS FÜR GÄSTE (Dresscode · Ablaufplan · FAQs)
+         ===================================================== -->
+    <div class="page" data-page="infos" id="infos" hidden>
+      <div class="page__facts"><div class="container" data-keyfacts="bar"></div></div>
+      <svg class="deco deco--page-left" aria-hidden="true"><use href="#m-lily"></use></svg>
+      <svg class="deco deco--page-right" aria-hidden="true"><use href="#m-coral"></use></svg>
+      <section class="infos section">
+        <div class="container section__head section__head--center">
+          <p class="eyebrow" data-reveal="" data-i18n="infos.1">Gut zu wissen</p>
+          <h2 class="display" data-reveal="" data-i18n="infos.2">Infos für Gäste</h2>
+          <div class="divider" aria-hidden="true"><svg class="divider__wave"><use href="#m-wave"></use></svg><svg class="divider__shell"><use href="#m-shell"></use></svg><svg class="divider__wave"><use href="#m-wave"></use></svg></div>
+          <p class="lead" data-reveal="" data-i18n="infos.3">Alles, was ihr für unseren großen Tag wissen solltet – vom Dresscode über den Ablauf bis zu den häufigsten Fragen.</p>
+        </div>
+
+        <!-- 1 · Dresscode -->
+        <div class="container">
+          <article class="dresscode" data-reveal="">
+            <svg class="dresscode__flora dresscode__flora--tl" aria-hidden="true"><use href="#m-peony"></use></svg>
+            <svg class="dresscode__flora dresscode__flora--br" aria-hidden="true"><use href="#m-tulip"></use></svg>
+            <p class="eyebrow" data-i18n="infos.dc.1">Dresscode</p>
+            <h3 class="dresscode__style" data-i18n="infos.dc.2">Coastal Elegance</h3>
+            <p class="dresscode__intro" data-i18n="infos.dc.3">Keine strengen Vorgaben – zieht einfach an, worin ihr euch wohlfühlt und gerne feiert!</p>
+            <ul class="swatches" aria-hidden="true"><li><span class="swatch" style="--c:#EADFCB;--c2:#E0D0B6"></span><small data-i18n="infos.dc.10">Sand</small></li><li><span class="swatch" style="--c:#DCCDB5;--c2:#CDB99C"></span><small data-i18n="infos.dc.11">Beige</small></li><li><span class="swatch" style="--c:#EBDADF;--c2:#D6E4EE"></span><small data-i18n="infos.dc.12">Pastell</small></li><li><span class="swatch" style="--c:#9DB6CC;--c2:#5F7F9C"></span><small data-i18n="infos.dc.13">Meerestöne</small></li></ul>
+            <div class="dresscode__grid">
+              <div><svg aria-hidden="true"><use href="#m-wave"></use></svg><b data-i18n="infos.dc.4">Der Vibe</b><p data-i18n="infos.dc.5">Elegant, aber mit der Leichtigkeit des Meeres: sommerlich-festlich, gerne mit fließenden Stoffen.</p></div>
+              <div><svg aria-hidden="true"><use href="#m-shell"></use></svg><b data-i18n="infos.dc.6">Die Farben</b><p data-i18n="infos.dc.7">Sanfte, natürliche Töne wie Sand, Beige, Pastell oder Meerestöne. Ihr müsst kein Blau tragen – lasst euch einfach vom Vibe inspirieren.</p></div>
+              <div><svg aria-hidden="true"><use href="#i-sparkle"></use></svg><b data-i18n="infos.dc.8">Das Wichtigste</b><p data-i18n="infos.dc.9">Hauptsache, ihr fühlt euch wohl und könnt die ganze Nacht mit uns feiern und tanzen.</p></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- 2 · Ablaufplan (placeholder until times are fixed) -->
+        <div class="container plan">
+          <div class="section__head section__head--center">
+            <h2 class="display display--sm" data-reveal="" data-i18n="infos.plan.1">Ablaufplan / Tagesprogramm</h2>
+            <p class="plan__note" data-reveal="" data-i18n="infos.plan.2">Der genaue Tagesablauf folgt in Kürze – wir feilen aktuell noch an den letzten Details!</p>
+          </div>
+          <ol class="plan__cards" data-reveal-group="">
+            <li class="plan__card">
+              <svg class="plan__icon" aria-hidden="true"><use href="#i-rings"></use></svg>
+              <b data-i18n="infos.plan.3">Trauung</b>
+              <small data-i18n="infos.plan.7">Uhrzeit folgt</small>
+            </li>
+            <li class="plan__card">
+              <svg class="plan__icon" aria-hidden="true"><use href="#i-cheers"></use></svg>
+              <b data-i18n="infos.plan.4">Empfang</b>
+              <small data-i18n="infos.plan.7">Uhrzeit folgt</small>
+            </li>
+            <li class="plan__card">
+              <svg class="plan__icon" aria-hidden="true"><use href="#i-dinner"></use></svg>
+              <b data-i18n="infos.plan.5">Dinner</b>
+              <small data-i18n="infos.plan.7">Uhrzeit folgt</small>
+            </li>
+            <li class="plan__card">
+              <svg class="plan__icon" aria-hidden="true"><use href="#i-music"></use></svg>
+              <b data-i18n="infos.plan.6">Party</b>
+              <small data-i18n="infos.plan.7">Uhrzeit folgt</small>
+            </li>
+          </ol>
+        </div>
+
+        <!-- 3 · FAQs -->
+        <div class="container faq">
+          <div class="section__head section__head--center">
+            <p class="eyebrow" data-reveal="" data-i18n="infos.faq.1">FAQs</p>
+            <h2 class="display display--sm" data-reveal="" data-i18n="infos.faq.2">Häufige Fragen</h2>
+          </div>
+          <div class="faq__list" data-reveal="">
+            <details class="faq__item">
+              <summary><span class="faq__no">01</span><span class="faq__q" data-i18n="infos.faq.q1">An wen wenden wir uns am Hochzeitstag bei Fragen?</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+              <div class="faq__a"><p data-i18n="infos.faq.a1">Am Hochzeitstag möchten wir keine Fragen zum Ablauf beantworten, sondern einfach jeden Moment mit euch genießen. Bei allen organisatorischen Fragen helfen euch gerne unsere Trauzeugen, die Bridal Party, unsere Brüder oder Ana vom Hotel Pinija weiter.</p></div>
+            </details>
+            <details class="faq__item">
+              <summary><span class="faq__no">02</span><span class="faq__q" data-i18n="infos.faq.q2">Wo können wir an der Location parken?</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+              <div class="faq__a"><p data-i18n="infos.faq.a2">Direkt vor der Hochzeitslocation. Ihr dürft sogar in die Anlage hineinfahren und bequem unter den Pinienbäumen parken – nur wenige Schritte von der Feier entfernt.</p></div>
+            </details>
+            <details class="faq__item">
+              <summary><span class="faq__no">03</span><span class="faq__q" data-i18n="infos.faq.q3">Wie bleiben wir kurz vor der Hochzeit auf dem Laufenden?</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+              <div class="faq__a"><p data-i18n="infos.faq.a3">Kurz vor der Hochzeit erstellen wir eine eigene WhatsApp-Gruppe. Dort teilen wir alle wichtigen Updates, Infos und Erinnerungen noch einmal direkt mit euch.</p></div>
+            </details>
+            <details class="faq__item">
+              <summary><span class="faq__no">04</span><span class="faq__q" data-i18n="infos.faq.q4">Was wünscht ihr euch zur Hochzeit?</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+              <div class="faq__a"><p data-i18n="infos.faq.a4">Ganz ehrlich: Wir erwarten von niemandem ein Geschenk! Viele von euch nehmen eine weite Anreise auf sich und haben dadurch schon genug Kosten. Dass ihr da seid und diesen besonderen Tag mit uns feiert, ist für uns das allergrößte Geschenk. Wer uns trotzdem eine kleine Freude machen möchte, darf uns gerne mit einem Beitrag für unsere Flitterwochen unterstützen.</p></div>
+            </details>
+            <details class="faq__item">
+              <summary><span class="faq__no">05</span><span class="faq__q" data-i18n="infos.faq.q5">Müssen wir uns am Abend verabschieden?</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+              <div class="faq__a"><p data-i18n="infos.faq.a5">Überhaupt nicht! Wenn eure Kräfte nachlassen oder ihr euch langsam auf den Heimweg machen möchtet, während wir gerade auf der Tanzfläche feiern, dürft ihr euch super gerne ganz ungezwungen und leise davonschleichen („polnischer Abgang“). Macht euch bitte keine Gedanken – wir möchten einfach, dass ihr den Abend in vollen Zügen genießt und euch nicht verpflichtet fühlt, nach uns zu suchen. Wir freuen uns riesig auf das nächste Wiedersehen nach der Hochzeit, bei dem wir uns ganz in Ruhe drücken können!</p></div>
+            </details>
+            <details class="faq__item">
+              <summary><span class="faq__no">06</span><span class="faq__q" data-i18n="infos.faq.q6">Dürfen wir während der Trauung Fotos machen?</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+              <div class="faq__a"><p data-i18n="infos.faq.a6">Wir wünschen uns eine „Unplugged Ceremony“: Wundervolle Profi-Fotografen und -Videografen halten jeden Augenblick für uns alle fest. Genießt diesen magischen Moment einfach ganz im Hier und Jetzt mit uns und lasst eure Handys in den Taschen – wir freuen uns so sehr darauf, beim Blick ins Publikum in eure strahlenden Gesichter zu schauen! Falls ihr seht, dass jemand aus Versehen doch das Handy zückt, erinnert die Person gerne ganz lieb daran.</p></div>
+            </details>
+            <details class="faq__item">
+              <summary><span class="faq__no">07</span><span class="faq__q" data-i18n="infos.faq.q7">Wir planen eine Überraschung oder einen Programmbeitrag – was müssen wir beachten?</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+              <div class="faq__a"><p data-i18n="infos.faq.a7">Wie schön! Bitte stimmt alle Überraschungen und Beiträge vorher mit unserer <a href="#bridal-party">Bridal Party</a> ab. Wer den Kontakt nicht hat, meldet sich einfach bei unseren Brüdern – sie geben euch gerne die Kontaktdaten.</p></div>
+            </details>
+            <details class="faq__item">
+              <summary><span class="faq__no">08</span><span class="faq__q" data-i18n="infos.faq.q8">Was gilt für die Rückmeldung (RSVP) und das Essen?</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></summary>
+              <div class="faq__a"><p data-i18n="infos.faq.a8">Bitte haltet die Rückmelde-Deadline am <strong>1. Mai 2027</strong> unbedingt ein. Falls ihr spezielle Diätanforderungen oder Allergien habt, die ihr im RSVP-Formular nicht angeben konntet, schreibt uns bitte persönlich – damit niemand hungrig bleibt!</p></div>
+            </details>
+          </div>
         </div>
       </section>
     </div>
 
     <!-- =====================================================
-         PAGE 2 — NGHIVAN (Über uns)
+         PAGE 6 — NGHIVAN (Über uns)
          ===================================================== -->
     <div class="page" data-page="nghivan" id="nghivan" hidden>
       <div class="page__facts"><div class="container" data-keyfacts="bar"></div></div>
       <section class="story section" id="story">
-        <div class="story__title" aria-label="NGHIVAN">
-          <span>N</span><span>G</span><span>H</span><span>I</span><span>V</span><span>A</span><span>N</span>
+        <div class="story__title" aria-label="Nghivan">
+          <span>N</span><span>g</span><span>h</span><span>i</span><span>v</span><span>a</span><span>n</span>
         </div>
 
         <div class="container story__intro">
@@ -346,10 +581,13 @@
          ===================================================== -->
     <div class="page" data-page="unterkunft" id="unterkunft" hidden>
       <div class="page__facts"><div class="container" data-keyfacts="bar"></div></div>
+      <svg class="deco deco--page-left" aria-hidden="true"><use href="#m-coral"></use></svg>
+      <svg class="deco deco--page-right" aria-hidden="true"><use href="#m-peony"></use></svg>
       <section class="stay section">
         <div class="container section__head">
           <p class="eyebrow" data-reveal="" data-i18n="unterkunft.1">Unterkunft</p>
           <h2 class="display" data-reveal="" data-i18n="nav.3">Wo übernachten?</h2>
+          <div class="divider" aria-hidden="true"><svg class="divider__wave"><use href="#m-wave"></use></svg><svg class="divider__shell"><use href="#m-shell"></use></svg><svg class="divider__wave"><use href="#m-wave"></use></svg></div>
           <p class="lead" data-reveal="" data-i18n="unterkunft.2">Damit ihr nach der Feier nicht weit laufen müsst, haben wir hier eure Übernachtungsmöglichkeiten rund um unsere Hochzeitslocation in Petrčane zusammengestellt. Egal ob voller Hotel-Komfort mit Meerblick oder ein gemütliches Apartment bzw. eine Villa mit Freunden &amp; Familie – wählt einfach das, was am besten zu euren Plänen und eurem Budget passt!</p>
         </div>
 
@@ -472,6 +710,8 @@
          ===================================================== -->
     <div class="page" data-page="anreise" id="anreise" hidden>
       <div class="page__facts"><div class="container" data-keyfacts="bar"></div></div>
+      <svg class="deco deco--page-left" aria-hidden="true"><use href="#m-coral"></use></svg>
+      <svg class="deco deco--page-right" aria-hidden="true"><use href="#m-shell"></use></svg>
       <section class="travel section">
         <div class="travel__banner">
           <div class="travel__banner-media"><img src="/images/beach-sunset.webp" srcset="/images/beach-sunset-800.webp 800w, /images/beach-sunset.webp 1600w" sizes="100vw" alt="Sonnenuntergang am Strand nahe Zadar" loading="lazy" data-parallax="0.12" data-i18n-attr="alt:anreise.40"></div>
@@ -646,10 +886,13 @@
          ===================================================== -->
     <div class="page" data-page="bridal-party" id="bridal-party" hidden>
       <div class="page__facts"><div class="container" data-keyfacts="bar"></div></div>
+      <svg class="deco deco--page-left" aria-hidden="true"><use href="#m-coral"></use></svg>
+      <svg class="deco deco--page-right" aria-hidden="true"><use href="#m-tulip"></use></svg>
       <section class="party section">
         <div class="container section__head section__head--center">
           <h2 class="display party__title" data-reveal="" data-i18n="bridal-party.1">Our Bridal Party &amp; Best Friends</h2>
           <h3 class="party__sub" data-reveal="" data-i18n="bridal-party.2">Ihr braucht Hilfe<br>oder plant was?</h3>
+          <div class="divider" aria-hidden="true"><svg class="divider__wave"><use href="#m-wave"></use></svg><svg class="divider__shell"><use href="#m-shell"></use></svg><svg class="divider__wave"><use href="#m-wave"></use></svg></div>
           <p class="lead" data-reveal="" data-i18n="bridal-party.3">Bei allen Fragen und Anliegen steht euch unsere Bridal Party zur Seite. Wer noch keine Gesichter zu den Namen hat: Wendet euch einfach an unsere Brüder – sie stellen gerne den Kontakt für euch her!</p>
         </div>
 
@@ -669,7 +912,7 @@
     </div>
 
     <!-- =====================================================
-         PAGE 6 — RSVP
+         PAGE 7 — RSVP
          ===================================================== -->
     <div class="page" data-page="rsvp" id="rsvp" hidden>
       <section class="rsvp">
@@ -696,7 +939,7 @@
 
   <footer class="footer">
     <div class="container footer__inner">
-      <p class="footer__mono">N<span>&amp;</span>I</p>
+      <p class="footer__mono">NGHIVAN</p>
       <p class="footer__line" data-i18n="footer.1">Minh Nghi &amp; Ivan · 04.09.2027 · Petrčane, Kroatien</p>
       <p class="footer__rsvp" data-i18n="home.8">RSVP bis 1. Mai 2027</p>
       <p class="footer__love" data-i18n="footer.2"><span lang="vi">Cảm ơn</span>, <span lang="hr">Hvala</span> &amp; Danke ❤️</p>

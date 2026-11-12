@@ -49,3 +49,10 @@ for (const [path, url] of Object.entries(peopleFiles)) {
 
 /** Portrait URL for a bridal-party member, or null (→ monogram fallback). */
 export const personPhoto = (slug) => people[slug] || null;
+
+// Start-page photo of the couple: the first image in src/assets/hero/ (by name) replaces
+// the default public/images/couple-studio*.webp.
+const heroFiles = import.meta.glob('./assets/hero/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG,WEBP}', {
+  eager: true, query: '?url', import: 'default',
+});
+export const heroPhoto = () => Object.entries(heroFiles).sort(([a], [b]) => a.localeCompare(b))[0]?.[1] || null;

@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { t, getLang, setLang, detectLang } from './i18n.js';
 import { FLAGS, renderFlags } from './flags.js';
-import { galleryImages, personPhoto } from './galleries.js';
+import { galleryImages, personPhoto, heroPhoto } from './galleries.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -113,14 +113,11 @@ $$('[data-person]').forEach((p) => {
   $('.person__photo', p).innerHTML = `<img src="${src}" alt="${esc(name)}" loading="lazy">`;
 });
 
-/* Start-page "Bridal Party" tile: small portrait collage once photos exist */
+/* Start-page photo: an image dropped into src/assets/hero/ replaces the default */
 {
-  const art = $('.tile__media--art');
-  const faces = ['thanh', 'foti', 'mai-anh', 'andi'].map(personPhoto).filter(Boolean);
-  if (art && faces.length === 4) {
-    art.classList.add('tile__media--faces');
-    art.innerHTML = faces.map((src) => `<img src="${src}" alt="" loading="lazy">`).join('');
-  }
+  const src = heroPhoto();
+  const img = $('.hero__photo img');
+  if (src && img) { img.removeAttribute('srcset'); img.src = src; }
 }
 
 /* ---------------------------------------------------------
@@ -145,11 +142,12 @@ function scrollToTop(instant = false) {
 }
 
 /* ---------------------------------------------------------
-   Pages (hash routes): #einladung, #nghivan, #unterkunft,
-   #anreise, #bridal-party, #rsvp — only one is shown at a time.
+   Pages (hash routes), in menu order: #einladung, #infos,
+   #unterkunft, #anreise, #bridal-party, #nghivan, #rsvp —
+   only one is shown at a time.
    --------------------------------------------------------- */
-const PAGES = ['einladung', 'nghivan', 'unterkunft', 'anreise', 'bridal-party', 'rsvp'];
-const PAGE_LABEL = { einladung: 'nav.1', nghivan: 'nav.2', unterkunft: 'nav.3', anreise: 'nav.4', 'bridal-party': 'nav.5', rsvp: 'nav.6' };
+const PAGES = ['einladung', 'infos', 'unterkunft', 'anreise', 'bridal-party', 'nghivan', 'rsvp'];
+const PAGE_LABEL = { einladung: 'nav.1', infos: 'nav.10', unterkunft: 'nav.3', anreise: 'nav.4', 'bridal-party': 'nav.5', nghivan: 'nav.2', rsvp: 'nav.6' };
 const ALIASES = { '': 'einladung', top: 'einladung', home: 'einladung', story: 'nghivan' };
 let currentPage = null;
 
@@ -273,14 +271,10 @@ setInterval(tickCountdown, 1000);
 /* ---------------------------------------------------------
    Intro: (loader →) hero reveal
    --------------------------------------------------------- */
-function splitChars(el) {
-  const text = el.textContent;
-  el.innerHTML = [...text].map((c) => `<span class="char" aria-hidden="true">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
-}
-$$('[data-split]').forEach(splitChars);
-
+// The couple's names are set in a script font, so they are revealed as whole
+// lines (splitting into letters would break the joined calligraphy).
 function heroIn(tl, at) {
-  tl.to('.hero__line .char', { yPercent: 0, duration: 1.3, stagger: 0.035 }, at)
+  tl.to('[data-hero-name]', { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.6, stagger: 0.25 }, at)
     .to('[data-hero-amp]', { opacity: 1, scale: 1, duration: 1.3 }, '<0.3')
     .to('[data-hero-fade]', { opacity: 1, y: 0, duration: 1.1, stagger: 0.09 }, '<0.1');
 }
@@ -289,7 +283,7 @@ function intro({ withLoader }) {
   const loader = $('.loader');
   if (reduced || currentPage !== 'einladung') { loader?.remove(); return; }
 
-  gsap.set('.hero__line .char', { yPercent: 115 });
+  gsap.set('[data-hero-name]', { opacity: 0, y: 30, filter: 'blur(6px)' });
   gsap.set('[data-hero-amp]', { opacity: 0, scale: 0.7 });
   gsap.set('[data-hero-fade]', { opacity: 0, y: 24 });
 
